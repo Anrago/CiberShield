@@ -1,29 +1,42 @@
 import { useEffect, useState } from 'react';
 import { getExerciseConnection } from '../api/exerciseConection';
-function Prub() {
-  const [respuesta, setRespuesta] = useState(null);
+import  DificultySelector  from '../components/dificultySelector';
+import ExerciseCard from '../components/exerciseCard';
+import DescriptionCard from '../components/descriptionCard';
 
-  useEffect(() => {
-        const pruebaconexion = async () => {
-            const data = await getExerciseConnection("simple");
-            if (!data) {
-                console.error("No se recibió respuesta del backend");
-                return;
-            }
-            console.log("Respuesta del backend:", data);
-            setRespuesta(data);
-        }
-        pruebaconexion();   
-  }, []);
-  console.log("Respuesta del backend:");
-  console.log("Respuesta del backend:", respuesta);
+export default function Prub() {
+  const [respuesta, setRespuesta] = useState(null);
+  const [options, setOptions] = useState(null);
+  
+
+  const fetchExercise = async (dificulty) => {
+    const data = await getExerciseConnection(dificulty);
+    if (!data) {
+      console.error("No se recibió respuesta del backend");
+      return;
+    }
+    setRespuesta(data);
+  }
+
+
 
   return (
     <div>
-      <h1>Conexión al Backend</h1>
-        <p>Respuesta del backend: {respuesta} </p>
-    </div>    
+      <DificultySelector setExercise={fetchExercise} />
+      {respuesta ? (
+        options === null ? (
+          <ExerciseCard message={respuesta} setOptions={setOptions} />
+        ) : (
+          <>
+            <DescriptionCard option={options === Boolean(respuesta.Categoria)} description={respuesta.Descripcion} />
+            <button onClick={() => setOptions(null)}>Volver a jugar</button>
+          </>
+        )
+      ) : (
+        <p>Cargando datos del backend...</p>
+      )}
+    </div>
   );
 }
 
-export default Prub;
+
