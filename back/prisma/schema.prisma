@@ -12,3 +12,74 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id             Int              @id @default(autoincrement())
+  userName       String           @unique @map("user_name")
+  email          String
+  password       String
+  createdAt      DateTime         @default(now()) @map("created_at")
+  darkMode       Boolean          @default(false) @map("dark_mode")
+  UserSetting    UserSetting?
+  ExerciseResult ExerciseResult[]
+
+  @@map("users")
+}
+
+model UserSetting {
+  userId   Int      @id @map("user_id")
+  theme    String   @default("light")
+  language String   @default("es")
+  updateAt DateTime @default(now()) @map("update_at")
+
+  User User @relation(fields: [userId], references: [id])
+
+  @@map("user_settings")
+}
+
+model Exercise {
+  id        Int      @id @default(autoincrement())
+  levelId   Int      @map("level_id")
+  typeId    Int      @map("type_id")
+  content   String
+  context   String
+  isPhising Boolean  @default(false) @map("is_phishing")
+  createAt  DateTime @default(now()) @map("create_at")
+
+  ExerciseLevel    ExerciseLevel    @relation(fields: [levelId], references: [id])
+  ExerciseType     ExerciseType     @relation(fields: [typeId], references: [id])
+  ExerciseResult   ExerciseResult[]
+  exerciseResultId Int?
+
+  @@map("exercises")
+}
+
+model ExerciseLevel {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  Exercise Exercise[]
+
+  @@map("exercise_levels")
+}
+
+model ExerciseType {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  Exercise Exercise[]
+
+  @@map("exercise_types")
+}
+
+model ExerciseResult {
+  id         Int      @id @default(autoincrement())
+  userId     Int      @map("user_id")
+  exerciseId Int      @map("exercise_id")
+  correct    Boolean  @default(false)
+  feedback   String   @default("")
+  createAt   DateTime @default(now()) @map("create_at")
+
+  user     User     @relation(fields: [userId], references: [id])
+  exercise Exercise @relation(fields: [exerciseId], references: [id])
+
+  @@map("exercise_results")
+}

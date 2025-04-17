@@ -74,7 +74,7 @@ export class OpenaiService {
         try
         {
             const data = JSON.parse(response.choices[0].message.content??'Default fallback content');
-            return JSON.stringify(data, null, 2); // Pretty print JSON with 2 spaces
+            return JSON.stringify(data, null, 2);
         }catch (error) {
             console.error('Error parsing JSON:', error);
             return response.choices[0].message.content ?? 'Default fallback content';

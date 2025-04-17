@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getExerciseConnection } from '../api/exerciseConection';
 import  DificultySelector  from '../components/dificultySelector';
 import ExerciseCard from '../components/exerciseCard';
@@ -19,7 +19,6 @@ export default function Prub() {
   }
 
 
-
   return (
     <div>
       <DificultySelector setExercise={fetchExercise} />
@@ -29,7 +28,7 @@ export default function Prub() {
         ) : (
           <>
             <DescriptionCard option={options === Boolean(respuesta.Categoria)} description={respuesta.Descripcion} />
-            <button onClick={() => setOptions(null)}>Volver a jugar</button>
+            <button  onClick={() => setOptions(null)}>Volver a jugar</button>
           </>
         )
       ) : (
