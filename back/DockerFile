@@ -1,0 +1,41 @@
+# Usa una imagen base de Node.js con Alpine para mayor eficiencia
+FROM node:23-alpine AS builder
+
+# Establece el directorio de trabajo
+WORKDIR /app
+
+# Copia los archivos necesarios
+COPY package.json package-lock.json ./
+
+# Instala dependencias de producción
+RUN npm install 
+
+# Copia el resto de la aplicación
+COPY . .
+
+# Genera el cliente de Prisma
+#RUN npx prisma generate
+
+# Compila el proyecto
+RUN npm run build
+RUN npx prisma generate
+
+# Usa una imagen más liviana para producción
+FROM node:23-alpine AS runner
+
+WORKDIR /app
+
+# Instala OpenSSL (necesario para Prisma con PostgreSQL)
+RUN apk add --no-cache openssl
+
+# Copia solo los archivos necesarios desde el builder
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+# COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/package.json ./
+
+# Expone el puerto de la aplicación
+EXPOSE 3000
+
+# # Comando para ejecutar migraciones y luego iniciar la aplicación
+# CMD npx prisma migrate deploy && node dist/main.js
