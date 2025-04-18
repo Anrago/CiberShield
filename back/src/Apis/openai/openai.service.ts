@@ -71,14 +71,19 @@ export class OpenaiService {
             ]
         });
         
-        try
-        {
+        try{
             const data = JSON.parse(response.choices[0].message.content??'Default fallback content');
             return JSON.stringify(data, null, 2);
-        }catch (error) {
+        }catch (error){
             console.error('Error parsing JSON:', error);
             return response.choices[0].message.content ?? 'Default fallback content';
         }
     }
-
 }
+
+//Publicidad falsa
+//Extorsiones de banco Normal o facil
+//Bancos
+//Coppel
+//Compañia de telefonia
+

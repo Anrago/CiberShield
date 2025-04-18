@@ -8,6 +8,3 @@ export class CreateUserDto extends OmitType(User,[
     
 ]){}
 
-export class UserSettingDto {
-
-}
