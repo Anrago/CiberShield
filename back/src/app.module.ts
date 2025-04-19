@@ -9,11 +9,13 @@ import { UserSettingsModule } from './database/user-settings/user-settings.modul
 import { ExerciseLevelModule } from './database/exercise-level/exercise-level.module';
 import { ExerciseModule } from './database/exercise/exercise.module';
 import { ExerciseTypeModule } from './database/exercise-type/exercise-type.module';
+import { ExerciseResultModule } from './database/exercise-result/exercise-result.module';
 // import { PrismaModule } from './prisma/prisma.module';
+
 
 @Module({
   imports: [OpenaiModule,UserModule,PrismaModule,MetadataExerciseModule,UserSettingsModule,ExerciseLevelModule,
-    ExerciseTypeModule,ExerciseModule,
+    ExerciseTypeModule,ExerciseModule, ExerciseResultModule,
   ],
   controllers: [AppController],
   providers: [AppService],

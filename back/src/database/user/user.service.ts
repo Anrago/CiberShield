@@ -8,7 +8,7 @@ import {  User,UserSetting } from "@prisma/client";
 @Injectable()
 export class UserService {
 
-    private readonly logegr = new Logger(UserService.name);
+    private readonly logger = new Logger(UserService.name);
     constructor(private readonly prisma:PrismaService) {}
 
     async create(createUserDto: CreateUserDto): Promise<User> {
@@ -22,23 +22,15 @@ export class UserService {
         });
 
         if(emailExist){
-            this.logegr.error(`User with email ${createUserDto.email} already exists`);
+            this.logger.error(`User with email ${createUserDto.email} already exists`);
             throw new ConflictException(`User with email ${createUserDto.email} already exists`);
         }
 
-        const user = await  this.prisma.user.create({
+        return await  this.prisma.user.create({
             data: createUserDto,
-
         });
 
-        await this.prisma.userSetting.create({
-            data: {
-              userId: user.id 
-              
-            }
-          });
 
-        return user;
 
     }
 
