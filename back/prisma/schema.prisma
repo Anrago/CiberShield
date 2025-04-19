@@ -38,13 +38,13 @@ model UserSetting {
 }
 
 model Exercise {
-  id        Int      @id @default(autoincrement())
-  levelId   Int      @map("level_id")
-  typeId    Int      @map("type_id")
-  content   String
-  context   String
-  isPhising Boolean  @default(false) @map("is_phishing")
-  createAt  DateTime @default(now()) @map("create_at")
+  id         Int      @id @default(autoincrement())
+  levelId    Int      @map("level_id")
+  typeId     Int      @map("type_id")
+  content    Json     @db.JsonB
+  context    String
+  isPhishing Boolean  @default(false) @map("is_phishing")
+  createAt   DateTime @default(now()) @map("create_at")
 
   ExerciseLevel    ExerciseLevel    @relation(fields: [levelId], references: [id])
   ExerciseType     ExerciseType     @relation(fields: [typeId], references: [id])

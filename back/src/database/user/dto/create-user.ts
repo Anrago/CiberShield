@@ -1,3 +1,4 @@
+import { UserSetting } from "@prisma/client";
 import{ User } from "../entities/user.entity";
 import { OmitType } from "@nestjs/swagger";
 

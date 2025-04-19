@@ -2,7 +2,9 @@ import { Injectable, Logger, ConflictException} from "@nestjs/common";
 import { CreateUserDto } from "../user/dto/create-user";
 import { UpdateUserDto } from "../user/dto/update-user";
 import { PrismaService } from "src/prisma/prisma.service";
-import { Prisma, User } from "@prisma/client";
+import {  User,UserSetting } from "@prisma/client";
+
+
 @Injectable()
 export class UserService {
 
@@ -24,9 +26,19 @@ export class UserService {
             throw new ConflictException(`User with email ${createUserDto.email} already exists`);
         }
 
-        return await  this.prisma.user.create({
-            data: createUserDto
+        const user = await  this.prisma.user.create({
+            data: createUserDto,
+
         });
+
+        await this.prisma.userSetting.create({
+            data: {
+              userId: user.id 
+              
+            }
+          });
+
+        return user;
 
     }
 
@@ -41,7 +53,7 @@ export class UserService {
                         {userName: data},
                         {email: data }
                     ]
-                }
+                },
         });
     }
 
