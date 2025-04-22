@@ -7,6 +7,7 @@ import { UserService } from "./user.service";
     imports: [PrismaModule],
     controllers: [UserController],
     providers: [UserService],
+    exports: [UserService], // 👈 Esto es CLAVE
     
 })
 
