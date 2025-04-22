@@ -1,16 +1,16 @@
 version: '3.7'
 services:
-  back:
-    build:
-      context: ./back
-      dockerfile: DockerFile
-    container_name: back
-    ports:
-      - 3000:3000
-    depends_on:
-      - dbCiberShield
-    networks:
-      - ciberShieldNetwork
+  # back:
+  #   build:
+  #     context: ./back
+  #     dockerfile: DockerFile
+  #   container_name: back
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - dbCiberShield
+  #   networks:
+  #     - ciberShieldNetwork
 
   dbCiberShield:
     env_file:
@@ -37,8 +37,8 @@ services:
     container_name: front
     ports:
       - 5173:5173
-    depends_on:
-      - back
+    # depends_on:
+    #   - back
     networks:
       - ciberShieldNetwork
 

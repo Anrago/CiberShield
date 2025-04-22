@@ -2,7 +2,7 @@ import { Injectable, Logger, ConflictException} from "@nestjs/common";
 import { CreateUserDto } from "../user/dto/create-user";
 import { UpdateUserDto } from "../user/dto/update-user";
 import { PrismaService } from "src/prisma/prisma.service";
-import {  User,UserSetting } from "@prisma/client";
+import {  User } from "@prisma/client";
 
 
 @Injectable()

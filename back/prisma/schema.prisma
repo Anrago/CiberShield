@@ -16,26 +16,28 @@ datasource db {
 model User {
   id             Int              @id @default(autoincrement())
   userName       String           @unique @map("user_name")
+  name           String?           @map("name")
+  lastName       String?          @map("last_name")
   email          String
   password       String
-  createdAt      DateTime         @default(now()) @map("created_at")
+  imgPerfil      String?          @default("imgDefault") @map("img_perfil")
   darkMode       Boolean          @default(false) @map("dark_mode")
-  UserSetting    UserSetting?
+  createdAt      DateTime         @default(now()) @map("created_at")
   ExerciseResult ExerciseResult[]
 
   @@map("users")
 }
 
-model UserSetting {
-  userId   Int      @id @map("user_id")
-  theme    String   @default("light")
-  language String   @default("es")
-  updateAt DateTime @default(now()) @map("update_at")
+// model UserSetting {
+//   userId   Int      @id @map("user_id")
+//   theme    String   @default("light")
+//   language String   @default("es")
+//   updateAt DateTime @default(now()) @map("update_at")
 
-  User User @relation(fields: [userId], references: [id])
+//   User User @relation(fields: [userId], references: [id])
 
-  @@map("user_settings")
-}
+//   @@map("user_settings")
+// }
 
 model Exercise {
   id         Int      @id @default(autoincrement())

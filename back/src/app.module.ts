@@ -5,7 +5,6 @@ import { OpenaiModule } from './Apis/openai/openai.module';
 import { UserModule } from './database/user/user.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { MetadataExerciseModule } from './database/metadataExercise/metadataExercise.module';
-import { UserSettingsModule } from './database/user-settings/user-settings.module';
 import { ExerciseLevelModule } from './database/exercise-level/exercise-level.module';
 import { ExerciseModule } from './database/exercise/exercise.module';
 import { ExerciseTypeModule } from './database/exercise-type/exercise-type.module';
@@ -14,7 +13,7 @@ import { ExerciseResultModule } from './database/exercise-result/exercise-result
 
 
 @Module({
-  imports: [OpenaiModule,UserModule,PrismaModule,MetadataExerciseModule,UserSettingsModule,ExerciseLevelModule,
+  imports: [OpenaiModule,UserModule,PrismaModule,MetadataExerciseModule,ExerciseLevelModule,
     ExerciseTypeModule,ExerciseModule, ExerciseResultModule,
   ],
   controllers: [AppController],

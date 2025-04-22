@@ -1,5 +1,4 @@
 import { User as Modelo  } from "@prisma/client";
-import { UserSetting  } from "@prisma/client";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, isBoolean, IsEmail, IsInt, IsNotEmpty, IsPositive, IsString } from "class-validator";
 
@@ -11,6 +10,8 @@ export class User implements Modelo {
     id: number;
 
 
+    
+
     @ApiProperty({
         description: 'userName must be unique',
         uniqueItems: true,
@@ -20,6 +21,23 @@ export class User implements Modelo {
     @IsNotEmpty({message: 'userName must not be empty'})
     userName: string;
 
+
+    @ApiProperty({
+        description: 'firstName must be unique',
+        uniqueItems: true,
+        example: 'John'
+    })
+    @IsString({message: 'firstName must be a string'})
+    name: string | null;
+
+    @ApiProperty({
+        description: 'lastName must be unique',
+        uniqueItems: true,
+        example: 'Doe'
+    })
+    @IsString({message: 'lastName must be a string'})
+    lastName: string | null;
+
     @ApiProperty({
         description: 'email must be unique',
         uniqueItems: true,
@@ -27,6 +45,8 @@ export class User implements Modelo {
     })
     @IsEmail()
     email: string;
+
+
 
 
     @ApiProperty({
@@ -47,7 +67,9 @@ export class User implements Modelo {
     })
     @IsBoolean({message: 'darkMode must be a boolean'})
     darkMode: boolean;
+    
 
+    imgPerfil: string | null;
 
     @ApiProperty({
         description: 'this field is used to idicate the cretion date of the user',
@@ -55,11 +77,6 @@ export class User implements Modelo {
     })
     createdAt: Date;
 
-    @ApiProperty({
-        description: 'this field is used to idicate the last update date of the user and the user setting',
-        example: '03/10/2023',
-    })
-    userSetting?: UserSetting;
 
     
     
