@@ -8,7 +8,7 @@ export class LoginService {
   constructor (private readonly userService: UserService, private jwtService: JwtService) {}
 
 
-  async signIn(username: string , pass:string ):  Promise<{access_token: string} | null> {
+  async signIn(username: string , pass:string ):  Promise<any> {
     const userExist = await this.userService.findOne(username);
     if (!userExist) {
       return null;
@@ -19,9 +19,13 @@ export class LoginService {
     }
 
     const payload = {user: userExist.id, username: userExist.userName, email: userExist.email};
+    
 
-    return {
-      access_token: await this.jwtService.signAsync(payload)
-    };
+
+    return userExist;
+
+    // return {
+    //   access_token: await this.jwtService.signAsync(payload)
+    // };
   }
 }

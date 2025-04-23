@@ -7,6 +7,11 @@ export const login = async (email, password) => {
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify({
+                email,
+                password,
+            }),
+
         });
 
         if (!response.ok){
@@ -16,6 +21,33 @@ export const login = async (email, password) => {
         const data = await response.text();
         return data;
     } catch (error) {
+        console.error("Error fetching exercise connection:", error);
+        throw error;
+    }
+}
+
+export const register = async (name,lastName,userName, email, password) =>{
+    try{
+        const respone = await fetch(`${API_URL}/user`,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name,
+                lastName,
+                userName,
+                email,
+                password
+            }),
+        });
+
+        if(!respone.ok){
+            throw new Error("Network response was not ok");
+        }
+        const data = await respone.json();
+        return data;
+    }catch (error) {
         console.error("Error fetching exercise connection:", error);
         throw error;
     }

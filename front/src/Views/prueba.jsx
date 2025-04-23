@@ -3,10 +3,13 @@ import { getExerciseConnection } from '../api/exerciseConection';
 import  DificultySelector  from '../components/dificultySelector';
 import ExerciseCard from '../components/exerciseCard';
 import DescriptionCard from '../components/descriptionCard';
-import { login } from '../api/authConection';
+import { login,register } from '../api/authConection';
 export default function Prub() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
   const [token, setToken] = useState(null);
   const [respuesta, setRespuesta] = useState(null);
   const [options, setOptions] = useState(null);
@@ -31,6 +34,15 @@ export default function Prub() {
     }
 }
 
+  const handleRegister = async () => {
+    try{
+      await register(name, lastname, username, email, password);
+      console.log("Usuario registrado:", { name, lastname, username, email, password });
+    } catch (error) {
+      console.error("Error al registrar usuario:", error);
+    }
+  }
+
 
   return (
     <div>
@@ -47,14 +59,20 @@ export default function Prub() {
       ) : (
         <p>Cargando datos del backend...</p>
       )}
-
-
       <p>Login</p>
-      <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}   />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}  placeholder='Email'  />
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'/>
+      <button onClick={handleLogin}>login</button>
+      <br/>
+      <br/>
+      <p>Register</p>
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre" />
+      <input type="text" value={lastname} onChange={(e) => setLastname(e.target.value)} placeholder="Apellido" />
+      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Nombre de usuario" />
+      <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}  placeholder='Email'  />
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'/>
       <br></br>
-      <button onClick={handleLogin}>Iniciar sesión</button>
-      <p>Token: {token}</p>
+      <button onClick={handleRegister}>Register</button>
       <p>Respuesta: {email}</p>
     </div>
   );
