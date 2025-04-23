@@ -1,24 +1,27 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { AuthenticationError } from 'openai';
 import { UserService } from 'src/database/user/user.service';
+import { JwtService } from '@nestjs/jwt';
+import { access } from 'fs';
 
 @Injectable()
 export class LoginService {
-  constructor (private readonly userService: UserService) {}
+  constructor (private readonly userService: UserService, private jwtService: JwtService) {}
 
 
-  async signIn(username: string , pass:string ): Promise<any> {
-    const user = await this.userService.findOne(username);
-    if (!user) {
+  async signIn(username: string , pass:string ):  Promise<{access_token: string} | null> {
+    const userExist = await this.userService.findOne(username);
+    if (!userExist) {
       return null;
     }
 
-    if (user?.password !== pass) {
+    if (userExist?.password !== pass) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    // const { password, ...result } = user;
+    const payload = {user: userExist.id, username: userExist.userName, email: userExist.email};
 
-    // const result;
+    return {
+      access_token: await this.jwtService.signAsync(payload)
+    };
   }
 }
