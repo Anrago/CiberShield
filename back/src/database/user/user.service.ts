@@ -3,7 +3,7 @@ import { CreateUserDto } from "../user/dto/create-user";
 import { UpdateUserDto } from "../user/dto/update-user";
 import { PrismaService } from "src/prisma/prisma.service";
 import {  User } from "@prisma/client";
-
+import * as bCrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -20,6 +20,10 @@ export class UserService {
                 ]
             }
         });
+
+        
+        const passwordHash = await bCrypt.hash(createUserDto.password, 10);
+        createUserDto.password = passwordHash;
 
         if(emailExist){
             this.logger.error(`User with email ${createUserDto.email} already exists`);

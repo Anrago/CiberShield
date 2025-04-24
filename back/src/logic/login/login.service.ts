@@ -22,10 +22,8 @@ export class LoginService {
     
 
 
-    return userExist;
-
-    // return {
-    //   access_token: await this.jwtService.signAsync(payload)
-    // };
+    return {
+      access_token: await this.jwtService.signAsync(payload)
+    };
   }
 }
