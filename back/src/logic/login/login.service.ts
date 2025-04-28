@@ -11,7 +11,7 @@ export class LoginService {
   async signIn(username: string , pass:string ):  Promise<any> {
     const userExist = await this.userService.findOne(username);
     if (!userExist) {
-      return null;
+      throw new UnauthorizedException('Invalid credentials');
     }
 
     if (userExist?.password !== pass) {

@@ -3,11 +3,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, Validation
 import { PrismaService } from "src/prisma/prisma.service";
 import { CreateUserDto } from './dto/create-user';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-
+import {UserService} from '../user/user.service';
 @ApiTags('user')
 @Controller('user')
 export class UserController {
-    constructor(private readonly prisma:PrismaService){}
+    constructor(private readonly userService:UserService){}
 
 
     @Post()
@@ -17,9 +17,8 @@ export class UserController {
     @ApiResponse({status: 409, description: 'Conflict: Email or username in use', type: CreateUserDto})
     @UsePipes(new ValidationPipe({transform: true}))
     createUser(@Body() createUserDto: CreateUserDto) : Promise<CreateUserDto> {
-        return this.prisma.user.create({
-            data: createUserDto
-        });
+        return this.userService.create(createUserDto);
+        
     }
 
 
@@ -27,7 +26,7 @@ export class UserController {
     @ApiBody({description: 'Get all users', type: CreateUserDto})
     @ApiResponse({status: 200, description: 'Users found'})
     findAll() {
-        return this.prisma.user.findMany();
+        return this.userService.findAll();
     }
 
     
@@ -36,14 +35,8 @@ export class UserController {
     @ApiParam({name: 'data', description: 'username or email'})
     @ApiResponse({status: 200, description: 'User found'})
     findOne(@Param('data') data: string) {
-        return this.prisma.user.findFirst({
-            where:{
-                OR: [
-                    {userName: data},
-                    {email: data }
-                ]
-            }
-        });
+        return this.userService.findOne(data);
+
     }
 
     @Patch(':id')
@@ -51,9 +44,6 @@ export class UserController {
     @ApiParam({name: 'id', description: 'user id'})
     @ApiResponse({status: 200, description: 'User updated', type: CreateUserDto})
     update(@Param('id') id: string, @Body() updateUserDto: CreateUserDto) {
-        return this.prisma.user.update({
-            where:{id: Number(id)},
-            data: updateUserDto
-        });
+        return this.userService.update(+id, updateUserDto);
     }
 }

@@ -5,27 +5,21 @@ import { UpdateExerciseDto } from './dto/update-exercise.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 @Controller('exercise')
 export class ExerciseController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly exerciseService: ExerciseService) {}
 
   @Post()
   create(@Body() createExerciseDto: CreateExerciseDto) {
-    return this.prisma.exercise.create({
-      data: createExerciseDto,
-    });
+    return this.exerciseService.create(createExerciseDto);
   }
 
   @Get()
   findAll() {
-    return this.prisma.exercise.findMany();
+    return this.exerciseService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.prisma.exercise.findUnique({
-      where: {
-        id: id,
-        },
-    });
+    return this.exerciseService.findOne(id);
   }
 
   // @Patch(':id')

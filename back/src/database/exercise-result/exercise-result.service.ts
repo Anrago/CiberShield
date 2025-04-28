@@ -27,6 +27,10 @@ export class ExerciseResultService {
       where: {
         id: id,
         },
+      include: {
+        exercise: true,
+        user: true,
+      },
       });
   }
 

@@ -3,7 +3,8 @@ import { CreateUserDto } from "../user/dto/create-user";
 import { UpdateUserDto } from "../user/dto/update-user";
 import { PrismaService } from "src/prisma/prisma.service";
 import {  User } from "@prisma/client";
-import * as bCrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
+
 
 @Injectable()
 export class UserService {
@@ -12,30 +13,39 @@ export class UserService {
     constructor(private readonly prisma:PrismaService) {}
 
     async create(createUserDto: CreateUserDto): Promise<User> {
+        // Verifica si ya existe un usuario con el correo o nombre de usuario
         const emailExist = await this.prisma.user.findFirst({
-            where:{
+            where: {
                 OR: [
-                    {userName: createUserDto.userName},
-                    {email: createUserDto.email }
+                    { userName: createUserDto.userName },
+                    { email: createUserDto.email }
                 ]
             }
         });
-
-        
-        const passwordHash = await bCrypt.hash(createUserDto.password, 10);
-        createUserDto.password = passwordHash;
-
-        if(emailExist){
+    
+        if (emailExist) {
             this.logger.error(`User with email ${createUserDto.email} already exists`);
             throw new ConflictException(`User with email ${createUserDto.email} already exists`);
         }
+    
+        // Verifica que la contraseña no sea nula o vacía
+        if (!createUserDto.password) {
+            throw new Error('Password is required');
+        }
+    
+        // Genera el hash de la contraseña
+        const passwordHash = await bcrypt.hash(createUserDto.password, 10);
+        console.log(passwordHash)
 
-        return await  this.prisma.user.create({
-            data: createUserDto,
+        const nuevoUsuario = {
+            ...createUserDto,
+            password: passwordHash,
+        }
+    
+        // Crea el usuario
+        return await this.prisma.user.create({
+            data: nuevoUsuario,
         });
-
-
-
     }
 
     async findAll(){

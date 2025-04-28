@@ -25,9 +25,8 @@ export default function Prub() {
 
   const handleLogin = async () => {
     try{
-      const reciveToken = await login(email, password);
-      setToken(reciveToken);
-      console.log("Token recibido:", reciveToken);
+       const reciveToken = await login(email, password);
+       localStorage.setItem("token", reciveToken);
     }
     catch (error) {
       console.error("Error al iniciar sesión:", error);

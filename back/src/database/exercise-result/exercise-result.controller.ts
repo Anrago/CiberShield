@@ -6,32 +6,21 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Controller('exercise-result')
 export class ExerciseResultController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly exerciseResult: ExerciseResultService) {}
 
   @Post()
   create(@Body() createExerciseResultDto: CreateExerciseResultDto) {
-    return this.prisma.exerciseResult.create({
-      data: createExerciseResultDto,
-    });
+    return this.exerciseResult.create(createExerciseResultDto);
   }
 
   @Get()
   findAll() {
-    return this.prisma.exerciseResult.findMany();
+    return this.exerciseResult.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.prisma.exerciseResult.findUnique(
-      {
-        where: {
-          id: id,
-        },
-        include: {
-          exercise: true,
-        },
-      },
-    );
+    return this.exerciseResult.findOne(id);
   }
 
   // @Patch(':id')
