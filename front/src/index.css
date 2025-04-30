@@ -1,2 +1,16 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+    themes: light --default;
+}
 
+
+
+:root{
+    --colorBase: #F5F7FA;
+    --colorBar: #1E293B;
+    --coloCards: #FFFFFF;
+    --colorSimple: #3B82F6;
+    --colorMedium: #FACC15;
+    --colorComplex: #ef4444;
+}
+    

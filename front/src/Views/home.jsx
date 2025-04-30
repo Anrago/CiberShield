@@ -5,7 +5,7 @@ export default function Home(){
     return (
         <>
             <NavBar/>
-            <div className="bg-gray-100">
+            <div>
                 Hola
             </div>
             <PruebaConexion/>   
