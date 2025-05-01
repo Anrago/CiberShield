@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui" {
     themes: light --default;
+    
 }
 
 
@@ -12,5 +13,8 @@
     --colorSimple: #3B82F6;
     --colorMedium: #FACC15;
     --colorComplex: #ef4444;
+    --colorHomeCard: #101A2C;
 }
+
+
     
