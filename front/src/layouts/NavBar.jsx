@@ -32,9 +32,9 @@ export default function NavBar(){
       <li>
         <details>
           <summary>Services</summary>
-          <ul className="p-2 text-black">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
+          <ul className=" p-2 text-black">
+            <li><a>Malware</a></li>
+            <li><a>Ingenieria social</a></li>
           </ul>
         </details>
       </li>
