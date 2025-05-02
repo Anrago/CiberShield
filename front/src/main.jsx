@@ -5,12 +5,13 @@ import './index.css'
 import App from './App.jsx'
 import Ransomware from './Views/Ransomware.jsx'
 import Home from './Views/home.jsx'
+import InformativePage from './Views/informativePage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/ramsomware" element={<Ransomware />} />
+        <Route path="/ramsomware" element={<InformativePage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
