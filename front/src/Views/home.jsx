@@ -24,6 +24,8 @@ export default function Home(){
                     <div className="bg-amber-200 breack-words">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis similique iusto officiis voluptas! Illo, repudiandae porro. Cupiditate pariatur eveniet nemo aliquam fugit accusamus corporis dicta nulla enim fuga, facere magni?
                     </div>
+
+
                     <div className="card bg-[#9090AB] col-span-2 row-span-3  w-full  ">
                         <div className="flex flex-col items-center h-full">
                             <h2 className=" text-5xl font-bold">SERVICIOS</h2>
