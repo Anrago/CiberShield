@@ -10,12 +10,26 @@ import { ExerciseModule } from './database/exercise/exercise.module';
 import { ExerciseTypeModule } from './database/exercise-type/exercise-type.module';
 import { ExerciseResultModule } from './database/exercise-result/exercise-result.module';
 import { LoginModule } from './logic/auth/auth.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 // import { PrismaModule } from './prisma/prisma.module';
 
-
 @Module({
-  imports: [OpenaiModule,UserModule,PrismaModule,MetadataExerciseModule,ExerciseLevelModule,
-    ExerciseTypeModule,ExerciseModule, ExerciseResultModule, LoginModule],
+  imports: [
+    OpenaiModule,
+    UserModule,
+    PrismaModule,
+    MetadataExerciseModule,
+    ExerciseLevelModule,
+    ExerciseTypeModule,
+    ExerciseModule,
+    ExerciseResultModule,
+    LoginModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'), 
+      serveRoot: '/uploads',
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

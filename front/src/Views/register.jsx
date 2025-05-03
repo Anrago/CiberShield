@@ -7,11 +7,21 @@ export default function Register() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [image, setImage] = useState(null);
 
   const handleRegister = async (e) => {
-    e.preventDefault(); // Este `e` debe estar en los argumentos
+    e.preventDefault();
+    console.log("Registering user...");
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("lastName", lastName);
+    formData.append("userName", userName);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("imagePerfil", image); // image es el archivo seleccionado
+
     try {
-      await register(name,lastName,userName,email,password);
+      await register(formData);
     } catch (error) {
       console.error("Registration failed:", error);
     }
@@ -82,6 +92,12 @@ export default function Register() {
             />
             <span className="floating-label">Password</span>
           </label>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
 
           <button type="submit" className="btn btn-neutral btn-outline">
             Register

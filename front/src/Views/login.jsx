@@ -13,6 +13,7 @@ export default function Login() {
       
       const profile = await getProfile(); // Obtener perfil después del login
       if (profile) {
+        localStorage.setItem("profile", JSON.stringify(profile)); // Guardar perfil en localStorage
         console.log("Profile:", profile);
       } else {
         console.log("No profile found.");
