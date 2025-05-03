@@ -9,7 +9,7 @@ import { ExerciseLevelModule } from './database/exercise-level/exercise-level.mo
 import { ExerciseModule } from './database/exercise/exercise.module';
 import { ExerciseTypeModule } from './database/exercise-type/exercise-type.module';
 import { ExerciseResultModule } from './database/exercise-result/exercise-result.module';
-import { LoginModule } from './logic/login/login.module';
+import { LoginModule } from './logic/auth/auth.module';
 // import { PrismaModule } from './prisma/prisma.module';
 
 

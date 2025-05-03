@@ -2,7 +2,7 @@ const API_URL = import.meta.env.VITE_BACK_API_URL || "http://localhost:3000";
 
 export const login = async (username, password) => {
     try{
-        const response = await fetch(`${API_URL}/login`, {
+        const response = await fetch(`${API_URL}/auth/login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -57,4 +57,26 @@ export const register = async (name,lastName,userName, email, password) =>{
         console.error("Error fetching exercise connection:", error);
         throw error;
     }
+}
+
+export const getProfile = async () => {
+    try{
+        const response = await fetch(`${API_URL}/auth/profile`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        if (!response.ok) {
+            const errorText = await response.text(); // Para debug
+            throw new Error(`Network response was not ok: ${errorText}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error to access:", error);
+        throw error;
+    }
+
 }

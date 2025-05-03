@@ -7,7 +7,7 @@ import Ransomware from "./Views/Ransomware.jsx";
 import Home from "./Views/home.jsx";
 import InformativePage from "./Views/informativePage.jsx";
 import Login from "./Views/login.jsx";
-
+import Register from "./Views/register.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -15,6 +15,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<Home />} />
         <Route path="/ramsomware" element={<InformativePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
