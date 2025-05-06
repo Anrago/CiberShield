@@ -2,12 +2,31 @@ import React from "react";
 
 export default function ExerciseCard({ message, setOptions }) {
   return (
-    <div className="message-view">
-      <h2>{message.Asunto}</h2>
-      <p>{message.Remitente}</p>
-      <p>{message.Cuerpo}</p>
-      <button onClick={() => setOptions(false)}>Falso</button>
-      <button onClick={() => setOptions(true)}>Verdadero</button>
+    <div className="card shadow-2xl bg-[#E0F2E9] border border-gray-300 rounded-md max-w-2xl mx-auto my-4">
+      <div className="card-body p-6">
+        <div className="mb-4 border-b pb-2">
+          <h2 className="text-xl font-semibold text-gray-800">{message.Asunto}</h2>
+          <p className="text-sm text-gray-500">De: {message.Remitente}</p>
+        </div>
+        <div className="mb-6 text-gray-700 whitespace-pre-line">
+          {message.Cuerpo}
+        </div>
+        <div className="flex justify-center gap-4">
+          <button 
+            onClick={() => setOptions(false)} 
+            className="btn btn-outline btn-error"
+          >
+            Falso
+          </button>
+          <button 
+            onClick={() => setOptions(true)} 
+            className="btn btn-outline btn-success"
+          >
+            Verdadero
+          </button>
+        </div>
+      </div>
     </div>
   );
+  
 }

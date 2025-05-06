@@ -24,26 +24,7 @@ export default function Prub() {
     setRespuesta(data);
   }
  
-  const handleLogin = async () => {
-    try{
-       const reciveToken = await login(email, password);
-       localStorage.setItem("token", reciveToken);
-    }
-    catch (error) {
-      console.error("Error al iniciar sesión:", error);
-    }
-}
-
-  const handleRegister = async () => {
-    try{
-      await register(name, lastname, username, email, password);
-      console.log("Usuario registrado:", { name, lastname, username, email, password });
-    } catch (error) {
-      console.error("Error al registrar usuario:", error);
-    }
-  }
-
-
+  
   return (
     <div>
       <DificultySelector setExercise={fetchExercise} />
@@ -59,21 +40,7 @@ export default function Prub() {
       ) : (
         <p>Cargando datos del backend...</p>
       )}
-      <p>Login</p>
-      <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}  placeholder='Email'  />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'/>
-      <button onClick={handleLogin}>login</button>
-      <br/>
-      <br/>
-      <p>Register</p>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre" />
-      <input type="text" value={lastname} onChange={(e) => setLastname(e.target.value)} placeholder="Apellido" />
-      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Nombre de usuario" />
-      <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}  placeholder='Email'  />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'/>
-      <br></br>
-      <button onClick={handleRegister}>Register</button>
-      <p>Respuesta: {email}</p>
+      
     </div>
   );
 }
