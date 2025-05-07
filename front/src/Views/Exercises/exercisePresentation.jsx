@@ -9,7 +9,7 @@ export default function ExercisePresentation() {
 
   const fetchExercise = async () => {
     try {
-      //const data = await getExerciseConnection("simple"); DESSELECCIONAR
+      const data = await getExerciseConnection("simple");
       if (!data) {
         console.error("No se recibió respuesta del backend");
         return;
@@ -38,7 +38,7 @@ export default function ExercisePresentation() {
               Array(4)
                 .fill(0)
                 .map((_, index) => (
-                  <ExerciseCard //Agregar la descripocion, y hacer validacion dentro del componente.Agregando el Modal
+                  <ExerciseCard 
                     key={index}
                     message={exercise}
                     setOptions={true}

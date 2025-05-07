@@ -1,13 +1,7 @@
 export default function Modal({ isOpen, onClose }) {
   return (
     <>
-      <button
-        className="btn"
-        onClick={() => document.getElementById("my_modal_3").showModal()}
-      >
-        open modal
-      </button>
-      <dialog id="my_modal_3" className="modal">
+        <dialog id="my_modal_3" className="modal">
         <div className="modal-box">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
