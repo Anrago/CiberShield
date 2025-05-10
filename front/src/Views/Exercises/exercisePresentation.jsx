@@ -1,16 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router";
 import NavExercise from "../../components/navExercise";
 import ExerciseCard from "../../components/exerciseCard";
 import { getExerciseConnection } from "../../api/exerciseConection";
+
 export default function ExercisePresentation() {
-  const [exercise, setExercises] = React.useState([null]);
+  const [exercises, setExercises] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const fetchExercise = async () => {
     try {
       const data = await getExerciseConnection("simple");
-      if (!data) {
+      if (!data || data.length === 0) {
         console.error("No se recibió respuesta del backend");
         return;
       }
@@ -21,32 +22,65 @@ export default function ExercisePresentation() {
       setLoading(false);
     }
   };
+
   React.useEffect(() => {
     fetchExercise();
   }, []);
 
+  const handleNext = () => {
+    if (currentIndex < exercises.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    }
+  };
+
   return (
     <>
       <NavExercise />
-      <div className="flex flex-col items-center justify-center h-screen bg-[var(--colorBase)]">
-        <h2 className="text-2xl font-bold mb-4">Cargando ejercicios</h2>
-        <div className="flex flex-row gap-5 items-center justify-center mb-4">
-          <div className="stack stack-end gap-3">
-            {loading ? (
-              <span className="loading loading-spinner loading-xl"></span>
-            ) : (
-              Array(4)
-                .fill(0)
-                .map((_, index) => (
-                  <ExerciseCard 
-                    key={index}
+      <div className="flex flex-col items-center justify-center h-screen bg-[var(--colorBase)] px-4">
+        <h2 className="text-2xl font-bold mb-4">Ejercicios</h2>
+
+        {loading ? (
+          <span className="loading loading-spinner loading-xl"></span>
+        ) : (
+          <div className="flex flex-col items-center gap-6">
+            <div className="stack stack-end gap-3">
+              {exercises
+                .slice(currentIndex, currentIndex + 3)
+                .map((exercise, index) => (
+                  <ExerciseCard
+                    key={currentIndex + index}
                     message={exercise}
                     setOptions={true}
+                    handleClose={handleNext}
+                    
                   />
-                ))
-            )}
+                ))}
+            </div>
+
+            <div className="flex gap-4 mt-4">
+              <button
+                onClick={handlePrev}
+                disabled={currentIndex === 0}
+                className="btn btn-outline"
+              >
+                Anterior
+              </button>
+              <button
+                onClick={handleNext}
+                disabled={currentIndex >= exercises.length - 1}
+                className="btn btn-outline"
+              >
+                Siguiente
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
