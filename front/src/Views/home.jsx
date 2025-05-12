@@ -4,6 +4,9 @@ import PruebaConexion from "./prueba";
 import InformativeCards from "../components/informativeCards";
 import LetterGlitch from "../Backgrounds/letterGlitch/LetterGlitch";
 import DecryptedText from "../TextAnimations/DecryptedText/DecryptedText";
+
+import Virus from "../assets/images/virus.png";
+
 export default function Home() {
   return (
     <>
@@ -25,9 +28,9 @@ export default function Home() {
               <DecryptedText
                 text={"Bienvenido a"}
                 speed={100}
-                fontSize={"text-7xl"}
+                fontSize={"text-9xl"}
                 animateOn="view"
-                className="text-[#D9FAE7]"
+                className="text-[#D9FAE7] text-8xl"
                 sequential={true}
                 encryptedClassName="text-[#D9FAE7]"
               />
@@ -35,29 +38,22 @@ export default function Home() {
               <DecryptedText
                 text={"CiberShield"}
                 speed={100}
-                fontSize={"text-7xl"}
+                fontSize={""}
                 animateOn="view"
-                className="text-[#C3ACD5]"
+                className="text-[#C3ACD5] text-8xl"
                 sequential={true}
                 encryptedClassName="text-[#C3ACD5]"
               />
             </h1>
-          </div>
-          <div className=" card bg-[var(--colorHomeCard)] row-span-2 text-white w-[80%] h-[100%] shadow-xl">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime quo
-            ullam doloremque totam nostrum iusto ab! Mollitia blanditiis dolores
-            natus sapiente? Adipisci cupiditate voluptate tenetur quisquam odit,
-            est nisi autem?
+            <div className=" card bg-[var(--olo)] row-span-2 text-white w-[80%]  shadow-xl"></div>
           </div>
 
-          <div className="bg-amber-200 breack-words">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
-            similique iusto officiis voluptas! Illo, repudiandae porro.
-            Cupiditate pariatur eveniet nemo aliquam fugit accusamus corporis
-            dicta nulla enim fuga, facere magni?
+          <div className="text-white text-4xl font-Base ">
+            Tu escudo contra las amenazas digitales
           </div>
-
-          <div className="card bg-[#9090AB] col-span-2 row-span-3  w-full  ">
+          {/* #e5f5ff */}
+          {/* #ccebfe */}
+          <div className="card bg-[#e5f5ff] col-span-2 row-span-3 w-full h-full ">
             <div className="flex flex-col items-center h-full">
               <h2 className=" text-5xl font-bold">SERVICIOS</h2>
               <div className="grid grid-cols-3 gap-4 mt-4 mb-4">
@@ -68,6 +64,7 @@ export default function Home() {
                   }
                   color={"#FF4848"}
                   link={"/ransomware"}
+                  image={Virus}
                 />
                 <InformativeCards
                   title={"Ingenieria social"}
