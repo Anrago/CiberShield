@@ -2,17 +2,45 @@ import React from "react";
 import NavBar from "../layouts/NavBar";
 import PruebaConexion from "./prueba";
 import InformativeCards from "../components/informativeCards";
-
+import LetterGlitch from "../Backgrounds/letterGlitch/LetterGlitch";
+import DecryptedText from "../TextAnimations/DecryptedText/DecryptedText";
 export default function Home() {
   return (
     <>
-      <div className="bg-[var(--colorBase)] min-h-screen">
-        <NavBar />
-        <div className="grid grid-rows-4 grid-cols-2 justify-items-center gap-4 mt-10 h-[100vh]">
-          <div className="bg-amber-200">
+      <div className="bg-[var(--colorBase)] min-h-screen ">
+        <div className="relative z-50">
+          <NavBar />
+        </div>
+        <div className="fixed inset-0 z-0">
+          <LetterGlitch
+            glitchSpeed={50}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true}
+          />
+        </div>
+        <div className="relative z-50 grid grid-rows-4 grid-cols-2 justify-items-center gap-4 mt-10 h-[100vh]">
+          <div className=" ">
             <h1 className="text-7xl font-bold">
-              <span className="block">Bienvenido a </span>
-              <span className="text-primary">CiberShield</span>
+              <DecryptedText
+                text={"Bienvenido a"}
+                speed={100}
+                fontSize={"text-7xl"}
+                animateOn="view"
+                className="text-[#D9FAE7]"
+                sequential={true}
+                encryptedClassName="text-[#D9FAE7]"
+              />
+              <br />
+              <DecryptedText
+                text={"CiberShield"}
+                speed={100}
+                fontSize={"text-7xl"}
+                animateOn="view"
+                className="text-[#C3ACD5]"
+                sequential={true}
+                encryptedClassName="text-[#C3ACD5]"
+              />
             </h1>
           </div>
           <div className=" card bg-[var(--colorHomeCard)] row-span-2 text-white w-[80%] h-[100%] shadow-xl">
