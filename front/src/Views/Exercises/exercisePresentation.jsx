@@ -1,7 +1,7 @@
 import React from "react";
 import NavExercise from "../../components/navExercise";
 import ExerciseCard from "../../components/exerciseCard";
-import { getExerciseConnection } from "../../api/exerciseConection";
+import { getexercise } from "../../api/exerciseConection";
 
 export default function ExercisePresentation() {
   const [exercises, setExercises] = React.useState([]);
@@ -10,7 +10,7 @@ export default function ExercisePresentation() {
 
   const fetchExercise = async () => {
     try {
-      const data = await getExerciseConnection("simple");
+      const data = await getexercise();
       if (!data || data.length === 0) {
         console.error("No se recibió respuesta del backend");
         return;
@@ -58,7 +58,6 @@ export default function ExercisePresentation() {
                     message={exercise}
                     setOptions={true}
                     handleClose={handleNext}
-                    
                   />
                 ))}
             </div>
@@ -71,13 +70,7 @@ export default function ExercisePresentation() {
               >
                 Anterior
               </button>
-              <button
-                onClick={handleNext}
-                disabled={currentIndex >= exercises.length - 1}
-                className="btn btn-outline"
-              >
-                Siguiente
-              </button>
+            
             </div>
           </div>
         )}

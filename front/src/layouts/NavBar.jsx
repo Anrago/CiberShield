@@ -1,5 +1,4 @@
-import React from "react";
-
+import { NavLink } from "react-router";
 export default function NavBar() {
   return (
     <>
@@ -71,7 +70,20 @@ export default function NavBar() {
             </li>
           </ul>
         </div>
-        <div className="navbar-end"></div>
+        <div className="navbar-end">
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <NavLink to="/login" className="btn btn-ghost">
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/register" className="btn btn-ghost">
+                Register
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </div>
     </>
   );
