@@ -2,7 +2,7 @@ import React from "react";
 import NavExercise from "../../components/navExercise";
 import ExerciseCard from "../../components/exerciseCard";
 import { getexercise } from "../../api/exerciseConection";
-
+import ExerciseSMSCard from "../../components/exerciseSMSCard";
 export default function ExercisePresentation() {
   const [exercises, setExercises] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -61,7 +61,7 @@ export default function ExercisePresentation() {
                   />
                 ))}
             </div>
-
+                <ExerciseSMSCard/>
             <div className="flex gap-4 mt-4">
               <button
                 onClick={handlePrev}

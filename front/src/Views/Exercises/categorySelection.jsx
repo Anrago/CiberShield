@@ -1,25 +1,29 @@
-import React from "react";
 import NavExercise from "../../components/navExercise";
 import { NavLink } from "react-router";
 export default function CategorySelection() {
   return (
     <>
       <NavExercise />
-      <div className="flex flex-col items-center justify-center h-screen ">
-        <h1 className="text-2xl font-bold mb-4">Selecciona una categoria</h1>
-        <div className="flex flex-row gap-5 items-center justify-center">
-          <NavLink
-            to={"/dificulty"}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
-          >
-            Correo electronico
-          </NavLink>
-          <NavLink
-            to={"/dificulty"}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
-          >
-            Mensaje de texto
-          </NavLink>
+      <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-gray-50 ">
+        <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8">
+          Selecciona una categoría
+        </h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {[
+            { label: "Correo electrónico", icon: "📧" },
+            { label: "Mensaje de texto", icon: "💬" },
+          ].map(({ label, icon }, index) => (
+            <NavLink
+              key={index}
+              to="/dificulty"
+              className="flex items-center justify-center gap-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-white px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-50 dark:hover:bg-gray-700 transition-transform transform hover:-translate-y-1 duration-200"
+              aria-label={`Seleccionar categoría: ${label}`}
+            >
+              <span className="text-2xl">{icon}</span>
+              <span className="text-lg font-medium">{label}</span>
+            </NavLink>
+          ))}
         </div>
       </div>
     </>

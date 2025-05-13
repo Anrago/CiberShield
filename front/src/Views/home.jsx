@@ -1,6 +1,6 @@
 import NavBar from "../layouts/NavBar";
 import InformativeCards from "../components/informativeCards";
-import LetterGlitch from "../Backgrounds/letterGlitch/LetterGlitch";
+import LetterGlitch from "../Backgrounds/LetterGlitch/LetterGlitch";
 import DecryptedText from "../TextAnimations/DecryptedText/DecryptedText";
 import Footer from "../layouts/footer";
 
