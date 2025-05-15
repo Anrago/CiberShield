@@ -1,5 +1,14 @@
 import Modal from "./modal";
-export default function ExerciseCard({ message, setOptions, handleClose }) {
+export default function ExerciseCard({ message, handleClose }) {
+  const handleOption = (selection) => {
+    if (selection === message.Categoria) {
+      console.log("Correcto");
+      return true;
+    } else {
+      console.log("Incorrecto");
+      return false;
+    }
+  };
   return (
     <div className="card shadow-2xl bg-[#E0F2E9] border border-gray-300 rounded-md max-w-2xl mx-auto my-4">
       <div className="card-body p-6">
@@ -13,7 +22,11 @@ export default function ExerciseCard({ message, setOptions, handleClose }) {
           {message.Cuerpo}
         </div>
         <div className="flex justify-center gap-4">
-          <Modal description={message.Descripcion} onClose={handleClose} />
+          <Modal
+            description={message.Descripcion}
+            onClose={handleClose}
+            onOptions={handleOption}
+          />
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ export class ExerciseResultService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createExerciseResultDto: CreateExerciseResultDto) {
+    console.log(createExerciseResultDto)
     return await this.prisma.exerciseResult.create({
       data: createExerciseResultDto,
     });

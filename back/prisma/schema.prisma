@@ -57,31 +57,37 @@ model Exercise {
 }
 
 model ExerciseLevel {
-  id       Int        @id @default(autoincrement())
-  name     String     @unique
-  Exercise Exercise[]
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
+  Exercise       Exercise[]
+  ExerciseResult ExerciseResult[] @relation("exerciseLevelToExerciseLevel")
 
   @@map("exercise_levels")
 }
 
 model ExerciseType {
-  id       Int        @id @default(autoincrement())
-  name     String     @unique
-  Exercise Exercise[]
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
+  Exercise       Exercise[]
+  ExerciseResult ExerciseResult[] @relation("exerciseTypeToExerciseResult")
 
   @@map("exercise_types")
 }
 
 model ExerciseResult {
-  id         Int      @id @default(autoincrement())
-  userId     Int      @map("user_id")
-  exerciseId Int      @map("exercise_id")
-  correct    Boolean  @default(false)
-  feedback   String   @default("")
-  createAt   DateTime @default(now()) @map("create_at")
+  id              Int      @id @default(autoincrement())
+  userId          Int      @map("user_id")
+  exerciseId      Int?      @map("exercise_id")
+  exerciseTypeId  Int?      @map("exercise_type_id")
+  exerciseLevelId Int?     @map("exercise_level_id")
+  correct         Boolean  @default(false)
+  feedback        String   @default("")
+  createAt        DateTime @default(now()) @map("create_at")
 
-  user     User     @relation(fields: [userId], references: [id])
-  exercise Exercise @relation(fields: [exerciseId], references: [id])
+  user          User           @relation(fields: [userId], references: [id])
+  exercise      Exercise?       @relation(fields: [exerciseId], references: [id])
+  exerciseType  ExerciseType?   @relation(fields: [exerciseTypeId], references: [id], name: "exerciseTypeToExerciseResult")
+  exerciseLevel ExerciseLevel? @relation(fields: [exerciseLevelId], references: [id], name: "exerciseLevelToExerciseLevel")
 
   @@map("exercise_results")
 }

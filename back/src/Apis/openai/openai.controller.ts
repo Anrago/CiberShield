@@ -7,17 +7,17 @@ export class OpenaiController {
   private readonly openai = new OpenaiService();
 
   @ApiBody({ description: 'Create exercise', type: String })
-  @Post('simple')
+  @Post('email/simple')
   async createExerciseSimple(@Body('prompt') prompt: string): Promise<any> {
     const response = await this.openai.createExcesiSimplePost(prompt);
     return response;
   }
-  @Post('medium')
+  @Post('email/medium')
   async createExerciseMedium(@Body('prompt') prompt: string): Promise<any> {
     const response = await this.openai.createExcesiMediumPost(prompt);
     return response;
   }
-  @Post('complex')
+  @Post('email/complex')
   async createExerciseComplex(@Body('prompt') prompt: string): Promise<any> {
     const response = await this.openai.createExcesiComplexPost(prompt);
     return response;

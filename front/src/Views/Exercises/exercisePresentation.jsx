@@ -61,7 +61,7 @@ export default function ExercisePresentation() {
                   />
                 ))}
             </div>
-                <ExerciseSMSCard/>
+
             <div className="flex gap-4 mt-4">
               <button
                 onClick={handlePrev}
@@ -70,7 +70,6 @@ export default function ExercisePresentation() {
               >
                 Anterior
               </button>
-            
             </div>
           </div>
         )}

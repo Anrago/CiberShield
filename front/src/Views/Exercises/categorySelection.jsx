@@ -1,6 +1,16 @@
 import NavExercise from "../../components/navExercise";
 import { NavLink } from "react-router";
 export default function CategorySelection() {
+  const handleType = (type, id) => {
+    const typeData = {
+      type: type,
+      id: id,
+    };
+
+    const typeDataString = JSON.stringify(typeData);
+
+    localStorage.setItem("typeData", typeDataString);
+  };
   return (
     <>
       <NavExercise />
@@ -11,11 +21,12 @@ export default function CategorySelection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[
-            { label: "Correo electrónico", icon: "📧" },
-            { label: "Mensaje de texto", icon: "💬" },
+            { label: "SMS", icon: "💬" },
+            { label: "email", icon: "📧" },
           ].map(({ label, icon }, index) => (
             <NavLink
               key={index}
+              onClick={() => handleType(label, index + 1)}
               to="/dificulty"
               className="flex items-center justify-center gap-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-white px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-50 dark:hover:bg-gray-700 transition-transform transform hover:-translate-y-1 duration-200"
               aria-label={`Seleccionar categoría: ${label}`}
