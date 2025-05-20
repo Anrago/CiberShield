@@ -16,6 +16,7 @@ export default function ExercisePresentation() {
         return;
       }
       setExercises(data);
+      console.log("Ejercicios obtenidos:", data);
     } catch (error) {
       console.error("Error al obtener el ejercicio:", error);
     } finally {
@@ -39,6 +40,8 @@ export default function ExercisePresentation() {
     }
   };
 
+  const type = JSON.parse(localStorage.getItem("typeData")).type;
+
   return (
     <>
       <NavExercise />
@@ -47,7 +50,7 @@ export default function ExercisePresentation() {
 
         {loading ? (
           <span className="loading loading-spinner loading-xl"></span>
-        ) : (
+        ) : type === "email" ? (
           <div className="flex flex-col items-center gap-6">
             <div className="stack stack-end gap-3">
               {exercises
@@ -62,6 +65,38 @@ export default function ExercisePresentation() {
                 ))}
             </div>
 
+            <div className="flex gap-4 mt-4">
+              <button
+                onClick={handlePrev}
+                disabled={currentIndex === 0}
+                className="btn btn-outline"
+              >
+                Anterior
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center h-[80%] gap-6">
+            <div className="stack stack-end gap-3">
+              {exercises
+                .slice(currentIndex, currentIndex + 2)
+                .map((exercise, index) => (
+                  <ExerciseSMSCard
+                    key={currentIndex + index}
+                    exercise={exercise}
+                    handleClose={handleNext}
+                  />
+                ))}
+            </div>
+            <div className="flex gap-4 mt-4">
+              <button
+                onClick={handleNext}
+                disabled={currentIndex >= exercises.length - 1}
+                className="btn btn-outline"
+              >
+                Siguiente
+              </button>
+            </div>
             <div className="flex gap-4 mt-4">
               <button
                 onClick={handlePrev}

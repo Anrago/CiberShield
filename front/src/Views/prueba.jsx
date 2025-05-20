@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { getExerciseConnection } from "../api/exerciseConection";
 import DificultySelector from "../components/dificultySelector";
 import ExerciseCard from "../components/exerciseCard";
 import DescriptionCard from "../components/descriptionCard";

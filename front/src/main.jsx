@@ -15,14 +15,17 @@ import DificultySelector from "./Views/Exercises/dificultySelector.jsx";
 import SessionPreference from "./Views/Exercises/sessionPreference.jsx";
 import ReferenceData from "./Views/Exercises/referenceData.jsx";
 import ExercisePresentation from "./Views/Exercises/exercisePresentation.jsx";
-
+import Footer from "./layouts/footer.jsx";
 import Prueba from "./Views/prueba.jsx";
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App/>} />
+        <Route path="/home" element={<Home />} />
         <Route path="/ransomware" element={<InformativePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -42,5 +45,6 @@ createRoot(document.getElementById("root")).render(
         <Route path="/prueba" element={<Prueba></Prueba>} />
       </Routes>
     </BrowserRouter>
+          <Footer />
   </StrictMode>
 );

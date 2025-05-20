@@ -1,43 +1,13 @@
-import React from "react";
 import ImageTemp from "../assets/imagen.png";
 import VideoTemp from "../assets/video.png";
-import { NavLink } from "react-router";
-import Footer from "../layouts/footer";
-
-export default function InformativePage(title, content, image, video) {
+import SODesing from "../components/rendering/SODesing";
+import AsideBar from "../layouts/asideBar";
+export default function InformativePage() {
   return (
     <>
       <div className=" flex h-full">
-        <aside className="w-70 bg-gray-500 text-xl text-white p-5">
-          <NavLink to={"/"} className="btn text-2xl font-bold mb-8">
-            CiberShield{" "}
-          </NavLink>
-          <nav>
-            <ul>
-              <a className="" href="#">
-                Malware
-              </a>
-              <li>
-                <a
-                  href="/ransomware"
-                  className="btn btn-ghost text-gray-900 hover:bg-gray-200 hover:text-gray-900"
-                >
-                  Ransomware
-                </a>
-              </li>
-
-              <a href="#">Ingenieria Social</a>
-              <li>
-                <a
-                  href="/phishing"
-                  className="btn btn-ghost text-gray-900 hover:bg-gray-200 hover:text-gray-900"
-                >
-                  Phishing
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+        
+        <AsideBar />
 
         <div className="flex-1 p-10  justify-items-center bg-gray-100">
           <h2 className="text-5xl font-bold text-center">Ransomware</h2>
@@ -79,11 +49,7 @@ export default function InformativePage(title, content, image, video) {
             </p>
 
             <div className="flex justify-center m-8">
-              <img
-                src={VideoTemp}
-                alt="Ransomware"
-                className="w-64 h-auto rounded-lg shadow-lg"
-              />
+              <SODesing/>
             </div>
 
             <h3 className="text-3xl text-start">Como identificarlo?</h3>
@@ -114,7 +80,6 @@ export default function InformativePage(title, content, image, video) {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

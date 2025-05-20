@@ -7,11 +7,13 @@ export default function CategorySelection() {
       id: id,
     };
 
+    localStorage.removeItem("dificultyData");
     const dificultyDataString = JSON.stringify(dificultyData);
-
+    console.log(dificultyDataString);
     localStorage.setItem("dificultyData", dificultyDataString);
   };
-  console.log(localStorage.getItem("profile"));
+  const type =  JSON.parse(  localStorage.getItem("typeData")).type;
+  console.log(type);
   return (
     <>
       <NavExercise />

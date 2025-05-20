@@ -4,27 +4,8 @@ let dificultyData =JSON.parse( localStorage.getItem("dificultyData"));
 let storedData = localStorage.getItem("token") ? localStorage.getItem("profile"):localStorage.getItem("referenceData");
 let dataUser = storedData ? JSON.parse(storedData) : {};
 let typeData = JSON.parse(  localStorage.getItem("typeData"));
-console.log(typeData.type);
-console.log(dificultyData.dificulty);
-console.log(dataUser);
-export const getExerciseConnection = async (exerciseDificult) => {
-    try {
-        const response = await fetch(
-        `${API_URL}/getexercise/${typeData.type}/${dificultyData.dificulty}`,
-        );
+console.log("dificultyData",dificultyData.dificulty, "id",dificultyData.id);
 
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        return data;
-
-    } catch (error) {
-        console.error("Error fetching exercise connection:", error);
-        throw error;
-    }
-}
 
 export const getexercise = async () => {
     try {
@@ -86,5 +67,29 @@ export const postExerciseResult = async (isCorrect) =>{
     }
 }
 
+export const getExerciseResults = async () => {
+    try {
+        const response = await fetch(
+            `${API_URL}/exercise-result/${dataUser.user}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },   
+            }
+        );
+        
+        if (!response.ok) {
+            console.error("Error in response:", response);
+            throw new Error("Network response was not ok");
+        }
 
+        const data = await response.json();
+        return data;
+    }catch (error) {
+        console.error("Error fetching exercise connection:", error);
+        throw error;
+    }
+}
 // ${exerciseDificult}

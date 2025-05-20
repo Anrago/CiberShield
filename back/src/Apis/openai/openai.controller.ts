@@ -9,17 +9,27 @@ export class OpenaiController {
   @ApiBody({ description: 'Create exercise', type: String })
   @Post('email/simple')
   async createExerciseSimple(@Body('prompt') prompt: string): Promise<any> {
+    console.log('entro en Email simple');
     const response = await this.openai.createExcesiSimplePost(prompt);
     return response;
   }
   @Post('email/medium')
   async createExerciseMedium(@Body('prompt') prompt: string): Promise<any> {
+    console.log('entro en Email medium');
     const response = await this.openai.createExcesiMediumPost(prompt);
     return response;
   }
   @Post('email/complex')
   async createExerciseComplex(@Body('prompt') prompt: string): Promise<any> {
+    console.log('entro en Email complex');
     const response = await this.openai.createExcesiComplexPost(prompt);
+    return response;
+  }
+
+  @Post('sms/simple')
+  async createSmsSimple(@Body('prompt') prompt: string): Promise<any> {
+    console.log('entro en Sms simple');
+    const response = await this.openai.createExcesiSMSSimplePost(prompt);
     return response;
   }
 

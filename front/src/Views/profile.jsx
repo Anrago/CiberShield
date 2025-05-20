@@ -1,8 +1,19 @@
-import React from "react";
+import { getExerciseResults } from "../api/exerciseConection";
+import { use, useEffect, useState, reduce } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 export default function Profile() {
+  const [userResults, setUserResults] = useState([]);
   const userProfile = JSON.parse(localStorage.getItem("profile"));
-  console.log(userProfile.imgPerfil);
 
   const logOut = () => {
     localStorage.removeItem("token");
@@ -10,28 +21,208 @@ export default function Profile() {
     location.reload();
   };
 
+  //--------------------------------------------------
+
+  useEffect(() => {
+    const fetchExerciseResults = async () => {
+      try {
+        const results = await getExerciseResults();
+        if (!results || results.length === 0) {
+          console.error("No se recibió respuesta del backend");
+          return;
+        }
+        setUserResults(results);
+        console.log("Resultados de ejercicios:", results);
+      } catch (error) {
+        console.error("Error fetching exercise results:", error);
+      }
+    };
+
+    fetchExerciseResults();
+  }, []);
+
+  //--------------------------------------------------
+  const SMSResult = groupedData(userResults).filter(
+    (item) => item.name === "SMS"
+  );
+  const EmailResult = groupedData(userResults).filter(
+    (item) => item.name === "Email"
+  );
+  if (userResults.length != 0) {
+    console.log("SMSResult:", SMSResult);
+    console.log("EmailResult:", EmailResult);
+  }
   return (
-    <div className="flex justify-center h-screen">
-      <div className="card bg-base-100">
-        <div className="card-body items-center text-center bg-amber-200">
-          <h2 className="card-title">Profile</h2>
-          <div className="flex flex-col items-center">
+    <>
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-red-300 to-amber-300">
+        <div className="bg-white shadow-lg rounded-2xl p-8 w-80">
+          <div className="flex flex-col items-center text-center">
             <img
               src={`http://localhost:3000/${userProfile.imgPerfil}`}
               alt="Avatar"
-              className="rounded-full w-24 h-24 mb-4"
+              className="w-24 h-24 rounded-full shadow-md mb-4 border-4 border-amber-400 object-cover"
             />
-            <h3 className="text-lg font-semibold">{userProfile.name}</h3>
-            <p className="text-sm text-gray-600">{userProfile.email}</p>
+            <h2 className="text-2xl font-bold text-amber-700 mb-1">
+              {userProfile.name}
+            </h2>
+            <p className="text-gray-600 text-sm">{userProfile.email}</p>
+            <hr className="w-full my-6 border-amber-200" />
+            <button
+              onClick={logOut}
+              className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-4 rounded transition duration-200"
+            >
+              Cerrar sesión
+            </button>
           </div>
-          <button
-            onClick={() => logOut()}
-            className="btn btn-neutral btn-outline mt-4"
-          >
-            Logout
-          </button>
         </div>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart width={500} height={300} data={EmailResult}>
+            <CartesianGrid strokeDasharray={"3 3"} />
+            <XAxis dataKey="level" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="correct" stackId="a" fill="#82ca9d" />
+            <Bar dataKey="incorrect" stackId="a" fill="#ff0000" />
+          </BarChart>
+        </ResponsiveContainer>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart width={500} height={300} data={SMSResult}>
+            <CartesianGrid strokeDasharray={"3 3"} />
+            <XAxis dataKey="level" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="correct" stackId="a" fill="#82ca9d" />
+            <Bar dataKey="incorrect" stackId="a" fill="#ff0000" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
-    </div>
+    </>
   );
+}
+
+function groupedData(results) {
+  const safeResults = Array.isArray(results) ? results : [];
+
+  let groupData = {
+    SMS: {
+      simple: {
+        correct: 0,
+        incorrect: 0,
+      },
+      medium: {
+        correct: 0,
+        incorrect: 0,
+      },
+      complex: {
+        correct: 0,
+        incorrect: 0,
+      },
+    },
+    Email: {
+      simple: {
+        correct: 0,
+        incorrect: 0,
+      },
+      medium: {
+        correct: 0,
+        incorrect: 0,
+      },
+      complex: {
+        correct: 0,
+        incorrect: 0,
+      },
+    },
+  };
+
+  safeResults.forEach((element) => {
+    if (element.exerciseTypeId === 1) {
+      if (element.exerciseLevelId === 1) {
+        if (element.correct) {
+          groupData.SMS.simple.correct++;
+        } else {
+          groupData.SMS.simple.incorrect++;
+        }
+      }
+      if (element.exerciseLevelId === 2) {
+        if (element.correct) {
+          groupData.SMS.medium.correct++;
+        } else {
+          groupData.SMS.medium.incorrect++;
+        }
+      }
+      if (element.exerciseLevelId === 3) {
+        if (element.correct) {
+          groupData.SMS.complex.correct++;
+        } else {
+          groupData.SMS.complex.incorrect++;
+        }
+      }
+    }
+    if (element.exerciseTypeId === 2) {
+      if (element.exerciseLevelId === 1) {
+        if (element.correct) {
+          groupData.Email.simple.correct++;
+        } else {
+          groupData.Email.simple.incorrect++;
+        }
+      }
+      if (element.exerciseLevelId === 2) {
+        if (element.correct) {
+          groupData.Email.medium.correct++;
+        } else {
+          groupData.Email.medium.incorrect++;
+        }
+      }
+      if (element.exerciseLevelId === 3) {
+        if (element.correct) {
+          groupData.Email.complex.correct++;
+        } else {
+          groupData.Email.complex.incorrect++;
+        }
+      }
+    }
+  });
+
+  const data = [
+    {
+      name: "SMS",
+      level: "simple",
+      correct: groupData.SMS.simple.correct,
+      incorrect: groupData.SMS.simple.incorrect,
+    },
+    {
+      name: "SMS",
+      level: "medium",
+      correct: groupData.SMS.medium.correct,
+      incorrect: groupData.SMS.medium.incorrect,
+    },
+    {
+      name: "SMS",
+      level: "complex",
+      correct: groupData.SMS.complex.correct,
+      incorrect: groupData.SMS.complex.incorrect,
+    },
+    {
+      name: "Email",
+      level: "simple",
+      correct: groupData.Email.simple.correct,
+      incorrect: groupData.Email.simple.incorrect,
+    },
+    {
+      name: "Email",
+      level: "medium",
+      correct: groupData.Email.medium.correct,
+      incorrect: groupData.Email.medium.incorrect,
+    },
+    {
+      name: "Email",
+      level: "complex",
+      correct: groupData.Email.complex.correct,
+      incorrect: groupData.Email.complex.incorrect,
+    },
+  ];
+  return data;
 }

@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import Home from './Views/home'
-import './App.css'
-import PruebaConexion from './Views/prueba'
+import Home from "./Views/home";
+import "./App.css";
+
 function App() {
-
-
   return (
-   < Home/>
-  )
+    <>
+      <Home />
+
+    </>
+  );
 }
 
-export default App
+export default App;

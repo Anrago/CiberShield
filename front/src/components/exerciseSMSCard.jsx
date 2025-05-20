@@ -7,39 +7,60 @@ import camera from "../assets/Icons/camera.svg";
 import add from "../assets/Icons/add.svg";
 import smile from "../assets/Icons/smile.svg";
 import mic from "../assets/Icons/mic.svg";
+import Modal from "./modal";
 
-export default function ExerciseSMSCard({ exercise }) {
+export default function ExerciseSMSCard({ exercise, handleClose }) {
+  const handleOption = (selection) => {
+    if (selection === exercise.Categoria) {
+      console.log("Correcto");
+      return true;
+    } else {
+      console.log("Incorrecto");
+      return false;
+    }
+  };
+
   return (
-    <div className="mockup-phone">
-      <div className="mockup-phone-camera"></div>
-      <div className="mockup-phone-display text-white grid place-content-start">
-        <div className="flex flex-col gap-2 pt-15 ps-5">
-          <div className="flex row-auto gap-2">
-            <img src={Arrow} alt="Return" />
-            <img className="w-8.5" src={User} alt="User" />
-            <h2 className=" text-3xl me-10">{exercise.Numero}</h2>
-            <img className="w-8 ms-10" src={Trash} alt="Trash" />
-          </div>
-          <section className="overflow-y-auto h-[65%]">
-            {Object.values(exercise.Message).map((message, index) => (
-              <div
-                key={index}
-                className="bg-[#454545] border-none rounded-2xl mt-1 mb-3 max-w-[70%]"
-              >
-                <p className="p-1.5 text-white">{message}</p>
+    <div className="flex flex-col items-center justify-center h-full bg-[var(--colorBase)] px-4">
+      <div className="flex flex-col items-center gap-4">
+        <div className="mockup-phone">
+          <div className="mockup-phone-camera"></div>
+          <div className="mockup-phone-display text-white">
+            <div className="flex flex-col gap-2 pt-10 px-5">
+              <div className="flex items-center gap-2 mb-2">
+                <img src={Arrow} alt="Return" />
+                <img className="w-8" src={User} alt="User" />
+                <h2 className="text-xl flex-1">{exercise.Numero}</h2>
+                <img className="w-6" src={Trash} alt="Trash" />
               </div>
-            ))}
-          </section>
-
-          <div className=" flex flex-row gap-3">
-            <img src={image} alt="" />
-            <img src={camera} alt="" />
-            <img src={add} alt="" />
-            <div className="flex flex-row-reverse w-[50%] py-1.5 border-none rounded-full bg-[#262626]">
-              <img className="me-1" src={smile} alt="" />
+              <section className="overflow-y-auto max-h-60">
+                {Object.values(exercise.Message).map((message, index) => (
+                  <div
+                    key={index}
+                    className="bg-[#454545] rounded-2xl p-2 mb-2 max-w-[70%]"
+                  >
+                    <p>{message}</p>
+                  </div>
+                ))}
+              </section>
+              <div className="flex items-center gap-3 mt-2">
+                <img src={image} alt="img" />
+                <img src={camera} alt="cam" />
+                <img src={add} alt="add" />
+                <div className="flex flex-row-reverse w-[50%] py-1.5 rounded-full bg-[#262626]">
+                  <img className="me-1" src={smile} alt="smile" />
+                </div>
+                <img src={mic} alt="mic" />
+              </div>
             </div>
-            <img src={mic} alt="" />
           </div>
+        </div >
+        <div>
+          <Modal
+            description={exercise.Descripcion}
+            onClose={handleClose}
+            onOptions={handleOption}
+          />
         </div>
       </div>
     </div>

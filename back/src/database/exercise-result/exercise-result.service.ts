@@ -8,17 +8,16 @@ export class ExerciseResultService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createExerciseResultDto: CreateExerciseResultDto) {
-    console.log(createExerciseResultDto)
+    console.log(createExerciseResultDto);
     return await this.prisma.exerciseResult.create({
       data: createExerciseResultDto,
     });
   }
 
-  async findAll() {
+  async findAll(id: string) {
     return await this.prisma.exerciseResult.findMany({
-      include: {
-        exercise: true,
-        user: true,
+      where: {
+        userId: parseInt(id),
       },
     });
   }
@@ -27,12 +26,8 @@ export class ExerciseResultService {
     return this.prisma.exerciseResult.findUnique({
       where: {
         id: id,
-        },
-      include: {
-        exercise: true,
-        user: true,
       },
-      });
+    });
   }
 
   // update(id: number, updateExerciseResultDto: UpdateExerciseResultDto) {
