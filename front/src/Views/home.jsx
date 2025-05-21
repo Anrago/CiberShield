@@ -3,7 +3,6 @@ import InformativeCards from "../components/informativeCards";
 import LetterGlitch from "../Backgrounds/LetterGlitch/LetterGlitch";
 import DecryptedText from "../TextAnimations/DecryptedText/DecryptedText";
 import MVCards from "../components/MVcards";
-
 import Virus from "../assets/images/virus.png";
 import socialEngineering from "../assets/images/ingenieria-social.png";
 import Practices from "../assets/images/practices.png";
@@ -68,7 +67,7 @@ export default function Home() {
                 " Descubre qué es el malware, cómo infecta tus dispositivos y cuáles son los tipos más peligrosos que existen hoy"
               }
               color={"#FF4848"}
-              link={"/ransomware"}
+              link={"/info/malware"}
               image={Virus}
             />
             <InformativeCards

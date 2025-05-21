@@ -1,49 +1,73 @@
 import { NavLink } from "react-router";
+
 export default function AsideBar() {
   return (
-    <aside className="w-72 bg-gray-800 text-white p-6 min-h-screen">
-      {/* Marca */}
+    <aside className="w-72 bg-gray-900 text-white p-6 min-h-screen shadow-lg">
       <NavLink
         to="/"
-        className="block text-3xl font-bold mb-10 hover:text-gray-300 transition"
+        className="block text-3xl font-semibold mb-10 hover:text-gray-300 transition"
       >
         CiberShield
       </NavLink>
-
-      {/* Navegación */}
       <nav>
-        <ul className="space-y-4">
+        <ul className="space-y-6 text-sm font-medium">
+          {/* Sección: Malware */}
           <li>
-            <a
-              href="#"
-              className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
-            >
+            <span className="block px-4 py-2 text-gray-400 uppercase tracking-wider">
               Malware
-            </a>
+            </span>
+            <ul className="ml-4 space-y-2">
+              <li>
+                <NavLink
+                  to="/info/malware/virus"
+                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                >
+                  Virus
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/info/malware/ransomware"
+                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                >
+                  Ransomware
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/info/malware/spyware"
+                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                >
+                  Spyware
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/info/malware/worm"
+                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                >
+                  Gusano
+                </NavLink>
+              </li>
+            </ul>
           </li>
+
+          {/* Sección: Ingeniería Social */}
           <li>
-            <a
-              href="/ransomware"
-              className="block px-4 py-2 bg-white text-gray-900 rounded-md hover:bg-gray-200 transition"
-            >
-              Ransomware
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
-            >
+            <span className="block px-4 py-2 text-gray-400 uppercase tracking-wider">
               Ingeniería Social
-            </a>
-          </li>
-          <li>
-            <a
-              href="/phishing"
-              className="block px-4 py-2 bg-white text-gray-900 rounded-md hover:bg-gray-200 transition"
-            >
-              Phishing
-            </a>
+            </span>
+            <ul className="ml-4 space-y-2">
+              <li>
+                <NavLink
+                  to="/info/ingenieria-social/phishing"
+                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                >
+                  Phishing
+                </NavLink>
+              </li>
+              {/* Agrega más temas aquí si los hay */}
+            </ul>
           </li>
         </ul>
       </nav>

@@ -1,0 +1,67 @@
+/* styles/ransomware-style.css */
+
+.ransomware-background {
+  background: linear-gradient(to bottom, #000000, #330000);
+  color: #ff4c4c;
+
+}
+
+.ransomware-header {
+  font-size: 3rem;
+  text-align: center;
+  color: #ff1a1a;
+  text-shadow: 0 0 5px #ff0000;
+}
+
+.section-title {
+  color: #ff3333;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.paragraph-text {
+  color: #f8d7da;
+  font-size: 1.25rem;
+}
+
+.warning-box {
+  background: #1a0000;
+  border: 2px solid #ff1a1a;
+  padding: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  animation: shake 0.3s infinite alternate;
+}
+
+.sticky-warning {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #330000;
+  color: #ff4c4c;
+  text-align: center;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  z-index: 9999;
+  box-shadow: 0 -2px 10px red;
+  border-top: 2px solid #ff0000;
+  animation: shake 0.5s infinite alternate;
+}
+
+@keyframes shake {
+  from {
+    transform: translateX(-1pty);
+  }
+  to {
+    transform: translateX(1px);
+  }
+}
+
+img.ransomware-img {
+  filter: grayscale(100%) brightness(70%) contrast(120%);
+  border: 2px solid #ff1a1a;
+  border-radius: 8px;
+}

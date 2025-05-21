@@ -1,6 +1,7 @@
 import React, { use, useEffect } from "react";
 import NavExercise from "../../components/navExercise";
 import { NavLink } from "react-router";
+import PageWrapper from "../../components/pageWrapper";
 
 export default function ReferenceData() {
   const [data, setData] = React.useState({
@@ -15,6 +16,7 @@ export default function ReferenceData() {
 
   return (
     <>
+    <PageWrapper>
       <NavExercise />
       <div className="flex flex-col items-center justify-center min-h-screen px-4">
         <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
@@ -90,6 +92,7 @@ export default function ReferenceData() {
           </NavLink>
         </div>
       </div>
+      </PageWrapper>
     </>
   );
 }

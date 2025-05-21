@@ -1,0 +1,44 @@
+/* styles/spyware-style.css */
+
+.spyware-background {
+  background: linear-gradient(to bottom, #0a0f0d, #001f1f);
+  color: #c0f0dc;
+  /* font-family: 'Courier New', Courier, monospace; */
+}
+
+.spyware-header {
+  font-size: 3rem;
+  text-align: center;
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffcc;
+  margin-bottom: 2rem;
+}
+
+.spyware-section-title {
+  color: #33ffc6;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+.spyware-paragraph {
+  color: #d0fdf1;
+  font-size: 1.2rem;
+  line-height: 1.75rem;
+}
+
+.spyware-img {
+  filter: brightness(85%) contrast(110%);
+  border: 2px solid #00ffcc;
+  border-radius: 6px;
+}
+
+ul.spyware-list {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  color: #c4f9e3;
+}
+
+ul.spyware-list li strong {
+  color: #33ffc6;
+}
