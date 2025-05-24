@@ -1,15 +1,42 @@
 import { NavLink } from "react-router";
+import { useState, useEffect } from "react";
+import logo from "../assets/video.png";
+
 export default function NavBar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Add scroll effect to navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <header className="relative z-50">
-        <div className="navbar bg-[var(--colorBar)] text-white shadow-sm">
+      <header className="z-50 sticky top-0">
+        <div
+          className={`navbar ${
+            isScrolled
+              ? "bg-gradient-to-r from-[#1a4263] to-[#2a5377] shadow-lg"
+              : "bg-gradient-to-r from-[#1e3a5f] to-[#2d4e78]"
+          } text-[#D9FAE7] transition-all duration-300`}
+        >
           <div className="navbar-start">
             <div className="dropdown">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost lg:hidden"
+                className="btn btn-ghost hover:bg-[#3a6491] lg:hidden"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -18,76 +45,240 @@ export default function NavBar() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  {" "}
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
                     d="M4 6h16M4 12h8m-8 6h16"
-                  />{" "}
+                  />
                 </svg>
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-gradient-to-b from-[#1e3a5f] to-[#2d4e78] text-[#D9FAE7] rounded-box z-50 mt-3 w-52 p-2 shadow-lg"
               >
                 <li>
-                  <a>Item 1</a>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "font-bold bg-[#3a6491] text-white"
+                        : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                    }
+                  >
+                    Inicio
+                  </NavLink>
                 </li>
                 <li>
-                  <a>Parent</a>
-                  <ul className="p-2">
+                  <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "font-bold bg-[#3a6491] text-white"
+                        : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                    }
+                  >
+                    Acerca de nosotros
+                  </NavLink>
+                </li>
+                <li>
+                  <span className="hover:bg-[#3a6491] hover:bg-opacity-70">
+                    Servicios
+                  </span>
+                  <ul className="p-2 bg-gradient-to-b from-[#1e3a5f] to-[#2d4e78]">
                     <li>
-                      <a>Submenu 1</a>
+                      <NavLink
+                        to="/info/malware"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-bold bg-[#3a6491] text-white"
+                            : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                        }
+                      >
+                        Malware
+                      </NavLink>
                     </li>
                     <li>
-                      <a>Submenu 2</a>
+                      <NavLink
+                        to="/phishing"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-bold bg-[#3a6491] text-white"
+                            : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                        }
+                      >
+                        Ingeniería Social
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/sessionExercise"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-bold bg-[#3a6491] text-white"
+                            : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                        }
+                      >
+                        Prácticas
+                      </NavLink>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a>Item 3</a>
+                  <NavLink
+                    to="/contact"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "font-bold bg-[#3a6491] text-white"
+                        : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                    }
+                  >
+                    Contacto
+                  </NavLink>
                 </li>
               </ul>
             </div>
-            <a className="btn btn-ghost text-xl">CiberShield</a>
+            <NavLink
+              to="/"
+              className="btn btn-ghost gap-2 hover:bg-transparent"
+            >
+              <div className="bg-white p-1 rounded-full">
+                <img
+                  src={logo}
+                  alt="CiberShield Logo"
+                  className="h-8 w-8 object-contain"
+                />
+              </div>
+              <span className="text-xl font-bold text-gradient bg-gradient-to-r from-[#D9FAE7] to-[#C3ACD5] inline-block text-transparent bg-clip-text">
+                CiberShield
+              </span>
+            </NavLink>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
               <li>
-                <a>Home</a>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "font-bold bg-[#3a6491] text-white"
+                      : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                  }
+                >
+                  Inicio
+                </NavLink>
               </li>
               <li>
-                <a>About</a>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "font-bold bg-[#3a6491] text-white"
+                      : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                  }
+                >
+                  Acerca de nosotros
+                </NavLink>
               </li>
               <li>
                 <details>
-                  <summary>Services</summary>
-                  <ul className=" p-2 text-black">
+                  <summary className="hover:bg-[#3a6491] hover:bg-opacity-70">
+                    Servicios
+                  </summary>
+                  <ul className="p-2 bg-gradient-to-b from-[#1e3a5f] to-[#2d4e78] rounded-box shadow-xl border border-[#3a6491]">
                     <li>
-                      <a>Malware</a>
+                      <NavLink
+                        to="/info/malware"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-bold bg-[#3a6491] text-white"
+                            : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                        }
+                      >
+                        Malware
+                      </NavLink>
                     </li>
                     <li>
-                      <a>Ingenieria social</a>
+                      <NavLink
+                        to="/phishing"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-bold bg-[#3a6491] text-white"
+                            : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                        }
+                      >
+                        Ingeniería Social
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/sessionExercise"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-bold bg-[#3a6491] text-white"
+                            : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                        }
+                      >
+                        Prácticas
+                      </NavLink>
                     </li>
                   </ul>
                 </details>
               </li>
+              <li>
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "font-bold bg-[#3a6491] text-white"
+                      : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                  }
+                >
+                  Contacto
+                </NavLink>
+              </li>
             </ul>
           </div>
           <div className="navbar-end">
-            <ul className="menu menu-horizontal px-1">
-              <li>
-                <NavLink to="/login" className="btn btn-ghost">
-                  Login
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/register" className="btn btn-ghost">
-                  Register
-                </NavLink>
-              </li>
-            </ul>
+            {localStorage.getItem("token") ? (
+              <NavLink
+              to={"/profile"} 
+              className={({ isActive }) =>
+                    isActive
+                      ? "font-bold bg-[#3a6491] text-white"
+                      : "hover:bg-[#3a6491] hover:bg-opacity-70"
+                  }>
+                <p>{JSON.parse(localStorage.getItem("profile")).name}</p>
+                <img className="w-15   h-15 rounded-full shadow-md mb-4 border-4 border-[#3F88C5] object-cover" src= {JSON.parse(localStorage.getItem("profile")).imgPerfil} ></img>
+              </NavLink>
+            ) : (
+              <ul className="menu menu-horizontal px-1 gap-2">
+                <li>
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "btn bg-gradient-to-r from-[#34B08A] to-[#2d9a78] hover:from-[#2d9a78] hover:to-[#34B08A] border-none text-white"
+                        : "btn bg-transparent hover:bg-[#34B08A] hover:bg-opacity-20 border-[#34B08A] text-[#D9FAE7]"
+                    }
+                  >
+                    Iniciar Sesión
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "btn bg-gradient-to-r from-[#C3ACD5] to-[#a58bc0] hover:from-[#a58bc0] hover:to-[#C3ACD5] border-none text-white"
+                        : "btn bg-transparent hover:bg-[#C3ACD5] hover:bg-opacity-20 border-[#C3ACD5] text-[#D9FAE7]"
+                    }
+                  >
+                    Registrarse
+                  </NavLink>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </header>

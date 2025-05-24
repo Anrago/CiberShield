@@ -4,7 +4,6 @@ let dificultyData =JSON.parse( localStorage.getItem("dificultyData"));
 let storedData = localStorage.getItem("token") ? localStorage.getItem("profile"):localStorage.getItem("referenceData");
 let dataUser = storedData ? JSON.parse(storedData) : {};
 let typeData = JSON.parse(  localStorage.getItem("typeData"));
-console.log("dificultyData",dificultyData.dificulty, "id",dificultyData.id);
 
 
 export const getexercise = async () => {

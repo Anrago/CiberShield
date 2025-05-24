@@ -12,14 +12,19 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (!image) {
+      console.error("No se ha seleccionado ninguna imagen");
+      // Maneja este caso - puedes mostrar un mensaje o continuar sin imagen
+    }
     console.log("Registering user...");
+    console.log("Image to upload:", image);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("lastName", lastName);
     formData.append("userName", userName);
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("imagePerfil", image); // image es el archivo seleccionado
+    formData.append("image", image); // Cambiado a "image"
 
     try {
       await register(formData);
@@ -30,11 +35,6 @@ export default function Register() {
 
   return (
     <>
-      <header className="navbar relative z-1">
-        <NavLink className="btn btn-ghost text-xl" to={"/"}>
-          CiberShield
-        </NavLink>
-      </header>
       <div className="fixed inset-0 z-0">
         <LetterGlitch
           glitchSpeed={100}
@@ -43,7 +43,7 @@ export default function Register() {
           smooth={true}
         />
       </div>
-      <div className="flex items-center justify-center min-h-screen px-4 relative z-10">
+      <div className="flex items-center justify-center min-h-screen px-4 relative ">
         <form
           onSubmit={handleRegister}
           className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 space-y-6"
@@ -160,13 +160,13 @@ export default function Register() {
               type="file"
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
-              className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-amber-500 file:text-white hover:file:bg-amber-600"
+              className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-[#34B08A] file:text-white hover:file:bg-[#34908A]"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-amber-500 text-white font-semibold py-2 rounded-md hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200"
+            className="w-full bg-[#34B08A] text-white font-semibold py-2 rounded-md hover:bg-[#34908A] focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200"
           >
             Register
           </button>

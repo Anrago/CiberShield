@@ -54,10 +54,6 @@ export default function Phishing() {
             ))}
           </div>
 
-          <div className="flex justify-center m-8">
-            <SODesing />
-          </div>
-
           <h3 className="text-3xl text-start">¿Cómo identificarlo?</h3>
           <ul className="list-disc list-inside text-xl text-gray-700 mt-4 space-y-2">
             <li>Correos con errores gramaticales o diseños poco profesionales.</li>

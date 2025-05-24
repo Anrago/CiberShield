@@ -26,11 +26,6 @@ export default function Login() {
 
   return (
     <>
-      <header className="navbar relative z-1">
-        <NavLink className="btn btn-ghost text-xl" to={"/"}>
-          CiberShield
-        </NavLink>
-      </header>
       <div className="fixed inset-0 z-0">
         <LetterGlitch
           glitchSpeed={100}
@@ -39,10 +34,10 @@ export default function Login() {
           smooth={true}
         />
       </div>
-      <div className="flex items-center justify-center min-h-screen px-4  relative z-10">
+      <div className="flex items-center justify-center h-screen  relative z-10">
         <form
           onSubmit={handleLogin}
-          className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 space-y-6"
+          className="w-full max-w-md bg-white  shadow-lg shadow-white rounded-lg  p-8 space-y-6"
           aria-label="Login form"
         >
           <h2 className="text-3xl font-bold text-center text-gray-800">
@@ -62,7 +57,7 @@ export default function Login() {
               type="text"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 "
               required
               placeholder="Enter your username or email"
               autoComplete="username"
@@ -91,7 +86,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full bg-amber-500 text-white font-semibold py-2 rounded-md hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200"
+            className="w-full bg-[#34908A] text-white font-semibold py-2 rounded-md hover:s focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200"
           >
             Login
           </button>

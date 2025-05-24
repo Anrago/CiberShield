@@ -14,9 +14,16 @@ import {
 
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user';
-import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+  ApiConsumes,
+} from '@nestjs/swagger';
 import { UserService } from '../user/user.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 
 @ApiTags('user')
 @Controller('user')
@@ -24,7 +31,22 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  @ApiBody({ description: 'Create user', type: CreateUserDto })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        userName: { type: 'string' },
+        email: { type: 'string' },
+        password: { type: 'string' },
+        // Add other user properties here
+        image: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
   @ApiResponse({
     status: 201,
     description: 'User created',
@@ -37,15 +59,23 @@ export class UserController {
     type: CreateUserDto,
   })
   @UsePipes(new ValidationPipe({ transform: true }))
-  @UseInterceptors(FileInterceptor('imagePerfil'))
+  @UseInterceptors(
+    FileInterceptor('image', {
+      limits: {
+        fileSize: 5 * 1024 * 1024, // 5MB max size
+      },
+    }),
+  )
   createUser(
     @Body() createUserDto: CreateUserDto,
     @UploadedFile() image: Express.Multer.File,
   ): Promise<CreateUserDto> {
+    console.log('Image received:', image ? 'Yes' : 'No');
     if (image) {
-      createUserDto.imgPerfil = image.path;
+      console.log('Image size:', image.size, 'bytes');
+      console.log('Image mimetype:', image.mimetype);
     }
-    return this.userService.create(createUserDto);
+    return this.userService.create(createUserDto, image);
   }
 
   @Get()

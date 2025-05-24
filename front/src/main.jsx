@@ -17,6 +17,7 @@ import ReferenceData from "./Views/Exercises/referenceData.jsx";
 import ExercisePresentation from "./Views/Exercises/exercisePresentation.jsx";
 import Footer from "./layouts/footer.jsx";
 import Prueba from "./Views/prueba.jsx";
+import NavBar from "./layouts/NavBar.jsx";
 
 import Ransomware from "./Views/Informative/ransomware.jsx";
 import Spyware from "./Views/Informative/spyware.jsx";
@@ -26,6 +27,7 @@ import Phishing from "./Views/Informative/phishing.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+      <NavBar />
       <AnimatePresence>
         <Routes>
           <Route path="/" element={<App />} />

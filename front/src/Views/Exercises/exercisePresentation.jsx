@@ -8,6 +8,8 @@ export default function ExercisePresentation() {
   const [exercises, setExercises] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [correctExercises, setCorrectExercises] = React.useState(0);
+  const [showCompletionModal, setShowCompletionModal] = React.useState(false);
 
   const fetchExercise = async () => {
     try {
@@ -29,9 +31,16 @@ export default function ExercisePresentation() {
     fetchExercise();
   }, []);
 
+  const handleCorrectAnswer = () => {
+    setCorrectExercises((prev) => prev + 1);
+  };
+
   const handleNext = () => {
     if (currentIndex < exercises.length - 1) {
       setCurrentIndex((prev) => prev + 1);
+    } else {
+      // All exercises completed, show modal
+      setShowCompletionModal(true);
     }
   };
 
@@ -39,6 +48,14 @@ export default function ExercisePresentation() {
     if (currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
     }
+  };
+
+  const reloadPage = () => {
+    window.location.reload();
+  };
+
+  const goToHome = () => {
+    window.location.href = "/";
   };
 
   const type = JSON.parse(localStorage.getItem("typeData")).type;
@@ -62,6 +79,7 @@ export default function ExercisePresentation() {
                       message={exercise}
                       setOptions={true}
                       handleClose={handleNext}
+                      onCorrectAnswer={handleCorrectAnswer}
                     />
                   ))}
               </div>
@@ -72,6 +90,9 @@ export default function ExercisePresentation() {
                   className="btn btn-outline"
                 >
                   Anterior
+                </button>
+                <button onClick={handleNext} className="btn btn-primary">
+                  Siguiente
                 </button>
               </div>
             </div>
@@ -85,17 +106,9 @@ export default function ExercisePresentation() {
                       key={currentIndex + index}
                       exercise={exercise}
                       handleClose={handleNext}
+                      onCorrectAnswer={handleCorrectAnswer}
                     />
                   ))}
-              </div>
-              <div className="flex gap-4 mt-4">
-                <button
-                  onClick={handleNext}
-                  disabled={currentIndex >= exercises.length - 1}
-                  className="btn btn-outline"
-                >
-                  Siguiente
-                </button>
               </div>
               <div className="flex gap-4 mt-4">
                 <button
@@ -105,6 +118,31 @@ export default function ExercisePresentation() {
                 >
                   Anterior
                 </button>
+                <button onClick={handleNext} className="btn btn-primary">
+                  Siguiente
+                </button>
+              </div>
+            </div>
+          )}
+
+          {showCompletionModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                <h2 className="text-2xl font-bold text-center mb-4">
+                  ¡Ejercicios completados!
+                </h2>
+                <p className="text-center text-lg mb-6">
+                  Has completado correctamente {correctExercises} de{" "}
+                  {exercises.length} ejercicios.
+                </p>
+                <div className="flex justify-center gap-4">
+                  <button onClick={reloadPage} className="btn btn-primary">
+                    Intentar de nuevo
+                  </button>
+                  <button onClick={goToHome} className="btn btn-outline">
+                    Volver al inicio
+                  </button>
+                </div>
               </div>
             </div>
           )}

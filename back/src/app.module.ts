@@ -12,6 +12,9 @@ import { ExerciseResultModule } from './database/exercise-result/exercise-result
 import { LoginModule } from './logic/auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { memoryStorage } from 'multer';
+import { MulterModule } from '@nestjs/platform-express';
+import { SupabaseService } from './supabase/subapase_client.service';
 // import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
@@ -25,12 +28,15 @@ import { join } from 'path';
     ExerciseModule,
     ExerciseResultModule,
     LoginModule,
+    MulterModule.register({
+      storage: memoryStorage(),
+    }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'), 
+      rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads',
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SupabaseService],
 })
 export class AppModule {}

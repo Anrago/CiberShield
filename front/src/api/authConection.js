@@ -33,23 +33,26 @@ export const login = async (username, password) => {
 }
 
 export const register = async (formData) => {
-    try {
-      const response = await fetch(`${API_URL}/user`, {
-        method: "POST",
-        body: formData, // SIN headers
-      });
-  
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-  
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error fetching exercise connection:", error);
-      throw error;
+  try {
+    const response = await fetch(`${API_URL}/user`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error("Error del servidor:", errorData);
+      throw new Error(`Network response was not ok: ${errorData}`);
     }
-  };
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching exercise connection:", error);
+    throw error;
+  }
+};
+
 export const getProfile = async () => {
     try{
         const response = await fetch(`${API_URL}/auth/profile`, {

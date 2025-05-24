@@ -1,3 +1,4 @@
+import { isDragActive } from "framer-motion";
 import { NavLink } from "react-router";
 
 export default function AsideBar() {
@@ -13,14 +14,24 @@ export default function AsideBar() {
         <ul className="space-y-6 text-sm font-medium">
           {/* Sección: Malware */}
           <li>
-            <span className="block px-4 py-2 text-gray-400 uppercase tracking-wider">
+            <span
+              className={({ isActive }) =>
+                isActive
+                  ? "block px-4 py-2 text-gray-400 uppercase tracking-wider"
+                  : "block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+              }
+            >
               Malware
             </span>
             <ul className="ml-4 space-y-2">
               <li>
                 <NavLink
                   to="/info/malware/virus"
-                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-white bg-gray-700 rounded-md transition-colors"
+                      : "block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  }
                 >
                   Virus
                 </NavLink>
@@ -28,7 +39,11 @@ export default function AsideBar() {
               <li>
                 <NavLink
                   to="/info/malware/ransomware"
-                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-white bg-gray-700 rounded-md transition-colors"
+                      : "block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  }
                 >
                   Ransomware
                 </NavLink>
@@ -36,7 +51,11 @@ export default function AsideBar() {
               <li>
                 <NavLink
                   to="/info/malware/spyware"
-                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-white bg-gray-700 rounded-md transition-colors"
+                      : "block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  }
                 >
                   Spyware
                 </NavLink>
@@ -44,7 +63,11 @@ export default function AsideBar() {
               <li>
                 <NavLink
                   to="/info/malware/worm"
-                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-white bg-gray-700 rounded-md transition-colors"
+                      : "block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  }
                 >
                   Gusano
                 </NavLink>
@@ -61,7 +84,11 @@ export default function AsideBar() {
               <li>
                 <NavLink
                   to="/info/ingenieria-social/phishing"
-                  className="block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-white bg-gray-700 rounded-md transition-colors"
+                      : "block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  }
                 >
                   Phishing
                 </NavLink>
