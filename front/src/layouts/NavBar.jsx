@@ -242,14 +242,18 @@ export default function NavBar() {
           <div className="navbar-end">
             {localStorage.getItem("token") ? (
               <NavLink
-              to={"/profile"} 
-              className={({ isActive }) =>
-                    isActive
-                      ? "font-bold bg-[#3a6491] text-white"
-                      : "hover:bg-[#3a6491] hover:bg-opacity-70"
-                  }>
+                to={"/profile"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-bold bg-[#3a6491] text-white"
+                    : "hover:bg-[#3a6491] hover:bg-opacity-70 flex flex-row-reverse items-center gap-2"
+                }
+              >
                 <p>{JSON.parse(localStorage.getItem("profile")).name}</p>
-                <img className="w-15   h-15 rounded-full shadow-md mb-4 border-4 border-[#3F88C5] object-cover" src= {JSON.parse(localStorage.getItem("profile")).imgPerfil} ></img>
+                <img
+                  className="w-10 h-10 rounded-full shadow-md mb-4 border-4 border-[#3F88C5] object-cover"
+                  src={JSON.parse(localStorage.getItem("profile")).imgPerfil} 
+                ></img>
               </NavLink>
             ) : (
               <ul className="menu menu-horizontal px-1 gap-2">

@@ -1,28 +1,9 @@
-import React, { useState } from "react";
-import { login, getProfile } from "../api/authConection";
+import React, { use, useState } from "react";
+import useAuth from "../hooks/auth_hook"; // Asegúrate de que la ruta sea correcta
 import LetterGlitch from "../Backgrounds/LetterGlitch/LetterGlitch";
 import { NavLink } from "react-router"; // Cambiado a react-router-dom
 export default function Login() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = async (e) => {
-    e.preventDefault(); // Este `e` debe estar en los argumentos
-    try {
-      const token = await login(userName, password);
-      localStorage.setItem("token", token);
-
-      const profile = await getProfile(); // Obtener perfil después del login
-      if (profile) {
-        localStorage.setItem("profile", JSON.stringify(profile)); // Guardar perfil en localStorage
-        console.log("Profile:", profile);
-      } else {
-        console.log("No profile found.");
-      }
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
-  };
+  const { setPassword, setUserName, handleLogin } = useAuth();
 
   return (
     <>
@@ -55,7 +36,6 @@ export default function Login() {
               id="username"
               name="username"
               type="text"
-              value={userName}
               onChange={(e) => setUserName(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 "
               required
@@ -75,7 +55,6 @@ export default function Login() {
               id="password"
               name="password"
               type="password"
-              value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
               required

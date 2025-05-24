@@ -1,37 +1,16 @@
-import React, { useState } from "react";
-import { register } from "../api/authConection";
 import LetterGlitch from "../Backgrounds/LetterGlitch/LetterGlitch";
+import useAuth from "../hooks/auth_hook"; // Asegúrate de que la ruta sea correcta
 import { NavLink } from "react-router";
 export default function Register() {
-  const [userName, setUserName] = useState("");
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [image, setImage] = useState(null);
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    if (!image) {
-      console.error("No se ha seleccionado ninguna imagen");
-      // Maneja este caso - puedes mostrar un mensaje o continuar sin imagen
-    }
-    console.log("Registering user...");
-    console.log("Image to upload:", image);
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("lastName", lastName);
-    formData.append("userName", userName);
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("image", image); // Cambiado a "image"
-
-    try {
-      await register(formData);
-    } catch (error) {
-      console.error("Registration failed:", error);
-    }
-  };
+  const {
+    setEmail,
+    setName,
+    setLastName,
+    setUserName,
+    setPassword,
+    setImage,
+    handleRegister,
+  } = useAuth();
 
   return (
     <>
@@ -63,7 +42,6 @@ export default function Register() {
             <input
               id="username"
               type="text"
-              value={userName}
               onChange={(e) => setUserName(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
               required
@@ -82,7 +60,6 @@ export default function Register() {
             <input
               id="name"
               type="text"
-              value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
               required
@@ -101,7 +78,6 @@ export default function Register() {
             <input
               id="lastname"
               type="text"
-              value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
               required
@@ -120,7 +96,6 @@ export default function Register() {
             <input
               id="email"
               type="email"
-              value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
               required
@@ -139,7 +114,6 @@ export default function Register() {
             <input
               id="password"
               type="password"
-              value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
               required

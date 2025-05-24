@@ -10,7 +10,7 @@ import Login from "./Views/login.jsx";
 import Register from "./Views/register.jsx";
 import Profile from "./Views/profile.jsx";
 import ProtectedRoute from "./components/protectedRoutes.jsx";
-import CategorySelection from "./Views/Exercises/categorySelection.jsx";
+import TypeSelection from "./Views/Exercises/typeSelection.jsx";
 import DificultySelector from "./Views/Exercises/dificultySelector.jsx";
 import SessionPreference from "./Views/Exercises/sessionPreference.jsx";
 import ReferenceData from "./Views/Exercises/referenceData.jsx";
@@ -43,7 +43,7 @@ createRoot(document.getElementById("root")).render(
               </ProtectedRoute>
             }
           />
-          <Route path="/category" element={<CategorySelection />}></Route>
+          <Route path="/type" element={<TypeSelection />}></Route>
           <Route path="/dificulty" element={<DificultySelector />} />
           <Route path="/sessionExercise" element={<SessionPreference />} />
           <Route path="/reference" element={<ReferenceData />} />

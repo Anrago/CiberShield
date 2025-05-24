@@ -1,8 +1,13 @@
 import Modal from "./modal";
-export default function ExerciseCard({ message, handleClose }) {
+export default function ExerciseCard({
+  message,
+  handleClose,
+  onCorrectAnswer,
+}) {
   const handleOption = (selection) => {
     if (selection === message.Categoria) {
       console.log("Correcto");
+      if (onCorrectAnswer) onCorrectAnswer();
       return true;
     } else {
       console.log("Incorrecto");

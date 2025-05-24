@@ -2,14 +2,14 @@ const API_URL = import.meta.env.VITE_BACK_API_URL || "http://localhost:3000";
 
 let dificultyData =JSON.parse( localStorage.getItem("dificultyData"));
 let storedData = localStorage.getItem("token") ? localStorage.getItem("profile"):localStorage.getItem("referenceData");
-let dataUser = storedData ? JSON.parse(storedData) : {};
-let typeData = JSON.parse(  localStorage.getItem("typeData"));
-
-
+let exerciseData = JSON.parse(localStorage.getItem("exerciseData"));
+let referenceData = JSON.parse(localStorage.getItem("referenceData"));
+let dataUser = JSON.parse(storedData);
+    
 export const getexercise = async () => {
     try {
         const response = await fetch(
-        `${API_URL}/getexercise/${typeData.type}/${dificultyData.dificulty}`,{
+        `${API_URL}/getexercise/${exerciseData.exerciseType}/${exerciseData.exerciseLevel}`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -46,8 +46,8 @@ export const postExerciseResult = async (isCorrect) =>{
                 body: JSON.stringify({
                     "userId": dataUser.user,
                     "correct": isCorrect ,
-                    "exerciseTypeId": typeData.id ,
-                    "exerciseLevelId": dificultyData.id,
+                    "exerciseTypeId": exerciseData.exerciseTypeId,
+                    "exerciseLevelId": exerciseData.exerciseLevelId,
                     "feedback": "feedback",
                     
                 }),

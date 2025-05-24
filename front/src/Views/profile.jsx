@@ -1,5 +1,4 @@
-import { getExerciseResults } from "../api/exerciseConection";
-import { use, useEffect, useState, reduce } from "react";
+import { useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -10,48 +9,12 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import useProfile from "../hooks/perfil_hook";
 
 export default function Profile() {
-  const [userResults, setUserResults] = useState([]);
   const userProfile = JSON.parse(localStorage.getItem("profile"));
+  const { logOut, SMSResult, EmailResult } = useProfile();
 
-  const logOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("profile");
-    location.reload();
-  };
-
-  //--------------------------------------------------
-
-  useEffect(() => {
-    const fetchExerciseResults = async () => {
-      try {
-        const results = await getExerciseResults();
-        if (!results || results.length === 0) {
-          console.error("No se recibió respuesta del backend");
-          return;
-        }
-        setUserResults(results);
-        console.log("Resultados de ejercicios:", results);
-      } catch (error) {
-        console.error("Error fetching exercise results:", error);
-      }
-    };
-
-    fetchExerciseResults();
-  }, []);
-
-  //--------------------------------------------------
-  const SMSResult = groupedData(userResults).filter(
-    (item) => item.name === "SMS"
-  );
-  const EmailResult = groupedData(userResults).filter(
-    (item) => item.name === "Email"
-  );
-  if (userResults.length != 0) {
-    console.log("SMSResult:", SMSResult);
-    console.log("EmailResult:", EmailResult);
-  }
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-[#FFFFFF]">
@@ -109,128 +72,4 @@ export default function Profile() {
       </div>
     </>
   );
-}
-
-function groupedData(results) {
-  const safeResults = Array.isArray(results) ? results : [];
-
-  let groupData = {
-    SMS: {
-      simple: {
-        correct: 0,
-        incorrect: 0,
-      },
-      medium: {
-        correct: 0,
-        incorrect: 0,
-      },
-      complex: {
-        correct: 0,
-        incorrect: 0,
-      },
-    },
-    Email: {
-      simple: {
-        correct: 0,
-        incorrect: 0,
-      },
-      medium: {
-        correct: 0,
-        incorrect: 0,
-      },
-      complex: {
-        correct: 0,
-        incorrect: 0,
-      },
-    },
-  };
-
-  safeResults.forEach((element) => {
-    if (element.exerciseTypeId === 1) {
-      if (element.exerciseLevelId === 1) {
-        if (element.correct) {
-          groupData.SMS.simple.correct++;
-        } else {
-          groupData.SMS.simple.incorrect++;
-        }
-      }
-      if (element.exerciseLevelId === 2) {
-        if (element.correct) {
-          groupData.SMS.medium.correct++;
-        } else {
-          groupData.SMS.medium.incorrect++;
-        }
-      }
-      if (element.exerciseLevelId === 3) {
-        if (element.correct) {
-          groupData.SMS.complex.correct++;
-        } else {
-          groupData.SMS.complex.incorrect++;
-        }
-      }
-    }
-    if (element.exerciseTypeId === 2) {
-      if (element.exerciseLevelId === 1) {
-        if (element.correct) {
-          groupData.Email.simple.correct++;
-        } else {
-          groupData.Email.simple.incorrect++;
-        }
-      }
-      if (element.exerciseLevelId === 2) {
-        if (element.correct) {
-          groupData.Email.medium.correct++;
-        } else {
-          groupData.Email.medium.incorrect++;
-        }
-      }
-      if (element.exerciseLevelId === 3) {
-        if (element.correct) {
-          groupData.Email.complex.correct++;
-        } else {
-          groupData.Email.complex.incorrect++;
-        }
-      }
-    }
-  });
-
-  const data = [
-    {
-      name: "SMS",
-      level: "simple",
-      correct: groupData.SMS.simple.correct,
-      incorrect: groupData.SMS.simple.incorrect,
-    },
-    {
-      name: "SMS",
-      level: "medium",
-      correct: groupData.SMS.medium.correct,
-      incorrect: groupData.SMS.medium.incorrect,
-    },
-    {
-      name: "SMS",
-      level: "complex",
-      correct: groupData.SMS.complex.correct,
-      incorrect: groupData.SMS.complex.incorrect,
-    },
-    {
-      name: "Email",
-      level: "simple",
-      correct: groupData.Email.simple.correct,
-      incorrect: groupData.Email.simple.incorrect,
-    },
-    {
-      name: "Email",
-      level: "medium",
-      correct: groupData.Email.medium.correct,
-      incorrect: groupData.Email.medium.incorrect,
-    },
-    {
-      name: "Email",
-      level: "complex",
-      correct: groupData.Email.complex.correct,
-      incorrect: groupData.Email.complex.incorrect,
-    },
-  ];
-  return data;
 }

@@ -9,10 +9,15 @@ import smile from "../assets/Icons/smile.svg";
 import mic from "../assets/Icons/mic.svg";
 import Modal from "./modal";
 
-export default function ExerciseSMSCard({ exercise, handleClose }) {
+export default function ExerciseSMSCard({
+  exercise,
+  handleClose,
+  onCorrectAnswer,
+}) {
   const handleOption = (selection) => {
     if (selection === exercise.Categoria) {
       console.log("Correcto");
+      if (onCorrectAnswer) onCorrectAnswer();
       return true;
     } else {
       console.log("Incorrecto");
@@ -54,7 +59,7 @@ export default function ExerciseSMSCard({ exercise, handleClose }) {
               </div>
             </div>
           </div>
-        </div >
+        </div>
         <div>
           <Modal
             description={exercise.Descripcion}
