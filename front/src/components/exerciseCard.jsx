@@ -23,9 +23,10 @@ export default function ExerciseCard({
           </h2>
           <p className="text-sm text-gray-500">De: {message.Remitente}</p>
         </div>
-        <div className="mb-6 text-gray-700 whitespace-pre-line">
-          {message.Cuerpo}
-        </div>
+        <div
+          className="mb-6 text-gray-700 whitespace-pre-line"
+          dangerouslySetInnerHTML={{ __html: message.Cuerpo }}
+        />
         <div className="flex justify-center gap-4">
           <Modal
             description={message.Descripcion}

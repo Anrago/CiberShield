@@ -1,4 +1,3 @@
-import React from "react";
 import NavExercise from "../../components/navExercise";
 import ExerciseCard from "../../components/exerciseCard";
 import ExerciseSMSCard from "../../components/exerciseSMSCard";
@@ -58,10 +57,10 @@ export default function ExercisePresentation() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-center h-[80%] gap-6">
-              <div className="stack stack-end gap-3">
+            <div className="flex flex-col items-center justify-center w-full h-full gap-6">
+              <div className="flex justify-center items-center w-full">
                 {exercises
-                  .slice(currentIndex, currentIndex + 2)
+                  .slice(currentIndex, currentIndex + 1)
                   .map((exercise, index) => (
                     <ExerciseSMSCard
                       key={currentIndex + index}
@@ -70,18 +69,6 @@ export default function ExercisePresentation() {
                       onCorrectAnswer={handleCorrectAnswer}
                     />
                   ))}
-              </div>
-              <div className="flex gap-4 mt-4">
-                <button
-                  onClick={handlePrev}
-                  disabled={currentIndex === 0}
-                  className="btn btn-outline"
-                >
-                  Anterior
-                </button>
-                <button onClick={handleNext} className="btn btn-primary">
-                  Siguiente
-                </button>
               </div>
             </div>
           )}

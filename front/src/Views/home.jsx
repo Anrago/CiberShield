@@ -6,7 +6,7 @@ import MVCards from "../components/MVcards";
 import Virus from "../assets/images/virus.png";
 import socialEngineering from "../assets/images/ingenieria-social.png";
 import Practices from "../assets/images/practices.png";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 
 export default function Home() {
   return (
@@ -179,6 +179,7 @@ export default function Home() {
               trabajamos para que aprendas haciendo. Porque la seguridad empieza
               contigo.
             </motion.p>
+
             <motion.div
               className="mt-10"
               whileHover={{ scale: 1.05 }}
