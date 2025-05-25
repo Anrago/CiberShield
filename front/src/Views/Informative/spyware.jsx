@@ -1,5 +1,5 @@
 import ImageTemp from "../../assets/imagen.png";
-import SODesing from "../../components/rendering/SODesing";
+
 import AsideBar from "../../layouts/asideBar";
 import "../../style/spyware-style.css";
 
@@ -75,7 +75,7 @@ export default function Spyware() {
             </p>
 
             <div className="flex justify-center m-8">
-              <SODesing />
+              
             </div>
 
             <h3 className="spyware-section-title">¿Cómo identificarlo?</h3>

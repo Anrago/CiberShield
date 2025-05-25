@@ -1,7 +1,7 @@
 import "../../style/phishing-style.css";
 import AsideBar from "../../layouts/asideBar.jsx";
 import ImageTemp from "../../assets/imagen.png";
-import SODesing from "../../components/rendering/SODesing.jsx";
+
 
 export default function Phishing() {
   return (

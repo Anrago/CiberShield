@@ -1,5 +1,5 @@
 import ImageTemp from "../../assets/imagen.png";
-import SODesing from "../../components/rendering/SODesing";
+
 import AsideBar from "../../layouts/asideBar";
 
 export default function Worm() {
@@ -45,7 +45,7 @@ export default function Worm() {
             </p>
 
             <div className="flex justify-center m-8">
-              <SODesing />
+
             </div>
 
             <h3 className="text-3xl text-start">¿Cómo identificarlo?</h3>

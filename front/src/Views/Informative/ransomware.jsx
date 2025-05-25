@@ -1,5 +1,5 @@
 import ImageTemp from "../../assets/imagen.png";
-import SODesing from "../../components/rendering/SODesing";
+import SO from "../../components/rendering/SO.jsx";
 import AsideBar from "../../layouts/asideBar";
 
 export default function Ransomware() {
@@ -51,7 +51,7 @@ export default function Ransomware() {
             </p>
 
             <div className="flex justify-center m-8">
-              <SODesing />
+              <SO />
             </div>
 
             <h3 className="text-3xl text-start">¿Como identificarlo?</h3>

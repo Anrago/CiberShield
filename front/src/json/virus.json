@@ -1,0 +1,34 @@
+{
+    "malwareInfo": [
+              {
+                "titulo": "Virus",
+                "desc": "Se replican infectando otros archivos y programas.",
+                "efect": "Los virus informáticos son programas maliciosos que se replican al infectar otros archivos y programas en un sistema. Se propagan a través de la ejecución de archivos infectados, correos electrónicos o descargas de internet. Una vez dentro del sistema, pueden causar daños a los archivos, robar información o permitir el acceso no autorizado a los dispositivos. Los virus suelen requerir la intervención del usuario para propagarse, como abrir un archivo adjunto o ejecutar un programa infectado."
+              },
+              {
+                "titulo": "Troyanos",
+                "desc": "Se disfrazan como software legítimo para engañar al usuario.",
+                "efect": "Los troyanos son un tipo de malware que se presenta como un software legítimo o inofensivo para engañar a los usuarios y hacer que lo instalen. A diferencia de los virus, los troyanos no se replican por sí mismos, sino que dependen de la acción del usuario para ser instalados. Una vez dentro del sistema, pueden robar información, instalar otros tipos de malware o crear puertas traseras para permitir el acceso no autorizado al dispositivo."
+              },
+              {
+                "titulo": "Gusanos",
+                "desc": "Se propagan por la red sin necesidad de acción humana.",
+                "efect": "Los gusanos son un tipo de malware que se propaga automáticamente a través de redes informáticas, aprovechando vulnerabilidades en sistemas operativos o aplicaciones. A diferencia de los virus, que requieren la intervención del usuario para replicarse, los gusanos pueden infectar otros dispositivos sin necesidad de interacción humana. Esto les permite propagarse rápidamente y causar daños significativos en redes enteras."
+              },
+              {
+                "titulo": "Ransomware",
+                "desc": "Cifra los archivos y exige un rescate para recuperarlos.",
+                "efect": "El ransomware es un tipo de software malicioso (malware) que impide el acceso a los datos almacenados en un dispositivo, generalmente cifrándolos, y exige un pago —conocido como \"rescate\"— para restaurar el acceso. Este tipo de amenaza informática suele propagarse a través de correos electrónicos de phishing, archivos adjuntos infectados o descargas de sitios web maliciosos.\nAdemás de cifrar los archivos, muchos ataques modernos también amenazan con publicar la información robada si no se realiza el pago, lo que añade una presión adicional a las víctimas, ya que puede implicar la exposición de datos confidenciales o personales.\nExisten diferentes variantes de ransomware, cada una con características y métodos de ataque específicos."
+              },
+              {
+                "titulo": "Spyware",
+                "desc": "Recopila información del usuario sin su consentimiento.",
+                "efect": "El spyware es un tipo de software malicioso diseñado para recopilar información sobre un usuario o una organización sin su conocimiento o consentimiento. Este tipo de malware puede espiar la actividad en línea, registrar pulsaciones de teclas, capturar contraseñas y otra información sensible, y enviar estos datos a un tercero. A menudo se instala junto con software legítimo o a través de vulnerabilidades en el sistema operativo o aplicaciones."
+              },
+              {
+                "titulo": "Adware",
+                "desc": "Muestra publicidad no deseada y rastrea la actividad online.",
+                "efect": "El adware es un tipo de software que muestra anuncios publicitarios en la interfaz del usuario, a menudo sin el consentimiento del usuario. Aunque no siempre es malicioso, el adware puede recopilar datos sobre la actividad en línea del usuario y utilizar esta información para personalizar los anuncios mostrados. En algunos casos, el adware puede ralentizar el rendimiento del sistema y afectar la experiencia del usuario."
+              }
+            ]
+}
