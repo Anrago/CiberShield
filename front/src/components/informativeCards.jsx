@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router";
 import Arrow from "../assets/arrow-right.png";
 

@@ -44,6 +44,22 @@ export class OpenaiService {
   //     return response.choices[0].message.content ?? 'Default fallback content';
   //   }
   // }
+  pefils = {
+    generic:
+      'https://mwyxcfbqgyoarrgxrevn.supabase.co/storage/v1/object/public/img-cibershield/users/GenericUSer.png',
+    BanCoppel:
+      'https://mwyxcfbqgyoarrgxrevn.supabase.co/storage/v1/object/public/img-cibershield/users/GenericUSer.png',
+    paypal:
+      'https://mwyxcfbqgyoarrgxrevn.supabase.co/storage/v1/object/public/img-cibershield/users/PayPal.svg',
+    amazon:
+      'https://mwyxcfbqgyoarrgxrevn.supabase.co/storage/v1/object/public/img-cibershield/users/Amazon.png',
+    google:
+      'https://mwyxcfbqgyoarrgxrevn.supabase.co/storage/v1/object/public/img-cibershield/users/GenericUSer.png',
+    facebook:
+      'https://mwyxcfbqgyoarrgxrevn.supabase.co/storage/v1/object/public/img-cibershield/users/Facebbok.png',
+    Spotify:
+      'https://mwyxcfbqgyoarrgxrevn.supabase.co/storage/v1/object/public/img-cibershield/users/spotify.png',
+  };
 
   async createExcesiSimplePost(prompt: string): Promise<string> {
     const response = await this.openai.chat.completions.create({
@@ -52,11 +68,11 @@ export class OpenaiService {
         {
           role: 'system',
           content:
-            'Eres un analista en ciberseguridad de alto nivel. Tu tarea es generar un correo que ha sido enviado al usuario, el cual podría ser un ejemplo de phishing. La estructura del correo es la siguiente: Remitente: Asunto: Cuerpo del correo: El correo puede ser real (no es phishing) o falso (es phishing). Si el correo es falso, deberá contener errores evidentes como: - Remitente falso - Enlaces muy sospechosos - Faltas ortográficas claras - Mala estructura o redacción Incluye los enlaces utilizando etiquetas HTML en formato <a href=\'URL\' style="color: blue;">Texto visible</a>, donde el texto visible puede parecer confiable pero el destino debe ser sospechoso si el correo es falso. Al final del correo, especifica si es real o falso y por qué. Devuelve la información en formato JSON con las siguientes claves: Asunto, Remitente, Cuerpo, Categoria (1 si es real, 0 si es falso), y Descripcion. Genera 3 objetos JSON en total. Puedes utilizar datos genéricos proporcionados por el usuario para hacer los mensajes más realistas.',
+            'Eres un analista en ciberseguridad de alto nivel. Tu tarea es generar un correo que ha sido enviado al usuario, el cual podría ser un ejemplo de phishing. La estructura del correo es la siguiente: Remitente: Asunto: Cuerpo del correo: El correo puede ser real (no es phishing) o falso (es phishing). Si el correo es falso, deberá contener errores evidentes como: - Remitente falso - Enlaces muy sospechosos - Faltas ortográficas claras - Mala estructura o redacción Incluye los enlaces utilizando etiquetas HTML en formato <a href=\'URL\' style="color: blue;">Texto visible</a>, donde el texto visible puede parecer confiable pero el destino debe ser sospechoso si el correo es falso. Al final del correo, especifica si es real o falso y por qué. Devuelve la información en formato JSON con las siguientes claves: Asunto, Remitente, Cuerpo, Categoria (1 si es real, 0 si es falso),perfil, y Descripcion. Genera 3 objetos JSON en total. Puedes utilizar datos genéricos proporcionados por el usuario para hacer los mensajes más realistas e intentar convencer al usuario. El perfil se refiere a la empresa que manda el correo, podras utilizar los perfiles enviados en el prompt y en base a ello elegir la imagen de la empresa que de igual manera se encuentra en el prompt. Si es pishing elige el generic, si es alguna empresa real elige la imagen que se encuentra en el prompt',
         },
         {
           role: 'user',
-          content: prompt,
+          content: `${prompt}\n\nPerfiles disponibles: ${JSON.stringify(this.pefils, null, 2)}`,
         },
       ],
     });
@@ -79,11 +95,11 @@ export class OpenaiService {
         {
           role: 'system',
           content:
-            'Eres un analista en ciberseguridad de alto nivel. Tu tarea es generar un correo que ha sido enviado al usuario, el cual podría ser un ejemplo de phishing. La estructura del correo es la siguiente: Remitente: Asunto: Cuerpo del correo: El correo puede ser real (no es phishing) o falso (es phishing). Si el correo es falso, debe presentar errores más sutiles como:  - Remitente ligeramente modificado - Enlaces que parecen válidos pero llevan a un sitio sospechoso Incluye los enlaces utilizando etiquetas HTML en formato <a href=\'URL\' style="color: blue;">Texto visible</a>, donde el texto visible puede parecer confiable pero el destino debe ser sospechoso si el correo es falso. Al final del correo, especifica si es real o falso y explica por qué. Devuelve la información en formato JSON con las siguientes claves: Asunto, Remitente, Cuerpo, Categoria (1 si es real, 0 si es falso), y Descripcion.Genera 2 objetos JSON en total. Puedes utilizar datos genéricos proporcionados por el usuario para hacer los mensajes más realistas.',
+            'Eres un analista en ciberseguridad de alto nivel. Tu tarea es generar un correo que ha sido enviado al usuario, el cual podría ser un ejemplo de phishing. La estructura del correo es la siguiente: Remitente: Asunto: Cuerpo del correo: El correo puede ser real (no es phishing) o falso (es phishing). Si el correo es falso, debe presentar errores más sutiles como:  - Remitente ligeramente modificado - Enlaces que parecen válidos pero llevan a un sitio sospechoso Incluye los enlaces utilizando etiquetas HTML en formato <a href=\'URL\' style="color: blue;">Texto visible</a>, donde el texto visible puede parecer confiable pero el destino debe ser sospechoso si el correo es falso. Al final del correo, especifica si es real o falso y explica por qué. Devuelve la información en formato JSON con las siguientes claves: Asunto, Remitente, Cuerpo, Categoria (1 si es real, 0 si es falso),perfil , y Descripcion.Genera 2 objetos JSON en total. Puedes utilizar datos genéricos proporcionados por el usuario para hacer los mensajes más realistas. El perfil se refiere a la empresa que manda el correo, podras utilizar los perfiles enviados en el prompt y en base a ello elegir la imagen de la empresa que de igual manera se encuentra en el prompt. podras elegir el perfil quequieras independientemente de si es phishing o no',
         },
         {
           role: 'user',
-          content: prompt,
+          content: `${prompt}\n\nPerfiles disponibles: ${JSON.stringify(this.pefils, null, 2)}`,
         },
       ],
     });
@@ -106,11 +122,11 @@ export class OpenaiService {
         {
           role: 'system',
           content:
-            "Eres un analista en ciberseguridad de alto nivel. Tu tarea es generar un correo que ha sido enviado al usuario, el cual podría ser un ejemplo de phishing. La estructura del correo es la siguiente: Remitente: Asunto: Cuerpo del correo: El correo puede ser real (no es phishing) o falso (es phishing). Si el correo es falso, deberá ser extremadamente convincente, provenir de: - Personas de confianza (familiares, amigos, jefes, compañeros, etc.) - Cuentas corporativas o institucionales legítimas - Contextos creíbles (por ejemplo: 'Estás esperando un mensaje de tu jefe...') Incluye los enlaces utilizando etiquetas HTML en formato <a href='URL' style=\"color: blue;\">Texto visible</a>, donde el texto visible puede parecer confiable pero el destino debe ser sospechoso si el correo es falso. Evita errores ortográficos o señales evidentes. El engaño debe ser difícil de detectar. Al final del correo, especifica si es real o falso y proporciona una explicación detallada. Devuelve la información en formato JSON con las siguientes claves:  Asunto, Remitente, Cuerpo, Categoria (1 si es real, 0 si es falso), y Descripcion.Genera 2 objetos JSON en total. Puedes utilizar datos proporcionados por el usuario para que el mensaje sea lo más realista posible.",
+            'Eres un analista en ciberseguridad de alto nivel. Tu tarea es generar un correo que ha sido enviado al usuario, el cual podría ser un ejemplo de phishing. La estructura del correo es la siguiente: Remitente: Asunto: Cuerpo del correo: El correo puede ser real (no es phishing) o falso (es phishing). Si el correo es falso, deberá ser extremadamente convincente, provenir de: - Personas de confianza (familiares, amigos, jefes, compañeros, etc.) - Cuentas corporativas o institucionales legítimas - Contextos creíbles (por ejemplo: \'Estás esperando un mensaje de tu jefe...\') \n\nDiseño y estilo: \n- Si el correo es de una empresa conocida (PayPal, Amazon, Spotify, Facebook, etc.), utiliza sus colores corporativos, fuentes y estilos oficiales: \n  * PayPal: Azul (#003087, #009cde), blanco y diseño minimalista \n  * Amazon: Negro (#000000), naranja (#FF9900), azul (#146EB4) con botones naranjas \n  * Spotify: Verde (#1DB954), negro (#191414), fuentes sans-serif y diseño moderno \n  * Facebook: Azul (#1877F2), blanco (#FFFFFF), fuentes Helvetica/Arial \n  * Google: Rojo (#EA4335), Azul (#4285F4), Verde (#34A853), Amarillo (#FBBC05) con diseño minimalista \n\n- Incluye elementos propios de emails profesionales: \n  * Encabezado con logo de la empresa \n  * Saludo personalizado \n  * Cuerpo del mensaje con párrafos espaciados \n  * Botones de llamada a la acción (CTA) con estilos propios de la marca \n  * Pie de página con información legal, vínculos a políticas y opciones para cancelar suscripción \n\n- Usa HTML y CSS profesional con este tipo de estructura: \n```html \n<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0;"> \n  <div style="background-color: [COLOR PRINCIPAL]; padding: 20px; text-align: center;"> \n    <!-- Logo o nombre de la empresa --> \n  </div> \n  <div style="padding: 20px;"> \n    <!-- Contenido principal --> \n    <p>Estimado/a [Nombre],</p> \n    <!-- Mensaje --> \n    <div style="text-align: center; margin: 30px 0;"> \n      <a href=\'URL_SOSPECHOSA\' style="background-color: [COLOR CTA]; color: white; padding: 12px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">Texto del botón</a> \n    </div> \n  </div> \n  <div style="background-color: #f5f5f5; padding: 15px; font-size: 12px; color: #666; text-align: center;"> \n    <!-- Pie de página --> \n  </div> \n</div> \n``` \n\nIncluye los enlaces utilizando etiquetas HTML con estilo apropiado para la marca. Evita errores ortográficos o señales evidentes. El engaño debe ser difícil de detectar. Al final del correo, especifica si es real o falso y proporciona una explicación detallada. \n\nDevuelve la información en formato JSON con las siguientes claves: Asunto, Remitente, Cuerpo, Categoria (1 si es real, 0 si es falso), perfil, y Descripcion. Genera 2 objetos JSON en total. \n\nUtiliza los perfiles disponibles en el prompt para seleccionar la imagen de la empresa. Puedes elegir el perfil que quieras independientemente de si es phishing o no. El correo debe verse profesional y convincente, como si realmente fuera enviado por la empresa o persona que dice ser.',
         },
         {
           role: 'user',
-          content: prompt,
+          content: `${prompt}\n\nPerfiles disponibles: ${JSON.stringify(this.pefils, null, 2)}`,
         },
       ],
     });

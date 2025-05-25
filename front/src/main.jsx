@@ -19,11 +19,13 @@ import Footer from "./layouts/footer.jsx";
 import Prueba from "./Views/prueba.jsx";
 import NavBar from "./layouts/NavBar.jsx";
 
+import Malware from "./Views/Informative/malware.jsx";
 import Ransomware from "./Views/Informative/ransomware.jsx";
 import Spyware from "./Views/Informative/spyware.jsx";
 import Virus from "./Views/Informative/virus.jsx";
 import Worm from "./Views/Informative/Worm.jsx";
 import Phishing from "./Views/Informative/phishing.jsx";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -43,6 +45,7 @@ createRoot(document.getElementById("root")).render(
               </ProtectedRoute>
             }
           />
+          <Route path="/malware" element={<Malware />} />
           <Route path="/type" element={<TypeSelection />}></Route>
           <Route path="/dificulty" element={<DificultySelector />} />
           <Route path="/sessionExercise" element={<SessionPreference />} />
@@ -53,7 +56,10 @@ createRoot(document.getElementById("root")).render(
           <Route path="/info/malware/spyware" element={<Spyware />} />
           <Route path="/info/malware/virus" element={<Virus />} />
           <Route path="/info/malware/worm" element={<Worm />} />
-          <Route path="/info/ingenieria-social/phishing" element={<Phishing />} />
+          <Route
+            path="/info/ingenieria-social/phishing"
+            element={<Phishing />}
+          />
         </Routes>
       </AnimatePresence>
     </BrowserRouter>

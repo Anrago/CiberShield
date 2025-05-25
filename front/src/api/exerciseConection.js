@@ -5,7 +5,7 @@ let storedData = localStorage.getItem("token") ? localStorage.getItem("profile")
 let exerciseData = JSON.parse(localStorage.getItem("exerciseData"));
 let referenceData = JSON.parse(localStorage.getItem("referenceData"));
 let dataUser = JSON.parse(storedData);
-    
+
 export const getexercise = async () => {
     try {
         const response = await fetch(

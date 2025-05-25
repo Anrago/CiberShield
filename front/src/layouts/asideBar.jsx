@@ -36,6 +36,19 @@ export default function AsideBar() {
                   Virus
                 </NavLink>
               </li>
+              <li className="ml-4">
+                <NavLink
+                  to="/malware"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-white bg-gray-700 rounded-md transition-colors"
+                      : "block px-4 py-2 rounded-md hover:bg-gray-700 transition"
+                  }
+                >
+                Malware
+                </NavLink>
+
+              </li>
               <li>
                 <NavLink
                   to="/info/malware/ransomware"
@@ -93,7 +106,6 @@ export default function AsideBar() {
                   Phishing
                 </NavLink>
               </li>
-              {/* Agrega más temas aquí si los hay */}
             </ul>
           </li>
         </ul>
