@@ -249,11 +249,13 @@ export default function NavBar() {
                     : "hover:bg-[#3a6491] hover:bg-opacity-70 flex flex-row-reverse items-center gap-2"
                 }
               >
-                <p>{JSON.parse(localStorage.getItem("profile")).name}</p>
-                <img
-                  className="w-10 h-10 rounded-full shadow-md mb-4 border-4 border-[#3F88C5] object-cover"
-                  src={JSON.parse(localStorage.getItem("profile")).imgPerfil} 
-                ></img>
+                <div className="flex flex-row  gap-3 items-center justify-center align-center"> 
+                  <p>{JSON.parse(localStorage.getItem("profile")).name}</p>
+                  <img
+                    className="w-10 h-10  rounded-full shadow-md my-auto border-4 border-[#3F88C5] object-cover"
+                    src={JSON.parse(localStorage.getItem("profile")).imgPerfil}
+                  ></img>
+                </div>
               </NavLink>
             ) : (
               <ul className="menu menu-horizontal px-1 gap-2">

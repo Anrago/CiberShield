@@ -31,7 +31,6 @@ export default function VirusCard({ desc, howAfect, onClose }) {
           <div className="py-4">
             <p className="text-lg">{desc}</p>
           </div>
-          <SO/>
         </div>
       </dialog>
     </>

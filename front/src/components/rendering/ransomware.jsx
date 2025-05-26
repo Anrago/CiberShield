@@ -2,10 +2,12 @@ import useRenderHook from "../../hooks/render_hook";
 import Cal from "../../assets/images/craneo.png";
 import dentro from "../../assets/images/estoyDentro.png";
 export default function Ransomware() {
-  const { isClick, setIsClick } = useRenderHook({ type: "ransomware" });
+  const { isClick, setContDown, setIsClick, activeMalware, contDown } =
+    useRenderHook();
+  console.log("Contador:", contDown);
   return (
     <>
-      {isClick ? (
+      {activeMalware ? (
         <div className="bg-linear-to-t h-full w-full z-5 from-red-500 to-black  absolute bottom-0 left-0 right-0">
           <div className="flex flex-col items-center justify-center h-full">
             <img
@@ -26,7 +28,10 @@ export default function Ransomware() {
         </div>
       ) : (
         <div
-          onClick={() => setIsClick(!isClick)}
+          onClick={() => {
+            setIsClick(!isClick);
+            console.log("Ransomware clicked! Timer activated.");
+          }}
           className="bg-black border border-red-400 p-1 rounded shadow hover:shadow-md transition-all w-16 h-20 flex flex-col justify-between cursor-pointer"
         >
           <div className="w-full h-3/4 bg-linear-to-t from-red-500 to-black ">

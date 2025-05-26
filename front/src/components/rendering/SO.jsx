@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
 import Txt from "./txt";
 import Ransomware from "./ransomware";
+import useRenderHook from "../../hooks/render_hook";
+import TROJAN from "./trojan.jsx"; // Assuming you have a TROJAN component
 export default function SO() {
   const [selectedFile, setSelectedFile] = useState(null);
-
-  const files = [
-    { name: "Password", content: "123456789\n" },
-    { name: "Info", content: "" },
-    {
-      name: "code",
-      content:
-        '#include <iostream>\n int main(){\n cout<<"Hola" << endl;\n return 0;\n}',
-    },
-  ];
+ const {files, setFiles} = useRenderHook();
+  
 
   const openFile = (file) => {
     setSelectedFile(file);
@@ -22,6 +16,7 @@ export default function SO() {
     setSelectedFile(null);
   };
 
+  console.log("Files:", files);
   return (
     <div className="bg-linear-to-r min-h-100 from-cyan-500 to-blue-500 min-w-[90%] relative p-4">
       <div className="flex-grow flex flex-row flex-wrap gap-4 pb-12">
@@ -38,6 +33,7 @@ export default function SO() {
           </div>
         ))}
         <Ransomware />
+        <TROJAN />
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-12 bg-[#0078D7] flex items-center px-2 shadow-lg">
         <div className="flex items-center h-10 px-2 hover:bg-blue-600 rounded cursor-pointer">

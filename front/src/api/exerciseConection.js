@@ -66,6 +66,71 @@ export const postExerciseResult = async (isCorrect) =>{
     }
 }
 
+export const getExerciseBD = async ()=>{
+     try {
+        const response = await fetch(
+            `${API_URL}/exercise/${exerciseData.exerciseLevelId}/${exerciseData.exerciseTypeId}`, 
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            
+            }
+        );
+        if (!response.ok) {
+            console.error("Error in response:", response);
+            throw new Error("Network response was not ok");
+        }
+        const data = response.json();
+        return data;
+    }
+    catch (error) {
+        console.error("Error fetching exercise connection:", error);
+        throw error;
+    }
+}
+
+export const decidedExercise = async () => {
+ try{
+    const response = await getexercise();
+    return response;
+ }catch (error) {
+    return await getExerciseBD();
+ }
+}
+
+export const storeExercise = async (exercise) => {
+    try {
+        const response = await fetch(
+            `${API_URL}/exercise`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+                body: JSON.stringify({
+                    "levelId": exerciseData.exerciseLevelId,
+                    "typeId": exerciseData.exerciseTypeId,
+                    "content": exercise,
+                    "context": 'vacio',
+                    "isPhishing": Boolean( exercise.Categoria),
+                }),
+            }
+        )
+        if (!response.ok) {
+            console.error("Error in response:", response);
+            throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching exercise connection:", error);
+        throw error;
+    }
+}
+
 export const getExerciseResults = async () => {
     try {
         const response = await fetch(

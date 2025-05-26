@@ -15,9 +15,8 @@ export default function ExerciseCard({
     }
   };
 
-  console.log(message.perfil);
   return (
-    <div className="card shadow-2xl max-h-full bg-[#E0F2E9] border border-gray-300 rounded-md max-w-2xl mx-auto my-4">
+    <div className="card shadow-2xl max-h-full bg-white border border-gray-300 rounded-md max-w-2xl mx-auto my-4">
       <div className="card-body p-6 max-h-[400px] overflow-y-auto pr-2">
         <div className="mb-4 border-b pb-2">
           <h2 className="text-xl font-semibold text-gray-800">

@@ -1,5 +1,5 @@
 import React from "react";
-import { getexercise } from "../api/exerciseConection";
+import { getexercise, storeExercise, decidedExercise } from "../api/exerciseConection";
 
 export default function useExercise() {
     const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -10,12 +10,16 @@ export default function useExercise() {
 
     const fetchExercise = async () => {
         try {
-            const data = await getexercise();
+            const data = await decidedExercise();
             if (!data || data.length === 0) {
                 console.error("No se recibió respuesta del backend");
                 return;
             }
             setExercises(data);
+            data.forEach((exercise) => {
+                storeExercise(exercise);
+            });
+
             console.log("Ejercicios obtenidos:", data);
         } catch (error) {
             console.error("Error al obtener el ejercicio:", error);
@@ -23,7 +27,6 @@ export default function useExercise() {
             setLoading(false);
         }
     };
-
     React.useEffect(() => {
         fetchExercise();
     }, []);
@@ -36,7 +39,6 @@ export default function useExercise() {
         if (currentIndex < exercises.length - 1) {
             setCurrentIndex((prev) => prev + 1);
         } else {
-            // All exercises completed, show modal
             setShowCompletionModal(true);
         }
     };
