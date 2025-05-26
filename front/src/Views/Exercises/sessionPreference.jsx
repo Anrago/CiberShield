@@ -1,7 +1,6 @@
-import React from "react";
 import { Navigate, NavLink } from "react-router";
-import NavExercise from "../../components/navExercise";
 import PageWrapper from "../../components/pageWrapper";
+import ReturnLayout from "../../layouts/return";
 export default function SessionPreference() {
   return (
     <>
@@ -13,8 +12,8 @@ export default function SessionPreference() {
           </div>
         </div>
       ) : (
-        <PageWrapper>
-          <NavExercise />
+        <PageWrapper className="min-h-screen w-full">
+          <ReturnLayout />
           <div className="flex flex-col items-center justify-center h-screen bg-[var(--colorBase)]">
             <h2 className="text-2xl font-bold mb-4">
               Iniciar sesion para practicar?

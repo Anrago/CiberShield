@@ -1,4 +1,3 @@
-import NavExercise from "../../components/navExercise";
 import ExerciseCard from "../../components/exerciseCard";
 import ExerciseSMSCard from "../../components/exerciseSMSCard";
 import PageWrapper from "../../components/pageWrapper";
@@ -23,7 +22,6 @@ export default function ExercisePresentation() {
   return (
     <>
       <PageWrapper>
-        <NavExercise />
         <div className="flex flex-col items-center justify-center h-screen bg-[var(--colorBase)] px-4">
           <h2 className="text-2xl font-bold mb-4">Ejercicios</h2>
           {loading ? (

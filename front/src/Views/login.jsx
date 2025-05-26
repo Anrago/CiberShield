@@ -1,9 +1,9 @@
-import React, { use, useState } from "react";
-import useAuth from "../hooks/auth_hook"; // Asegúrate de que la ruta sea correcta
+import useAuth from "../hooks/auth_hook";
 import LetterGlitch from "../Backgrounds/LetterGlitch/LetterGlitch";
-import { NavLink } from "react-router"; // Cambiado a react-router-dom
+import Toaster from "../components/Toaster";
+
 export default function Login() {
-  const { setPassword, setUserName, handleLogin } = useAuth();
+  const { setPassword, setUserName, handleLogin, toast } = useAuth();
 
   return (
     <>
@@ -15,10 +15,19 @@ export default function Login() {
           smooth={true}
         />
       </div>
-      <div className="flex items-center justify-center h-screen  relative z-10">
+
+      {toast.show && (
+        <Toaster
+          message={toast.message}
+          type={toast.type}
+          onClose={() => toast.setToast({ ...toast, show: false })}
+        />
+      )}
+
+      <div className="flex items-center justify-center h-screen relative z-10">
         <form
           onSubmit={handleLogin}
-          className="w-full max-w-md bg-white  shadow-lg shadow-white rounded-lg  p-8 space-y-6"
+          className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 space-y-6"
           aria-label="Login form"
         >
           <h2 className="text-3xl font-bold text-center text-gray-800">
@@ -37,7 +46,7 @@ export default function Login() {
               name="username"
               type="text"
               onChange={(e) => setUserName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 "
+              className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
               required
               placeholder="Enter your username or email"
               autoComplete="username"
@@ -56,7 +65,7 @@ export default function Login() {
               name="password"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
               required
               placeholder="Enter your password"
               autoComplete="current-password"
@@ -65,7 +74,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full bg-[#34908A] text-white font-semibold py-2 rounded-md hover:s focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200"
+            className="w-full bg-[#34908A] text-white font-semibold py-2 rounded-md hover:bg-[#2b746f] focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200"
           >
             Login
           </button>

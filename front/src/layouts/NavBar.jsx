@@ -188,7 +188,7 @@ export default function NavBar() {
                   <ul className="p-2 bg-gradient-to-b from-[#1e3a5f] to-[#2d4e78] rounded-box shadow-xl border border-[#3a6491]">
                     <li>
                       <NavLink
-                        to="/malware"
+                        to="/info/malware"
                         className={({ isActive }) =>
                           isActive
                             ? "font-bold bg-[#3a6491] text-white"
@@ -200,7 +200,7 @@ export default function NavBar() {
                     </li>
                     <li>
                       <NavLink
-                        to="/phishing"
+                        to="/info/phishing"
                         className={({ isActive }) =>
                           isActive
                             ? "font-bold bg-[#3a6491] text-white"
@@ -224,18 +224,6 @@ export default function NavBar() {
                     </li>
                   </ul>
                 </details>
-              </li>
-              <li>
-                <NavLink
-                  to="/contact"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "font-bold bg-[#3a6491] text-white"
-                      : "hover:bg-[#3a6491] hover:bg-opacity-70"
-                  }
-                >
-                  Contacto
-                </NavLink>
               </li>
             </ul>
           </div>

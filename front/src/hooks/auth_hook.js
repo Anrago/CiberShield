@@ -8,23 +8,33 @@ export default function useAuth() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [image, setImage] = useState(null);
+    const [toast, setToast] = useState({show: false, message: "", type: "success" });
+
+    const showToast = (message, type = "success") => {
+        setToast({ show: true, message, type });
+        setTimeout(() => {
+            setToast({ show: false, message: "", type: "success" });
+        }, 3000);
+    }
 
     const handleLogin = async (e)=>{
         try{
             e.preventDefault();
-            console.log("Logging in with", userName, password);
             const response = await login(userName, password);
             if (response){
                 localStorage.setItem("token", response);
                 const profile = await getProfile();
+                showToast("Inicio de sesion exitoso", "success");
                 if (profile){
                     localStorage.setItem("profile", JSON.stringify(profile));
-                    window.location.href = "/home";
+                    setTimeout(() => {
+                        window.location.href = "/home";
+                    }, 3000);
                 }
             }
         } catch (error) {
             console.error("Error during login:", error);
-            alert("Login failed. Please check your credentials.");
+            showToast("Inicio de sesion fallido. Favor de revisar sus credenciales", "error");
         }
     }
 
@@ -40,15 +50,16 @@ export default function useAuth() {
         try {
             const response = await register(formData);
             if (response) {
-                alert("Registration successful. Please log in.");
-                window.location.href = "/login";    
+                showToast("Registro completado,favor de iniciar sesion", "success");
+                setTimeout(() => {
+                    window.location.href = "/login";
+                }, 3000);
             }
         } catch (error) {
             console.error("Error during registration:", error);
-            alert("Registration failed. Please try again.");
+            showToast("REl registro fallo, favor de intentar nuevamente", "error");
         }
     };
-
 
 
 
@@ -62,7 +73,9 @@ export default function useAuth() {
         setName,
         setLastName,
         setEmail,
-        setImage
+        setImage,
+        toast,
+        setToast
     };
 
 

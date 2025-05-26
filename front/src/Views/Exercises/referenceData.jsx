@@ -1,16 +1,14 @@
-import React, { use, useEffect } from "react";
-import NavExercise from "../../components/navExercise";
 import { NavLink } from "react-router";
 import PageWrapper from "../../components/pageWrapper";
 import useExerciseData from "../../hooks/exerciseData_hook";
-
+import ReturnLayout from "../../layouts/return";
 export default function ReferenceData() {
   const { setReferenceData, referenceData } = useExerciseData();
 
   return (
     <>
       <PageWrapper>
-        <NavExercise />
+        <ReturnLayout />
         <div className="flex flex-col items-center justify-center min-h-screen px-4">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
             Coloque los datos solicitados

@@ -1,6 +1,6 @@
 import LetterGlitch from "../Backgrounds/LetterGlitch/LetterGlitch";
 import useAuth from "../hooks/auth_hook"; // Asegúrate de que la ruta sea correcta
-import { NavLink } from "react-router";
+import Toaster from "../components/Toaster";
 export default function Register() {
   const {
     setEmail,
@@ -10,6 +10,7 @@ export default function Register() {
     setPassword,
     setImage,
     handleRegister,
+    toast
   } = useAuth();
 
   return (
@@ -22,6 +23,14 @@ export default function Register() {
           smooth={true}
         />
       </div>
+      {toast.show && (
+        <Toaster
+          message={toast.message}
+          type={toast.type}
+          onClose={() => toast.setToast({ ...toast, show: false })}
+        />
+      )}
+
       <div className="flex items-center justify-center min-h-screen px-4 relative ">
         <form
           onSubmit={handleRegister}

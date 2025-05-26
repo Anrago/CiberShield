@@ -1,7 +1,25 @@
-import "../../style/phishing-style.css";
 import AsideBar from "../../layouts/asideBar.jsx";
-import ImageTemp from "../../assets/imagen.png";
-
+import PhishingInf from "../../components/phishingInf.jsx";
+import help_3 from "../../assets/phishing/help_1.png";
+import help_2 from "../../assets/phishing/help_2.png";
+import help_1 from "../../assets/phishing/help_3.png";
+import {
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
+  Cell,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 export default function Phishing() {
   return (
@@ -46,11 +64,92 @@ export default function Phishing() {
           </div>
 
           <div className="flex justify-center m-8">
-            <img
-              src={ImageTemp}
-              alt="Phishing"
-              className="w-64 h-auto rounded-lg shadow-lg"
-            />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+              {/* Gráfico 1: Métodos de ataque de phishing más comunes */}
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <h3 className="text-2xl font-bold mb-4 text-gray-800 text-center">
+                  Métodos de ataque más comunes
+                </h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart
+                    data={[
+                      { metodo: "Email", porcentaje: 65 },
+                      { metodo: "SMS", porcentaje: 18 },
+                      { metodo: "Redessociales", porcentaje: 12 },
+                      { metodo: "Llamadas", porcentaje: 5 },
+                    ]}
+                    margin={{ top: 10, right: 30, left: 20, bottom: 60 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="metodo"
+                      angle={-45}
+                      textAnchor="end"
+                      height={60}
+                    />
+                    <YAxis
+                      label={{
+                        value: "Porcentaje",
+                        angle: -90,
+                        position: "insideLeft",
+                      }}
+                    />
+                    <Tooltip
+                      formatter={(value) => [`${value}%`, "Frecuencia"]}
+                    />
+                    <Legend verticalAlign="top" />
+                    <Bar
+                      dataKey="porcentaje"
+                      name="Porcentaje de ataques"
+                      fill="#8884d8"
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+                <p className="mt-4 text-sm text-gray-600 italic text-center">
+                  Fuente: Informe de Amenazas de Ciberseguridad 2023
+                </p>
+              </div>
+
+              {/* Gráfico 2: Evolución de ataques de phishing */}
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <h3 className="text-2xl font-bold mb-4 text-gray-800 text-center">
+                  Evolución de ataques (2019-2023)
+                </h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart
+                    data={[
+                      { year: "2019", ataques: 114000 },
+                      { year: "2020", ataques: 241342 },
+                      { year: "2021", ataques: 316747 },
+                      { year: "2022", ataques: 423525 },
+                      { year: "2023", ataques: 512936 },
+                    ]}
+                    margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="year" />
+                    <YAxis />
+                    <Tooltip
+                      formatter={(value) => [
+                        `${value.toLocaleString()} ataques`,
+                        "Cantidad",
+                      ]}
+                    />
+                    <Legend verticalAlign="top" />
+                    <Line
+                      type="monotone"
+                      dataKey="ataques"
+                      name="Ataques de phishing"
+                      stroke="#ff7300"
+                      activeDot={{ r: 8 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+                <p className="mt-4 text-sm text-gray-600 italic text-center">
+                  Aumento del 350% en ataques de phishing en los últimos 5 años
+                </p>
+              </div>
+            </div>
           </div>
 
           <h3 className="text-3xl text-start">Tipos comunes de phishing</h3>
@@ -118,12 +217,35 @@ export default function Phishing() {
             sospechoso de obtener tus datos.
           </p>
 
-          <div className="flex justify-center m-8">
-            <img
-              src={ImageTemp}
-              alt="Protección contra phishing"
-              className="w-64 h-auto rounded-lg shadow-lg"
-            />
+          <h3 className="text-3xl">Señales de alerta</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {[
+              {
+                title: "1: Urgencia",
+                description:
+                  "Los atacantes suelen enviar mensajes que crean un sentido de urgencia, como amenazas de cierre de cuenta, problemas de seguridad o actividad sospechosa.",
+                image: help_1,
+              },
+              {
+                title: "2: Remitente desconocido",
+                description:
+                  "Los correos electrónicos o mensajes provienen de remitentes desconocidos o sospechosos, a menudo con direcciones que imitan a empresas legítimas.",
+                image: help_2,
+              },
+              {
+                title: "3: Enlaces sospechosos",
+                description:
+                  "Los mensajes contienen enlaces que llevan a sitios web falsos diseñados para robar información personal o credenciales.\n la manera de identificar un enlace sospechoso es pasar el cursor sobre él para ver la URL real antes de hacer clic. Dicha URL real aparecera en la parte inferior izquierda de tu navegador.",
+                image: help_3,
+              },
+            ].map((item, index) => (
+              <PhishingInf
+                key={index}
+                title={item.title}
+                description={item.description}
+                image={item.image}
+              />
+            ))}
           </div>
         </div>
       </div>
