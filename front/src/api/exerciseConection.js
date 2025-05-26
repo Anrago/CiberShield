@@ -6,6 +6,9 @@ let exerciseData = JSON.parse(localStorage.getItem("exerciseData"));
 let referenceData = JSON.parse(localStorage.getItem("referenceData"));
 let dataUser = JSON.parse(storedData);
 
+console.log("usuario",dataUser.phone);
+console.log("dificultyData",exerciseData.exerciseType, exerciseData.exerciseLevel);
+
 export const getexercise = async () => {
     try {
         const response = await fetch(
@@ -15,7 +18,7 @@ export const getexercise = async () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                'prompt': dataUser.name + " " + dataUser.email + " " + dataUser.phone,
+                'prompt': 'Datos de la persona a la que se le envia el correo' + dataUser.name + " " + dataUser.email + " " + dataUser.phone,
             }),
         }
         );

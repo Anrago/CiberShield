@@ -27,7 +27,6 @@ export default function TypeSelection() {
                     exerciseTypeId: index + 1,
                     exerciseType: label,
                   });
-                  console.log(exerciseData.exerciseType);
                 }}
                 to="/dificulty"
                 className="flex items-center justify-center gap-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-white px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-50 dark:hover:bg-gray-700 transition-transform transform hover:-translate-y-1 duration-200"

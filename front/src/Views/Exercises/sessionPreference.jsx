@@ -9,7 +9,7 @@ export default function SessionPreference() {
         <div className="flex flex-col items-center justify-center h-screen bg-[var(--colorBase)]">
           <h2 className="text-2xl font-bold mb-4">Ya has iniciado sesion</h2>
           <div className="flex flex-row gap-5 items-center justify-center mb-4">
-              <Navigate to={"/category"} className="btn bg-green-300"/>
+              <Navigate to={"/type"} className="btn bg-green-300"/>
           </div>
         </div>
       ) : (

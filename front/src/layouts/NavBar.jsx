@@ -188,7 +188,7 @@ export default function NavBar() {
                   <ul className="p-2 bg-gradient-to-b from-[#1e3a5f] to-[#2d4e78] rounded-box shadow-xl border border-[#3a6491]">
                     <li>
                       <NavLink
-                        to="/info/malware"
+                        to="/malware"
                         className={({ isActive }) =>
                           isActive
                             ? "font-bold bg-[#3a6491] text-white"
