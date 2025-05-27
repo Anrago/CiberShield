@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import Txt from "./txt";
 import Ransomware from "./ransomware";
 import useRenderHook from "../../hooks/render_hook";
-import TROJAN from "./trojan.jsx"; // Assuming you have a TROJAN component
-export default function SO() {
-  const [selectedFile, setSelectedFile] = useState(null);
- const {files, setFiles} = useRenderHook();
-  
+import useInformativeCards from "../../hooks/informative_hook.js";
+import TROJAN from "./trojan.jsx";
+import Adware from "./adware.jsx";
 
+export default function SO({ malware }) {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const { files, setFiles } = useRenderHook();
+
+  console.log("Malware: desde el SO", malware);
   const openFile = (file) => {
     setSelectedFile(file);
   };
@@ -16,7 +19,22 @@ export default function SO() {
     setSelectedFile(null);
   };
 
-  console.log("Files:", files);
+  // Helper function to render the appropriate malware component
+  const renderMalwareComponent = () => {
+    if (!malware) return null;
+
+
+    if (malware === "Ransomware") {
+      return <Ransomware />;
+    } else if (malware === "Troyanos") {
+      return <TROJAN />;
+    } else if (malware === "Adware") {
+      return <Adware />;
+    }
+
+    return null;
+  };
+
   return (
     <div className="bg-linear-to-r min-h-100 from-cyan-500 to-blue-500 min-w-[90%] relative p-4">
       <div className="flex-grow flex flex-row flex-wrap gap-4 pb-12">
@@ -32,8 +50,7 @@ export default function SO() {
             </span>
           </div>
         ))}
-        <Ransomware />
-        <TROJAN />
+        {renderMalwareComponent()}
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-12 bg-[#0078D7] flex items-center px-2 shadow-lg">
         <div className="flex items-center h-10 px-2 hover:bg-blue-600 rounded cursor-pointer">

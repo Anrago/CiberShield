@@ -4,7 +4,6 @@ import dentro from "../../assets/images/estoyDentro.png";
 export default function Ransomware() {
   const { isClick, setContDown, setIsClick, activeMalware, contDown } =
     useRenderHook();
-  console.log("Contador:", contDown);
   return (
     <>
       {activeMalware ? (

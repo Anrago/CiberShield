@@ -1,5 +1,8 @@
 import AsideBar from "../../layouts/asideBar.jsx";
+import PhishingData from "../../json/phishingData.json";
 import PhishingInf from "../../components/phishingInf.jsx";
+import PhishingCard from "../../components/phishingCard.jsx";
+import useInformativeCards from "../../hooks/informative_hook.js";
 import help_3 from "../../assets/phishing/help_1.png";
 import help_2 from "../../assets/phishing/help_2.png";
 import help_1 from "../../assets/phishing/help_3.png";
@@ -22,6 +25,8 @@ import {
 } from "recharts";
 
 export default function Phishing() {
+  const { openCard, closeCard, isCardOpen } = useInformativeCards();
+  const phishingInfo = PhishingData.phishingInfo;
   return (
     <div className="flex h-full">
       <AsideBar />
@@ -154,38 +159,26 @@ export default function Phishing() {
 
           <h3 className="text-3xl text-start">Tipos comunes de phishing</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 text-xl text-gray-700">
-            {[
-              {
-                titulo: "Phishing por correo",
-                desc: "Utiliza correos electrónicos falsos para engañar al usuario.",
-              },
-              {
-                titulo: "Smishing (SMS)",
-                desc: "Ataques mediante mensajes de texto falsos.",
-              },
-              {
-                titulo: "Vishing (llamadas)",
-                desc: "Fraudes a través de llamadas telefónicas.",
-              },
-              {
-                titulo: "Spear phishing",
-                desc: "Ataques dirigidos a una persona específica o grupo reducido.",
-              },
-              {
-                titulo: "Pharming",
-                desc: "Redirecciona al usuario a sitios falsos sin que lo note.",
-              },
-              {
-                titulo: "Phishing en redes sociales",
-                desc: "Utiliza perfiles o mensajes engañosos en redes sociales.",
-              },
-            ].map(({ titulo, desc }) => (
+            {phishingInfo.map(({ titulo, desc, efect }) => (
               <div
                 key={titulo}
                 className="p-4 border rounded shadow bg-gray-50"
               >
-                <h3 className="font-semibold">{titulo}</h3>
-                <p className="text-sm text-gray-600">{desc}</p>
+                {isCardOpen(titulo) ? (
+                  <PhishingCard
+                    desc={efect}
+                    howAfect={titulo}
+                    onClose={() => closeCard()}
+                  />
+                ) : (
+                  <span
+                    onClick={() => openCard(titulo)}
+                    className="cursor-pointer"
+                  >
+                    <h3 className="font-semibold">{titulo}</h3>
+                    <p className="text-sm text-gray-600">{desc}</p>
+                  </span>
+                )}
               </div>
             ))}
           </div>
@@ -218,7 +211,7 @@ export default function Phishing() {
           </p>
 
           <h3 className="text-3xl">Señales de alerta</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          <div className="stack stack-end" >
             {[
               {
                 title: "1: Urgencia",

@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 export default function useInformativeCards() {
     const [openCardId, setOpenCardId] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
-    
-    // Sync the two state variables
+    const [malware, setMalware] = useState(null);
+
     useEffect(() => {
         if (openCardId !== null) {
             setIsOpen(true);
@@ -14,7 +14,6 @@ export default function useInformativeCards() {
     }, [openCardId]);
 
     useEffect(() => {
-        // If modal is open, trigger the showModal method on the dialog
         if (isOpen) {
             const modal = document.getElementById('virusModal');
             if (modal) {
@@ -24,6 +23,7 @@ export default function useInformativeCards() {
     }, [isOpen]);
 
     const openCard = (cardId) => {
+        
         setOpenCardId(cardId);
         setIsOpen(true);
     };
@@ -34,7 +34,7 @@ export default function useInformativeCards() {
     };
 
     const isCardOpen = (cardId) => {
-
+        
         return openCardId === cardId;
     };
 
@@ -44,8 +44,8 @@ export default function useInformativeCards() {
         closeCard,
         isCardOpen,
         openCardId,
-        
-        // Old API for backward compatibility
+        malware,
+        setMalware,
         isOpen,
         setIsOpen
     };

@@ -1,15 +1,8 @@
 import { useEffect } from "react";
 import useInformativeCards from "../hooks/informative_hook";
-import SO from "../components/rendering/SO.jsx";
 
-export default function VirusCard({ title, desc, howAfect, onClose }) {
-  const { setIsOpen, setMalware, malware } = useInformativeCards();
-  useEffect(() => {
-    setMalware(title);
-  }, []);
-
-  console.log("ENTRO", malware);
-
+export default function PhishingCard({ desc, howAfect, onClose }) {
+  const { setIsOpen } = useInformativeCards();
   const handleClose = () => {
     setIsOpen(false);
     if (onClose) {
@@ -32,7 +25,6 @@ export default function VirusCard({ title, desc, howAfect, onClose }) {
           <h2 className="text-3xl font-bold text-center">{howAfect}</h2>
           <div className="py-4">
             <p className="text-lg">{desc}</p>
-            <SO malware={title} />
           </div>
         </div>
       </dialog>
