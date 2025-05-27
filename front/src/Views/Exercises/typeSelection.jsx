@@ -28,7 +28,7 @@ export default function TypeSelection() {
               onClick={() => {
                 setExerciseData({
                   ...exerciseData,
-                  exerciseTypeId: 0,
+                  exerciseTypeId: 1,
                   exerciseType: "SMS",
                 });
                 navigate("/dificulty");
@@ -46,7 +46,7 @@ export default function TypeSelection() {
               onClick={() => {
                 setExerciseData({
                   ...exerciseData,
-                  exerciseTypeId: 1,
+                  exerciseTypeId: 2,
                   exerciseType: "email",
                 });
                 navigate("/dificulty");

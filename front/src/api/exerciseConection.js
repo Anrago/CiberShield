@@ -3,16 +3,13 @@ const API_URL = import.meta.env.VITE_BACK_API_URL || "http://localhost:3000";
 let dificultyData =JSON.parse( localStorage.getItem("dificultyData"));
 let storedData = localStorage.getItem("token") ? localStorage.getItem("profile"):localStorage.getItem("referenceData");
 let exerciseData = JSON.parse(localStorage.getItem("exerciseData"));
-let referenceData = JSON.parse(localStorage.getItem("referenceData"));
 let dataUser = JSON.parse(storedData);
 
-console.log("usuario",dataUser.phone);
-console.log("dificultyData",exerciseData.exerciseType, exerciseData.exerciseLevel);
-
-export const getexercise = async () => {
+export const getexercise = async (data) => {
     try {
+        console.log("Datos de peticion", data.exerciseType, data.exerciseLevel);
         const response = await fetch(
-        `${API_URL}/getexercise/${exerciseData.exerciseType}/${exerciseData.exerciseLevel}`,{
+        `${API_URL}/getexercise/${data.exerciseType}/${data.exerciseLevel}`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -27,8 +24,8 @@ export const getexercise = async () => {
             throw new Error("Network response was not ok");
         }
 
-        const data = await response.json();
-        return data;
+        const responseData = await response.json();
+        return responseData;
 
     } catch (error) {
         console.error("Error fetching exercise connection:", error);
@@ -94,9 +91,9 @@ export const getExerciseBD = async ()=>{
     }
 }
 
-export const decidedExercise = async () => {
+export const decidedExercise = async (data) => {
  try{
-    const response = await getexercise();
+    const response = await getexercise(data);
     return response;
  }catch (error) {
     return await getExerciseBD();

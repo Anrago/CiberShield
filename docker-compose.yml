@@ -1,16 +1,26 @@
 version: '3.7'
 services:
-  # back:
-  #   build:
-  #     context: ./back
-  #     dockerfile: DockerFile
-  #   container_name: back
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - dbCiberShield
-  #   networks:
-  #     - ciberShieldNetwork
+  back:
+    build:
+      context: ./back
+      dockerfile: DockerFile
+    container_name: back
+    ports:
+      - 3000:3000
+    depends_on:
+      - dbCiberShield
+    networks:
+      - ciberShieldNetwork
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://cibershieldAdmin:cibershieldAdmin@dbCiberShield:5432/ciberShield?schema=public
+      - NODE_ENV=production
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY_ROLE=${SUPABASE_KEY_ROLE}
+      - MY_OPENAI_API=${MY_OPENAI_API}
+      - CORS_ORIGIN=http://localhost:5173
 
   dbCiberShield:
     env_file:
@@ -28,7 +38,11 @@ services:
     networks:
       - ciberShieldNetwork
     restart: unless-stopped
-
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   front:
     build:
@@ -37,8 +51,6 @@ services:
     container_name: front
     ports:
       - 5173:5173
-    # depends_on:
-    #   - back
     networks:
       - ciberShieldNetwork
 

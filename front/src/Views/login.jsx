@@ -1,6 +1,6 @@
 import useAuth from "../hooks/auth_hook";
 import LetterGlitch from "../Backgrounds/LetterGlitch/LetterGlitch";
-import Toaster from "../components/Toaster";
+import Toaster from "../components/toaster.jsx";
 
 export default function Login() {
   const { setPassword, setUserName, handleLogin, toast } = useAuth();

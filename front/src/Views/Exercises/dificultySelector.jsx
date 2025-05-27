@@ -56,7 +56,7 @@ export default function CategorySelection() {
                 setExerciseData({
                   ...exerciseData,
                   exerciseLevelId: 3,
-                  exerciseLevel: "3",
+                  exerciseLevel: "complex",
                 });
                 navigate("/exercise");
               }}

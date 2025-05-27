@@ -1,6 +1,6 @@
 import LetterGlitch from "../Backgrounds/LetterGlitch/LetterGlitch";
 import useAuth from "../hooks/auth_hook"; // Asegúrate de que la ruta sea correcta
-import Toaster from "../components/Toaster";
+import Toaster from "../components/toaster.jsx";
 export default function Register() {
   const {
     setEmail,
@@ -10,7 +10,7 @@ export default function Register() {
     setPassword,
     setImage,
     handleRegister,
-    toast
+    toast,
   } = useAuth();
 
   return (

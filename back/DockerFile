@@ -1,41 +1,37 @@
-# Usa una imagen base de Node.js con Alpine para mayor eficiencia
-FROM node:23-alpine AS builder
+# Etapa 1: Construcción
+FROM node:20-alpine AS builder
 
-# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos necesarios
-COPY package.json package-lock.json ./
+# Instala dependencias necesarias para compilar módulos nativos como bcrypt
+RUN apk add --no-cache python3 make g++
 
-# Instala dependencias de producción
-RUN npm install 
+# Copia archivos para instalar dependencias
+COPY package*.json ./
 
-# Copia el resto de la aplicación
+# Instala dependencias dentro del contenedor
+RUN npm install
+
+# Copia el resto del proyecto
 COPY . .
 
-# Genera el cliente de Prisma
-#RUN npx prisma generate
-
-# Compila el proyecto
-RUN npm run build
+# Genera Prisma Client y compila el código
 RUN npx prisma generate
+RUN npm run build
 
-# Usa una imagen más liviana para producción
-FROM node:23-alpine AS runner
+# Etapa 2: Producción
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Instala OpenSSL (necesario para Prisma con PostgreSQL)
-RUN apk add --no-cache openssl
-
-# Copia solo los archivos necesarios desde el builder
-COPY --from=builder /app/node_modules ./node_modules
+# Solo copiamos lo necesario desde el builder
 COPY --from=builder /app/dist ./dist
-# COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
+COPY --from=builder /app/prisma ./prisma
 
-# Expone el puerto de la aplicación
+# Exponemos el puerto de la aplicación NestJS
 EXPOSE 3000
 
-# # Comando para ejecutar migraciones y luego iniciar la aplicación
-# CMD npx prisma migrate deploy && node dist/main.js
+# Ejecutamos migraciones y luego levantamos la app
+CMD npx prisma migrate deploy && node dist/main.js

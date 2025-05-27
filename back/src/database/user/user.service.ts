@@ -9,7 +9,8 @@ import { UpdateUserDto } from '../user/dto/update-user';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { User } from '@prisma/client';
 import { SupabaseService } from '../../supabase/subapase_client.service';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
+
 
 @Injectable()
 export class UserService {

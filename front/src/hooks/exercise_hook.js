@@ -10,7 +10,9 @@ export default function useExercise() {
 
     const fetchExercise = async () => {
         try {
-            const data = await decidedExercise();
+            const exerciseData = JSON.parse(localStorage.getItem("exerciseData"));
+            console.log("Datos del ejercicio:", exerciseData);
+            const data = await decidedExercise(exerciseData);
             if (!data || data.length === 0) {
                 console.error("No se recibió respuesta del backend");
                 return;

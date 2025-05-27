@@ -22,8 +22,13 @@ export default function ExercisePresentation() {
   return (
     <>
       <PageWrapper>
-        <div className="flex flex-col items-center justify-center h-screen bg-[var(--colorBase)] px-4">
-          <h2 className="text-2xl font-bold mb-4">Ejercicios</h2>
+        <div className="flex flex-col items-center justify-center h-screen px-4">
+          
+          <div className="absolute inset-0 pointer-events-none">
+           
+            <div className="w-full h-full z-1 bg-blue-100"></div>
+          </div>
+          <h2 className="text-2xl font-bold mb-4 z-1">Ejercicios de seguridad</h2>
           {loading ? (
             <span className="loading loading-spinner loading-xl"></span>
           ) : type === "email" ? (
@@ -41,7 +46,7 @@ export default function ExercisePresentation() {
                     />
                   ))}
               </div>
-              <div className="flex gap-4 mt-4">
+              <div className="flex z-1 gap-4 mt-4">
                 <button
                   onClick={handlePrev}
                   disabled={currentIndex === 0}
