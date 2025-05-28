@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 export default function ReturnLayout() {
     const navigate = useNavigate();
     return (
-        <div className="p-4  flex justify-between items-center">
+        <div className="p-4 absolute  flex justify-between items-center">
            
             <button
                 onClick={() => navigate(-1)}

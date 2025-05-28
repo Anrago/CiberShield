@@ -30,7 +30,7 @@ export default function InformativeCards({
           <div className="card-actions justify-center mt-6">
             <NavLink
               to={link}
-              className="flex items-center gap-2 btn px-4 py-2 rounded-md bg-[var(--colorLight)] text-[var(--colorDark)] hover:bg-[var(--colorDark)] hover:text-[var(--colorLight)] transition"
+              className="flex items-center gap-2 btn px-4 py-2 rounded-md bg-[var(--colorLight)] text-[var(--colorDark)] hover:bg-[#000000]/25 hover:text-[var(--colorLight)] transition"
             >
               <span>Saber más</span>
               <img src={Arrow} alt="Arrow icon" className="w-5 h-5" />

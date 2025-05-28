@@ -29,7 +29,7 @@ export default function TypeSelection() {
                 setExerciseData({
                   ...exerciseData,
                   exerciseTypeId: 1,
-                  exerciseType: "SMS",
+                  exerciseType: "sms",
                 });
                 navigate("/dificulty");
               }}

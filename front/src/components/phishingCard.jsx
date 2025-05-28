@@ -1,13 +1,19 @@
 import { useEffect } from "react";
 import useInformativeCards from "../hooks/informative_hook";
-
-export default function PhishingCard({ desc, howAfect, onClose }) {
-  const { setIsOpen } = useInformativeCards();
+import EmailExample from "./rendering/EmailExample";
+import SocialMediaExample from "./rendering/socialMediaExample.jsx";
+export default function PhishingCard({ title, desc, howAfect, onClose }) {
+  const { setIsOpen, example } = useInformativeCards();
   const handleClose = () => {
     setIsOpen(false);
     if (onClose) {
       onClose();
     }
+  };
+
+  const renderExample = () => {
+    if (title == "Phishing por correo") return <EmailExample />;
+    if (title == "Phishing en redes sociales") return <SocialMediaExample />;
   };
 
   return (
@@ -26,6 +32,7 @@ export default function PhishingCard({ desc, howAfect, onClose }) {
           <div className="py-4">
             <p className="text-lg">{desc}</p>
           </div>
+          {renderExample()}
         </div>
       </dialog>
     </>

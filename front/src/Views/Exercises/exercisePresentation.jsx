@@ -2,7 +2,7 @@ import ExerciseCard from "../../components/exerciseCard";
 import ExerciseSMSCard from "../../components/exerciseSMSCard";
 import PageWrapper from "../../components/pageWrapper";
 import useExercise from "../../hooks/exercise_hook";
-
+import TipsDisplay from "../../components/tips";
 export default function ExercisePresentation() {
   const {
     exercises,
@@ -23,14 +23,15 @@ export default function ExercisePresentation() {
     <>
       <PageWrapper>
         <div className="flex flex-col items-center justify-center h-screen px-4">
-          
-          <div className="absolute inset-0 pointer-events-none">
-           
-            <div className="w-full h-full z-1 bg-blue-100"></div>
-          </div>
-          <h2 className="text-2xl font-bold mb-4 z-1">Ejercicios de seguridad</h2>
+          <h2 className="text-2xl font-bold  z-1">
+            Ejercicios de seguridad
+          </h2>
           {loading ? (
-            <span className="loading loading-spinner loading-xl"></span>
+            <>
+            <h3 className="text-lg mb-4 z-1">Cargando ejercicios...</h3>
+            <TipsDisplay/>
+              <span className="loading loading-spinner loading-xl"></span>
+            </>
           ) : type === "email" ? (
             <div className="flex flex-col items-center gap-6">
               <div className="stack stack-end gap-3">
@@ -61,7 +62,7 @@ export default function ExercisePresentation() {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center w-full h-full gap-6">
-              <div className="flex justify-center items-center w-full">
+              <div className="stack stack-end gap-3 ">
                 {exercises
                   .slice(currentIndex, currentIndex + 1)
                   .map((exercise, index) => (
@@ -77,7 +78,7 @@ export default function ExercisePresentation() {
           )}
 
           {showCompletionModal && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
               <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
                 <h2 className="text-2xl font-bold text-center mb-4">
                   ¡Ejercicios completados!

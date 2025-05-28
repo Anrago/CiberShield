@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import { useState, useEffect } from "react";
-import logo from "../assets/video.png";
+import logo from "../../public/ciberShieldLogo.png";
 
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -140,15 +140,14 @@ export default function NavBar() {
             </div>
             <NavLink
               to="/"
-              className="btn btn-ghost gap-2 hover:bg-transparent"
+              className="btn btn-ghost hover:bg-transparent"
             >
-              <div className="bg-white p-1 rounded-full">
-                <img
-                  src={logo}
-                  alt="CiberShield Logo"
-                  className="h-8 w-8 object-contain"
-                />
-              </div>
+              <img
+                src={logo}
+                alt="CiberShield Logo"
+                className="h-15 w-15 object-contain"
+              />
+
               <span className="text-xl font-bold text-gradient bg-gradient-to-r from-[#D9FAE7] to-[#C3ACD5] inline-block text-transparent bg-clip-text">
                 CiberShield
               </span>
@@ -237,7 +236,7 @@ export default function NavBar() {
                     : "hover:bg-[#3a6491] hover:bg-opacity-70 flex flex-row-reverse items-center gap-2"
                 }
               >
-                <div className="flex flex-row  gap-3 items-center justify-center align-center"> 
+                <div className="flex flex-row  gap-3 items-center justify-center align-center">
                   <p>{JSON.parse(localStorage.getItem("profile")).name}</p>
                   <img
                     className="w-10 h-10  rounded-full shadow-md my-auto border-4 border-[#3F88C5] object-cover"

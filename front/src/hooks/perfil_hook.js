@@ -27,7 +27,7 @@ export default function useProfile() {
     const logOut= () =>{
         localStorage.removeItem("token");
         localStorage.removeItem("profile");
-        location.reload();
+        window.location.href = "/home";
     }
 
     const groupedData = (results) => {

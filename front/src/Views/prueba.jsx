@@ -4,6 +4,7 @@ import ExerciseCard from "../components/exerciseCard";
 import DescriptionCard from "../components/descriptionCard";
 import { login, register } from "../api/authConection";
 import ExerciseSMSCard from "../components/exerciseSMSCard";
+import TipsDisplay from "../components/tips";
 export default function Prub() {
 
   const fetchExercise = async (dificulty) => {
@@ -42,7 +43,7 @@ export default function Prub() {
   }
   return (
     <>
-      <ExerciseCard message={emailExample}></ExerciseCard>
+      <TipsDisplay />
     </>
     // <div>
     //   <DificultySelector setExercise={fetchExercise} />

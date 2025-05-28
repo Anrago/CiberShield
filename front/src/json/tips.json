@@ -1,0 +1,45 @@
+{
+     "tips": [  
+        {
+            "title": "Tip 1",
+            "content": "Usa contraseñas seguras: combina letras mayúsculas, minúsculas, números y símbolos. Evita usar la misma contraseña en múltiples sitios."
+        },
+        {
+            "title": "Tip 2",
+            "content": "Activa la autenticación de dos factores (2FA) siempre que sea posible. Esto añade una capa extra de seguridad a tus cuentas."
+        },
+        {
+            "title": "Tip 3",
+            "content": "No hagas clic en enlaces sospechosos que recibas por correo electrónico, mensajes de texto o redes sociales. Podrían ser intentos de phishing."
+        },
+        {
+            "title": "Tip 4",
+            "content": "Mantén tu software y sistema operativo actualizados. Las actualizaciones suelen incluir parches de seguridad importantes."
+        },
+        {
+            "title": "Tip 5",
+            "content": "No uses redes Wi-Fi públicas para acceder a cuentas sensibles. Si lo haces, utiliza una VPN confiable para cifrar tu conexión."
+        },
+        {
+            "title": "Tip 6",
+            "content": "Instala un antivirus y un firewall confiables, y asegúrate de que estén activos y actualizados."
+        },
+        {
+            "title": "Tip 7",
+            "content": "Revisa regularmente los permisos de las aplicaciones en tu teléfono. Algunas pueden acceder a tu micrófono, cámara o ubicación sin necesidad."
+        },
+        {
+            "title": "Tip 8",
+            "content": "Haz copias de seguridad de tu información importante en un disco externo o en la nube, por si acaso sufres un ataque o fallo de hardware."
+        },
+        {
+            "title": "Tip 9",
+            "content": "Evita compartir demasiada información personal en redes sociales. Los ciberdelincuentes pueden usarla para robar tu identidad."
+        },
+        {
+            "title": "Tip 10",
+            "content": "Desconfía de llamadas o mensajes que te pidan datos personales o bancarios. Verifica directamente con la entidad antes de responder."
+        }
+    ]
+    
+}

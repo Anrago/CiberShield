@@ -33,6 +33,20 @@ export class OpenaiController {
     return response;
   }
 
+  @Post('sms/medium')
+  async createSmsMedium(@Body('prompt') prompt: string): Promise<any> {
+    console.log('entro en Sms medium');
+    const response = await this.openai.createExcesiSMSMediumPost(prompt);
+    return response;
+  }
+  
+  @Post('sms/complex')
+  async createSmsComplex(@Body('prompt') prompt: string): Promise<any> {
+    console.log('entro en Sms complex');
+    const response = await this.openai.createExcesiSMSComplexPost(prompt);
+    return response;
+  }
+
   //   @Get('simple')
   //   async getExerciseSimple(): Promise<any> {
   //     const response = await this.openai.createExcesiSimple();

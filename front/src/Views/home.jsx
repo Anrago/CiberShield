@@ -6,7 +6,7 @@ import Virus from "../assets/images/virus.png";
 import socialEngineering from "../assets/images/ingenieria-social.png";
 import Practices from "../assets/images/practices.png";
 import { motion } from "framer-motion";
-
+import Logo from "../../public/ciberShieldLogo.png";
 export default function Home() {
   return (
     <>
@@ -30,7 +30,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
               >
                 <img
-                  src="https://img.freepik.com/free-vector/cyber-security-concept_23-2148532223.jpg"
+                  src={Logo}
                   alt="Cybersecurity Shield"
                   className="max-w-md rounded-lg shadow-2xl"
                 />

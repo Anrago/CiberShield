@@ -23,10 +23,46 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useState } from "react";
 
 export default function Phishing() {
   const { openCard, closeCard, isCardOpen } = useInformativeCards();
   const phishingInfo = PhishingData.phishingInfo;
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+
+  const alertCards = [
+    {
+      title: "1: Urgencia",
+      description:
+        "Los atacantes suelen enviar mensajes que crean un sentido de urgencia, como amenazas de cierre de cuenta, problemas de seguridad o actividad sospechosa.",
+      image: help_1,
+    },
+    {
+      title: "2: Remitente desconocido",
+      description:
+        "Los correos electrónicos o mensajes provienen de remitentes desconocidos o sospechosos, a menudo con direcciones que imitan a empresas legítimas.",
+      image: help_2,
+    },
+    {
+      title: "3: Enlaces sospechosos",
+      description:
+        "Los mensajes contienen enlaces que llevan a sitios web falsos diseñados para robar información personal o credenciales.\nLa manera de identificar un enlace sospechoso es pasar el cursor sobre él para ver la URL real antes de hacer clic. Dicha URL real aparecerá en la parte inferior izquierda de tu navegador.",
+      image: help_3,
+    },
+  ];
+
+  const nextCard = () => {
+    if (currentCardIndex < alertCards.length - 1) {
+      setCurrentCardIndex(currentCardIndex + 1);
+    }
+  };
+
+  const prevCard = () => {
+    if (currentCardIndex > 0) {
+      setCurrentCardIndex(currentCardIndex - 1);
+    }
+  };
+
   return (
     <div className="flex h-full">
       <AsideBar />
@@ -166,6 +202,7 @@ export default function Phishing() {
               >
                 {isCardOpen(titulo) ? (
                   <PhishingCard
+                    title={titulo}
                     desc={efect}
                     howAfect={titulo}
                     onClose={() => closeCard()}
@@ -211,34 +248,60 @@ export default function Phishing() {
           </p>
 
           <h3 className="text-3xl">Señales de alerta</h3>
-          <div className="stack stack-end" >
-            {[
-              {
-                title: "1: Urgencia",
-                description:
-                  "Los atacantes suelen enviar mensajes que crean un sentido de urgencia, como amenazas de cierre de cuenta, problemas de seguridad o actividad sospechosa.",
-                image: help_1,
-              },
-              {
-                title: "2: Remitente desconocido",
-                description:
-                  "Los correos electrónicos o mensajes provienen de remitentes desconocidos o sospechosos, a menudo con direcciones que imitan a empresas legítimas.",
-                image: help_2,
-              },
-              {
-                title: "3: Enlaces sospechosos",
-                description:
-                  "Los mensajes contienen enlaces que llevan a sitios web falsos diseñados para robar información personal o credenciales.\n la manera de identificar un enlace sospechoso es pasar el cursor sobre él para ver la URL real antes de hacer clic. Dicha URL real aparecera en la parte inferior izquierda de tu navegador.",
-                image: help_3,
-              },
-            ].map((item, index) => (
+          <div className="flex flex-col items-center">
+            <div className="stack stack-end gap-2 w-full max-w-md mx-auto min-h-[400px]">
               <PhishingInf
-                key={index}
-                title={item.title}
-                description={item.description}
-                image={item.image}
+                key={currentCardIndex}
+                title={alertCards[currentCardIndex].title}
+                description={alertCards[currentCardIndex].description}
+                image={alertCards[currentCardIndex].image}
               />
-            ))}
+            </div>
+            <div className="flex justify-center gap-4 mt-4">
+              <button
+                className="btn btn-circle"
+                onClick={prevCard}
+                disabled={currentCardIndex === 0}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              <span className="mx-2 flex items-center">
+                {currentCardIndex + 1} / {alertCards.length}
+              </span>
+              <button
+                className="btn btn-circle"
+                onClick={nextCard}
+                disabled={currentCardIndex === alertCards.length - 1}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

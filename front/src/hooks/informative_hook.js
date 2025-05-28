@@ -4,7 +4,8 @@ export default function useInformativeCards() {
     const [openCardId, setOpenCardId] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [malware, setMalware] = useState(null);
-
+    const [example, setPhishingExample] = useState('');
+    
     useEffect(() => {
         if (openCardId !== null) {
             setIsOpen(true);
@@ -22,8 +23,13 @@ export default function useInformativeCards() {
         }
     }, [isOpen]);
 
+    const exampleSeleciton = (example) => {
+        setPhishingExample(example);
+    }
+
+
     const openCard = (cardId) => {
-        
+        exampleSeleciton(cardId);
         setOpenCardId(cardId);
         setIsOpen(true);
     };
@@ -47,6 +53,7 @@ export default function useInformativeCards() {
         malware,
         setMalware,
         isOpen,
-        setIsOpen
+        setIsOpen,
+        example,
     };
 }

@@ -7,22 +7,30 @@ export default function Ransomware() {
   return (
     <>
       {activeMalware ? (
-        <div className="bg-linear-to-t h-full w-full z-5 from-red-500 to-black  absolute bottom-0 left-0 right-0">
-          <div className="flex flex-col items-center justify-center h-full">
+        <div className="absolute inset-0 z-50 bg-gradient-to-t from-red-800 to-black flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center h-full px-4 text-center">
             <img
               src={dentro}
-              alt=""
-              className=" w-50 h-50  drop-shadow-[0_0_2px_rgba(255,0,0,0.8)]"
+              alt="Archivo Encriptado"
+              className="w-32 h-32 mb-6 drop-shadow-[0_0_6px_rgba(255,0,0,0.6)]"
             />
-            <span className="text- font-bold text-white truncate w-full text-center">
+            <h1 className="text-2xl md:text-3xl font-bold text-red-100 mb-4">
               ⚠️ Tus archivos han sido encriptados ⚠️
-              <br />
-              <span className="w-full whitespace-normal">
-                Todos tus documentos, fotos, videos y otros archivos importantes
-                han sido cifrados con un algoritmo seguro. No puedes acceder a
-                ellos por ahora.
-              </span>
-            </span>
+            </h1>
+
+
+            <p className="text-white text-base md:text-lg max-w-md mb-4">
+              Todos tus documentos, fotos, videos y otros archivos importantes
+              han sido cifrados con un algoritmo fuerte.
+            </p>
+
+            <p className="text-red-300 text-sm md:text-base font-semibold mb-6">
+              Para recuperar el acceso, paga 15 btc.
+            </p>
+
+            <button className="bg-red-700 hover:bg-red-800 text-white font-semibold py-2 px-5 rounded shadow-md transition">
+              Pagar rescate
+            </button>
           </div>
         </div>
       ) : (

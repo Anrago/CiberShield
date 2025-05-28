@@ -1,0 +1,12 @@
+{
+    "emailExample": {
+        "Asunto": "URGENTE: Actividad sospechosa detectada en su cuenta bancaria",
+        "Remitente": "Banco Nacional <seguridad@banc0nacional-soporte.com>",
+        "Cuerpo": "Estimado/a cliente,\n\nHemos detectado actividad inusual en su cuenta bancaria. Por motivos de seguridad, su cuenta ha sido temporalmente suspendida.\n\nDebe verificar su identidad inmediatamente para restaurar el acceso a su cuenta y evitar el bloqueo permanente.\n\n<a href=\"http://banco-nacional-verificacion.securitycheck.info/login.php\" style=\"color: blue; text-decoration: none;\" onmouseover=\"this.style.color='darkblue';\" onmouseout=\"this.style.color='blue';\">VERIFICAR MI CUENTA AHORA</a>\n\nSi no completa este proceso en las próximas 24 horas, su cuenta será suspendida permanentemente.\n\nNOTA: No responda a este correo electrónico. Este buzón no es monitoreado.\n\nAtentamente,\nDepartamento de Seguridad\nBanco Nacional"
+    },
+    "socialMedia": {
+      "msg1": "¡Hola fan! Soy Carlos Rivera 🎤 y estoy organizando un encuentro privado con 5 seguidores afortunados. Tú has sido preseleccionado! Para confirmar tu lugar, necesito que envíes una pequeña donación de €50 a esta cuenta para cubrir costos del evento: ES76 2100 1234 5678 9012 3456. ¡No pierdas esta oportunidad única!",
+      "msg2": "¡Qué tal! Soy Rosalía 💃 y estoy usando esta cuenta privada para conectar con verdaderos fans. Estoy regalando entradas VIP para mi próximo concierto. Para participar, necesito que me envíes tus datos personales y una copia de tu DNI para verificar tu identidad aquí: https://rosalia-fans-vip.xyz/verificacion",
+      "msg3": "Hola, soy el manager de Bad Bunny. El artista vio tu perfil y quiere enviarte merchandising exclusivo. Necesitamos que pagues solo los gastos de envío (€25) mediante este enlace: http://badbunny-exclusivo.club/fans. Además, recibirás acceso a contenido privado nunca antes visto. ¡Responde rápido, esta oferta es solo para ti!"
+    }
+}

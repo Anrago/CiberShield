@@ -52,7 +52,7 @@ export default function useExercise() {
     };
 
     const reloadPage = () => {
-        window.location.reload();
+        window.location.href = "/type";
     };
 
     const goToHome = () => {

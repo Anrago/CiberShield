@@ -38,7 +38,7 @@ export default function Register() {
           aria-label="Register form"
         >
           <h2 className="text-3xl font-bold text-center text-gray-800">
-            Register
+            Registro
           </h2>
 
           <div>
@@ -46,15 +46,15 @@ export default function Register() {
               htmlFor="username"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Username
+              Nombre de Usuario
             </label>
             <input
               id="username"
               type="text"
               onChange={(e) => setUserName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#2b746f]"
               required
-              placeholder="Enter a username"
+              placeholder="Ingrese su nombre de usuario"
               autoComplete="username"
             />
           </div>
@@ -64,15 +64,15 @@ export default function Register() {
               htmlFor="name"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              First Name
+              Nombre
             </label>
             <input
               id="name"
               type="text"
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#2b746f]"
               required
-              placeholder="Enter your first name"
+              placeholder="Ingrese su nombre"
               autoComplete="given-name"
             />
           </div>
@@ -82,15 +82,15 @@ export default function Register() {
               htmlFor="lastname"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Last Name
+              Apellidos
             </label>
             <input
               id="lastname"
               type="text"
               onChange={(e) => setLastName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#2b746f]"
               required
-              placeholder="Enter your last name"
+              placeholder="Ingrese sus apellidos"
               autoComplete="family-name"
             />
           </div>
@@ -106,9 +106,9 @@ export default function Register() {
               id="email"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#2b746f]"
               required
-              placeholder="Enter your email"
+              placeholder="Ingrese su email"
               autoComplete="email"
             />
           </div>
@@ -118,17 +118,29 @@ export default function Register() {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Password
+              Contraseña
             </label>
             <input
               id="password"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="input validator w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#2b746f]"
               required
-              placeholder="Create a password"
+              placeholder="Ingrese su contraseña"
               autoComplete="new-password"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$"
+              minLength="8"
+              title="Debe contar con 8 caracteres, incluyendo numeros, letras en mayuscula y letras en minuscula"
             />
+            <p className="validator-hint">
+              Debe contar con 8 caracteres, incluyendo:
+              <br />
+              Al menos uno numero
+              <br />
+              Al menos una letra en mayuscula
+              <br />
+              Al menos una letra en minuscula
+            </p>
           </div>
 
           <div>
@@ -136,7 +148,7 @@ export default function Register() {
               htmlFor="image"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Profile Image
+              Imagen de perfil
             </label>
             <input
               id="image"
@@ -149,9 +161,9 @@ export default function Register() {
 
           <button
             type="submit"
-            className="w-full bg-[#34B08A] text-white font-semibold py-2 rounded-md hover:bg-[#34908A] focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200"
+            className="w-full bg-[#34B08A] text-white font-semibold py-2 rounded-md hover:bg-[#34908A] focus:outline-none focus:ring-2  transition duration-200"
           >
-            Register
+            Registrarse
           </button>
         </form>
       </div>

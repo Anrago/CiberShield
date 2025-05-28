@@ -5,12 +5,15 @@ export default function TOJAN() {
   return (
     <>
       {isClick ? (
-        <div className=" flex items-center justify-center bg-gray-900 h-full w-full  z-5 absolute bottom-0 left-0 right-0">
-          <div className="border-t-1 rounded-b-lg text-green-100 bg-green-950 border-t-green-950 flex flex-col  justify-center">
-            [backdoor_poitn_access.exe]
-            <div className="flex flex-col bg-black rounded-b-lg">
-                <p className="text-green-300">$Transfer files</p>
-                <p className="text-green-300"> {"> conection established"}</p>
+        <div className="absolute inset-0 z-50 bg-gray-900 flex items-center justify-center">
+          <div className="bg-green-950 text-green-100 rounded-lg border-t border-green-800 shadow-lg px-6 py-4">
+            <span className="block font-mono text-sm mb-2">
+              [backdoor_point_access.exe]
+            </span>
+
+            <div className="bg-black rounded-lg px-4 py-3 space-y-1 font-mono text-sm">
+              <p className="text-green-300">$ transfer files</p>
+              <p className="text-green-300">&gt; connection established</p>
             </div>
           </div>
         </div>

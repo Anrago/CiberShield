@@ -29,12 +29,27 @@ createRoot(document.getElementById("root")).render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/login"
+            element={
+              <ProtectedRoute is={"auth"}>
+                <Login />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <ProtectedRoute is={"auth"}>
+                <Register />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/profile"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute is={"profile"}>
                 <Profile />
               </ProtectedRoute>
             }
@@ -46,8 +61,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/reference" element={<ReferenceData />} />
           <Route path="/exercise" element={<ExercisePresentation />} />
           <Route path="/prueba" element={<Prueba></Prueba>} />
-          <Route path="/info/phishing" element={<Phishing />}
-          />
+          <Route path="/info/phishing" element={<Phishing />} />
         </Routes>
       </AnimatePresence>
     </BrowserRouter>

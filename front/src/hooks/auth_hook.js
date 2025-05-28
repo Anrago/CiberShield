@@ -9,6 +9,7 @@ export default function useAuth() {
     const [email, setEmail] = useState("");
     const [image, setImage] = useState(null);
     const [toast, setToast] = useState({show: false, message: "", type: "success" });
+    const [isLogued, setIsLogued] = useState(false);
 
     const showToast = (message, type = "success") => {
         setToast({ show: true, message, type });
@@ -27,6 +28,7 @@ export default function useAuth() {
                 showToast("Inicio de sesion exitoso", "success");
                 if (profile){
                     localStorage.setItem("profile", JSON.stringify(profile));
+                    setIsLogued(true);
                     setTimeout(() => {
                         window.location.href = "/home";
                     }, 3000);
@@ -75,7 +77,9 @@ export default function useAuth() {
         setEmail,
         setImage,
         toast,
-        setToast
+        setToast,
+        isLogued,
+
     };
 
 
