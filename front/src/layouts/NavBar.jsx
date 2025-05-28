@@ -70,16 +70,12 @@ export default function NavBar() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    to="/about"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "font-bold bg-[#3a6491] text-white"
-                        : "hover:bg-[#3a6491] hover:bg-opacity-70"
-                    }
+                  <a
+                    href="/#sobre-nosotros"
+                    className="hover:bg-[#3a6491] hover:bg-opacity-70"
                   >
                     Acerca de nosotros
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
                   <span className="hover:bg-[#3a6491] hover:bg-opacity-70">
@@ -138,10 +134,7 @@ export default function NavBar() {
                 </li>
               </ul>
             </div>
-            <NavLink
-              to="/"
-              className="btn btn-ghost hover:bg-transparent"
-            >
+            <NavLink to="/" className="btn btn-ghost hover:bg-transparent">
               <img
                 src={logo}
                 alt="CiberShield Logo"
@@ -168,16 +161,12 @@ export default function NavBar() {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "font-bold bg-[#3a6491] text-white"
-                      : "hover:bg-[#3a6491] hover:bg-opacity-70"
-                  }
+                <a
+                  href="/#sobre-nosotros"
+                  className="hover:bg-[#3a6491] hover:bg-opacity-70"
                 >
                   Acerca de nosotros
-                </NavLink>
+                </a>
               </li>
               <li>
                 <details>
@@ -206,7 +195,7 @@ export default function NavBar() {
                             : "hover:bg-[#3a6491] hover:bg-opacity-70"
                         }
                       >
-                        Ingeniería Social
+                        Phishing
                       </NavLink>
                     </li>
                     <li>

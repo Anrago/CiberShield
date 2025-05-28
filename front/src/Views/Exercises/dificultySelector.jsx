@@ -16,7 +16,7 @@ export default function CategorySelection() {
             <ButtonExercis
               title={"Simple"}
               description={
-                "Ejercicios de nivel simple, ideales para principiantes."
+                "Ejercicios de nivel simple, errores evidentes de ortografia, remitente y demas, ideales para principiantes."
               }
               color={"#7bf1a8"}
               textColor={"#000000"}
@@ -32,7 +32,7 @@ export default function CategorySelection() {
             <ButtonExercis
               title={"Medio"}
               description={
-                "Ejercicios de nivel medio, adecuados para quienes tienen algo de experiencia."
+                "Ejercicios de nivel medio,los errores gramaticales disminuyen, adecuados para quienes tienen algo de experiencia."
               }
               color={"#ffdf20"}
               textColor={"#000000"}
@@ -48,7 +48,7 @@ export default function CategorySelection() {
             <ButtonExercis
               title={"Complejo"}
               description={
-                "Ejercicios de nivel complejo, diseñados para usuarios avanzados."
+                "Ejercicios de nivel complejo, minimo detalle, diseñados para usuarios avanzados."
               }
               color={"#ffa2a2"}
               textColor={"#000000"}

@@ -66,10 +66,10 @@ export const postExerciseResult = async (isCorrect) =>{
     }
 }
 
-export const getExerciseBD = async ()=>{
+export const getExerciseBD = async (data)=>{
      try {
         const response = await fetch(
-            `${API_URL}/exercise/${exerciseData.exerciseLevelId}/${exerciseData.exerciseTypeId}`, 
+            `${API_URL}/exercise/${data.exerciseTypeId}/${data.exerciseLevelId}`, 
             {
                 method: "GET",
                 headers: {
@@ -82,8 +82,8 @@ export const getExerciseBD = async ()=>{
             console.error("Error in response:", response);
             throw new Error("Network response was not ok");
         }
-        const data = response.json();
-        return data;
+        const responseData = response.json();
+        return responseData;
     }
     catch (error) {
         console.error("Error fetching exercise connection:", error);
@@ -96,7 +96,7 @@ export const decidedExercise = async (data) => {
     const response = await getexercise(data);
     return response;
  }catch (error) {
-    return await getExerciseBD();
+    return await getExerciseBD(data);
  }
 }
 

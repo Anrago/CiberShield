@@ -13,9 +13,14 @@ export default function TypeSelection() {
       <PageWrapper>
         <ReturnLayout />
         <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-gray-50 ">
-          <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8">
+          <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-8">
             Selecciona una categoría
-          </h1>
+          </h2>
+          <p className="text-lg text-gray-600 mb-6 max-w-150 text-center">
+            Se le recomienda pasarse por el apartado de
+            <a href="/info/phishing" className="text-blue-700 hover:text-blue-500 font-bold"> phishing </a> donde se ofrecen consejos para
+            identificar y evitar este tipo de fraudes.
+          </p>
           <div className="flex flex-row gap-5 items-center justify-center mb-4">
             <ButtonExercis
               title={"Mensaje de texto"}
@@ -58,6 +63,3 @@ export default function TypeSelection() {
     </>
   );
 }
-
-// space-y-4 añade un espacio vertical entre los botones
-// space-x-4 añade un espacio horizontal entre los botones

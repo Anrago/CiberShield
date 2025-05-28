@@ -6,7 +6,7 @@ export default function Ransomware() {
     useRenderHook();
   return (
     <>
-      {activeMalware ? (
+      {isClick ? (
         <div className="absolute inset-0 z-50 bg-gradient-to-t from-red-800 to-black flex items-center justify-center">
           <div className="flex flex-col items-center justify-center h-full px-4 text-center">
             <img

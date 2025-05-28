@@ -30,11 +30,11 @@ const ButtonExercis = ({ title, description, icon, onClick, color,textColor }) =
       <div
         className={`bg-white rounded-b-xl transition-all duration-300 overflow-hidden ${
           expanded
-            ? "max-h-32 py-4 px-5 border-x border-b border-gray-200"
+            ? "max-h-50 py-4 px-5 border-x border-b border-gray-200"
             : "max-h-0"
         }`}
       >
-        <p className="text-gray-700 text-sm leading-relaxed">{description}</p>
+        <p className="text-gray-700 text-lg leading-relaxed">{description}</p>
       </div>
     </div>
   );

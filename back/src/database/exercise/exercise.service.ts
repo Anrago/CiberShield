@@ -41,6 +41,7 @@ export class ExerciseService {
         onlyContents.length,
         Math.floor(Math.random() * 3) + 3 
       );
+      console.log('Count of exercises to return:', count, 'dificulty:', difficulty, 'type:', type);
       const shuffled = onlyContents.sort(() => 0.5 - Math.random());
       return shuffled.slice(0, count);
     }

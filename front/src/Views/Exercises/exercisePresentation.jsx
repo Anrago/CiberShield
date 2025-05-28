@@ -23,14 +23,11 @@ export default function ExercisePresentation() {
     <>
       <PageWrapper>
         <div className="flex flex-col items-center justify-center h-screen px-4">
-          <h2 className="text-2xl font-bold  z-1">
-            Ejercicios de seguridad
-          </h2>
           {loading ? (
             <>
-            <h3 className="text-lg mb-4 z-1">Cargando ejercicios...</h3>
+            <h3 className="text-xl font-bold mb-4 z-1">Cargando ejercicios...</h3>
             <TipsDisplay/>
-              <span className="loading loading-spinner loading-xl"></span>
+              <span className="loading loading-spinner mt-2 loading-xl"></span>
             </>
           ) : type === "email" ? (
             <div className="flex flex-col items-center gap-6">
@@ -46,18 +43,6 @@ export default function ExercisePresentation() {
                       onCorrectAnswer={handleCorrectAnswer}
                     />
                   ))}
-              </div>
-              <div className="flex z-1 gap-4 mt-4">
-                <button
-                  onClick={handlePrev}
-                  disabled={currentIndex === 0}
-                  className="btn btn-outline"
-                >
-                  Anterior
-                </button>
-                <button onClick={handleNext} className="btn btn-primary">
-                  Siguiente
-                </button>
               </div>
             </div>
           ) : (
@@ -88,7 +73,7 @@ export default function ExercisePresentation() {
                   {exercises.length} ejercicios.
                 </p>
                 <div className="flex justify-center gap-4">
-                  <button onClick={reloadPage} className="btn btn-primary">
+                  <button onClick={reloadPage} className="btn bg-green-500 hover:bg-green-400">
                     Intentar de nuevo
                   </button>
                   <button onClick={goToHome} className="btn btn-outline">

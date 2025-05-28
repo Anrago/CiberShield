@@ -149,7 +149,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative lex flex-col z-40 content-center bg-[#D8E4F0] text-center min-h-screen w-full py-20">
+        <section
+          id="sobre-nosotros"
+          className="relative lex flex-col z-40 content-center bg-[#D8E4F0] text-center min-h-screen w-full py-20"
+        >
           <div className="  container mx-auto px-4 max-w-5xl">
             <motion.h2
               className="text-5xl font-bold mb-10 text-gray-800"

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import useInformativeCards from "../hooks/informative_hook";
 import EmailExample from "./rendering/EmailExample";
 import SocialMediaExample from "./rendering/socialMediaExample.jsx";
+import SMSExample from "./rendering/SMS.jsx";
 export default function PhishingCard({ title, desc, howAfect, onClose }) {
   const { setIsOpen, example } = useInformativeCards();
   const handleClose = () => {
@@ -14,9 +15,9 @@ export default function PhishingCard({ title, desc, howAfect, onClose }) {
   const renderExample = () => {
     if (title == "Phishing por correo") return <EmailExample />;
     if (title == "Phishing en redes sociales") return <SocialMediaExample />;
-  };
-
-  return (
+    if (title == "Smishing (SMS)") return <SMSExample />;
+  }
+   return (
     <>
       <dialog id="virusModal" className="modal">
         <div className="modal-box max-w-5xl">

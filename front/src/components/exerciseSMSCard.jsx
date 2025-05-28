@@ -69,14 +69,15 @@ export default function ExerciseSMSCard({
             </div>
           </div>
         </div>
+        <div>
+          <Modal
+            description={exercise.Descripcion}
+            onClose={handleClose}
+            onOptions={handleOption}
+          />
+        </div>
       </div>
-      <div>
-        <Modal
-          description={exercise.Descripcion}
-          onClose={handleClose}
-          onOptions={handleOption}
-        />
-      </div>
+      
     </div>
   );
 }

@@ -36,36 +36,46 @@ export default function Profile() {
             >
               Cerrar sesión
             </button>
-            <section className="grid grid-cols-1 md:grid-cols-2 border-none rounded-2xl mt-5 shadow-xl m-1 gap-4 w-full p-4">
-              <span>
-                <h2 className="text-3xl font-bold text-center mb-4">Email</h2>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart width={500} height={300} data={EmailResult}>
-                    <CartesianGrid strokeDasharray={"3 3"} />
-                    <XAxis dataKey="level" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="correct" stackId="a" fill="#82ca9d" />
-                    <Bar dataKey="incorrect" stackId="a" fill="#ff0000" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </span>
+            <section className="grid grid-cols-1 md:grid-cols-2 bg-gray-200 border-none rounded-2xl mt-5 shadow-xl m-1 gap-4 w-full p-4">
+              {SMSResult.length === 0 && EmailResult.length === 0 ? (
+                <div className="col-span-2 text-center text-gray-500">
+                  No hay resultados disponibles.
+                </div>
+              ) : (
+                <>
+                  <span>
+                    <h2 className="text-3xl font-bold text-center mb-4">
+                      Email
+                    </h2>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <BarChart width={500} height={300} data={EmailResult}>
+                        <CartesianGrid strokeDasharray={"3 3"} />
+                        <XAxis dataKey="level" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="correct" stackId="a" fill="#82ca9d" />
+                        <Bar dataKey="incorrect" stackId="a" fill="#ff0000" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </span>
 
-              <span>
-                <h2 className="text-3xl font-bold text-center mb-4">SMS</h2>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart width={500} height={300} data={SMSResult}>
-                    <CartesianGrid strokeDasharray={"3 3"} />
-                    <XAxis dataKey="level" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="correct" stackId="a" fill="#82ca9d" />
-                    <Bar dataKey="incorrect" stackId="a" fill="#ff0000" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </span>
+                  <span>
+                    <h2 className="text-3xl font-bold text-center mb-4">SMS</h2>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <BarChart width={500} height={300} data={SMSResult}>
+                        <CartesianGrid strokeDasharray={"3 3"} />
+                        <XAxis dataKey="level" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="correct" stackId="a" fill="#82ca9d" />
+                        <Bar dataKey="incorrect" stackId="a" fill="#ff0000" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </span>
+                </>
+              )}
             </section>
           </div>
         </div>

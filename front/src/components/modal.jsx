@@ -27,13 +27,13 @@ export default function Modal({ description, onClose, onOptions }) {
     <>
       <button
         onClick={() => handleClick(0)}
-        className="btn btn-outline btn-error"
+        className="btn btn-outline m-2 text-lg font-bold btn-error"
       >
         Falso
       </button>
       <button
         onClick={() => handleClick(1)}
-        className="btn btn-outline btn-success"
+        className="btn btn-outline m-2 text-lg font-bold btn-success"
       >
         Verdadero
       </button>

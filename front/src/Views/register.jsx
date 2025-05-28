@@ -132,15 +132,6 @@ export default function Register() {
               minLength="8"
               title="Debe contar con 8 caracteres, incluyendo numeros, letras en mayuscula y letras en minuscula"
             />
-            <p className="validator-hint">
-              Debe contar con 8 caracteres, incluyendo:
-              <br />
-              Al menos uno numero
-              <br />
-              Al menos una letra en mayuscula
-              <br />
-              Al menos una letra en minuscula
-            </p>
           </div>
 
           <div>

@@ -187,7 +187,7 @@ export default function Phishing() {
                   </LineChart>
                 </ResponsiveContainer>
                 <p className="mt-4 text-sm text-gray-600 italic text-center">
-                  Aumento del 350% en ataques de phishing en los últimos 5 años
+                    Aumento del 350% en ataques de phishing del 2019 al 2023
                 </p>
               </div>
             </div>

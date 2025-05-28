@@ -12,8 +12,8 @@ export default function TOJAN() {
             </span>
 
             <div className="bg-black rounded-lg px-4 py-3 space-y-1 font-mono text-sm">
-              <p className="text-green-300">$ transfer files</p>
               <p className="text-green-300">&gt; connection established</p>
+              <p className="text-green-300">$ transfer files</p>
             </div>
           </div>
         </div>
