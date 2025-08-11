@@ -5,6 +5,5 @@ export class CreateUserDto extends OmitType(User,[
     'id',
     'createdAt',
     'darkMode',
-    
 ]){}
 

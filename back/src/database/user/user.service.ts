@@ -107,12 +107,11 @@ export class UserService {
         );
       }
     } else {
-      // Set default profile image if none provided
       createUserDto.imgPerfil =
         'https://wnkklcpvutfuacwrufuv.supabase.co/storage/v1/object/public/img-cibershield/images/default-profile.png';
     }
 
-    // Genera el hash de la contraseña
+
     const passwordHash = await bcrypt.hash(createUserDto.password, 10);
     console.log(passwordHash);
 
@@ -121,7 +120,7 @@ export class UserService {
       password: passwordHash,
     };
 
-    // Crea el usuario
+
     return await this.prisma.user.create({
       data: nuevoUsuario,
     });

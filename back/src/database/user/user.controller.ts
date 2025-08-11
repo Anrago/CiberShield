@@ -39,7 +39,6 @@ export class UserController {
         userName: { type: 'string' },
         email: { type: 'string' },
         password: { type: 'string' },
-        // Add other user properties here
         image: {
           type: 'string',
           format: 'binary',
@@ -62,7 +61,7 @@ export class UserController {
   @UseInterceptors(
     FileInterceptor('image', {
       limits: {
-        fileSize: 5 * 1024 * 1024, // 5MB max size
+        fileSize: 5 * 1024 * 1024, 
       },
     }),
   )

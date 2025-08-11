@@ -15,7 +15,6 @@ import SessionPreference from "./Views/Exercises/sessionPreference.jsx";
 import ReferenceData from "./Views/Exercises/referenceData.jsx";
 import ExercisePresentation from "./Views/Exercises/exercisePresentation.jsx";
 import Footer from "./layouts/footer.jsx";
-import Prueba from "./Views/prueba.jsx";
 import NavBar from "./layouts/NavBar.jsx";
 
 import Malware from "./Views/Informative/malware.jsx";
@@ -60,7 +59,6 @@ createRoot(document.getElementById("root")).render(
           <Route path="/sessionExercise" element={<SessionPreference />} />
           <Route path="/reference" element={<ReferenceData />} />
           <Route path="/exercise" element={<ExercisePresentation />} />
-          <Route path="/prueba" element={<Prueba></Prueba>} />
           <Route path="/info/phishing" element={<Phishing />} />
         </Routes>
       </AnimatePresence>

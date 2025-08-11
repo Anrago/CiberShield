@@ -5,7 +5,7 @@ import logo from "../../public/ciberShieldLogo.png";
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Add scroll effect to navbar
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {

@@ -81,7 +81,7 @@ export class OpenaiService {
       const data = JSON.parse(
         response.choices[0].message.content ?? 'Default fallback content',
       );
-      return JSON.stringify(data, null, 2); // Pretty print JSON with 2 spaces
+      return JSON.stringify(data, null, 2);
     } catch (error) {
       console.error('Error parsing JSON:', error);
       return response.choices[0].message.content ?? 'Default fallback content';
@@ -108,7 +108,7 @@ export class OpenaiService {
       const data = JSON.parse(
         response.choices[0].message.content ?? 'Default fallback content',
       );
-      return JSON.stringify(data, null, 2); // Pretty print JSON with 2 spaces
+      return JSON.stringify(data, null, 2);
     } catch (error) {
       console.error('Error parsing JSON:', error);
       return response.choices[0].message.content ?? 'Default fallback content';
@@ -135,7 +135,7 @@ export class OpenaiService {
       const data = JSON.parse(
         response.choices[0].message.content ?? 'Default fallback content',
       );
-      return JSON.stringify(data, null, 2); // Pretty print JSON with 2 spaces
+      return JSON.stringify(data, null, 2);
     } catch (error) {
       console.error('Error parsing JSON:', error);
       return response.choices[0].message.content ?? 'Default fallback content';
@@ -177,21 +177,21 @@ export class OpenaiService {
     try {
       const rawContent = response.choices[0].message.content ?? '';
 
-      // Intentar parsear como array completo directamente
+      
       try {
         const data = JSON.parse(rawContent);
         if (Array.isArray(data)) {
           return JSON.stringify(data, null, 2);
         }
       } catch {
-        // Ignorar y continuar con extracción individual
+        
       }
 
-      // Si no es un array, intentar extraer múltiples objetos JSON
+      
       const jsonObjects = extractJsonObjects(rawContent);
 
       if (jsonObjects.length === 0) {
-        // En lugar de lanzar un error, devolver un JSON con mensaje de error
+        
         const errorResponse = [
           {
             Numero: 'Sistema',
@@ -209,7 +209,7 @@ export class OpenaiService {
       return JSON.stringify(jsonObjects, null, 2);
     } catch (error) {
       console.error('Error parsing JSON:', error);
-      // Devolver respuesta estructurada en caso de error general
+      
       const errorResponse = [
         {
           Numero: 'Error',
@@ -258,21 +258,21 @@ export class OpenaiService {
     try {
       const rawContent = response.choices[0].message.content ?? '';
 
-      // Intentar parsear como array completo directamente
+      
       try {
         const data = JSON.parse(rawContent);
         if (Array.isArray(data)) {
           return JSON.stringify(data, null, 2);
         }
       } catch {
-        // Ignorar y continuar con extracción individual
+       
       }
 
-      // Si no es un array, intentar extraer múltiples objetos JSON
+      
       const jsonObjects = extractJsonObjects(rawContent);
 
       if (jsonObjects.length === 0) {
-        // En lugar de lanzar un error, devolver un JSON con mensaje de error
+        
         const errorResponse = [
           {
             Numero: 'Sistema',
@@ -290,7 +290,7 @@ export class OpenaiService {
       return JSON.stringify(jsonObjects, null, 2);
     } catch (error) {
       console.error('Error parsing JSON:', error);
-      // Devolver respuesta estructurada en caso de error general
+      
       const errorResponse = [
         {
           Numero: 'Error',
@@ -358,21 +358,21 @@ No incluyas texto fuera del arreglo JSON.
     try {
       const rawContent = response.choices[0].message.content ?? '';
 
-      // Intentar parsear como array completo directamente
+      
       try {
         const data = JSON.parse(rawContent);
         if (Array.isArray(data)) {
           return JSON.stringify(data, null, 2);
         }
       } catch {
-        // Ignorar y continuar con extracción individual
+        
       }
 
-      // Si no es un array, intentar extraer múltiples objetos JSON
+      
       const jsonObjects = extractJsonObjects(rawContent);
 
       if (jsonObjects.length === 0) {
-        // En lugar de lanzar un error, devolver un JSON con mensaje de error
+        
         const errorResponse = [
           {
             Numero: 'Sistema',
@@ -390,7 +390,7 @@ No incluyas texto fuera del arreglo JSON.
       return JSON.stringify(jsonObjects, null, 2);
     } catch (error) {
       console.error('Error parsing JSON:', error);
-      // Devolver respuesta estructurada en caso de error general
+      
       const errorResponse = [
         {
           Numero: 'Error',
