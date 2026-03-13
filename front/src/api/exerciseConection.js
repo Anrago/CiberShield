@@ -36,6 +36,7 @@ export const getexercise = async (data) => {
 
 export const postExerciseResult = async (isCorrect) =>{
     try {
+        const currentExerciseData = JSON.parse(localStorage.getItem("exerciseData"));
         const response = await fetch(
             `${API_URL}/exercise-result `,
             {
@@ -46,8 +47,8 @@ export const postExerciseResult = async (isCorrect) =>{
                 body: JSON.stringify({
                     "userId": dataUser.user,
                     "correct": isCorrect ,
-                    "exerciseTypeId": exerciseData.exerciseTypeId,
-                    "exerciseLevelId": exerciseData.exerciseLevelId,
+                    "exerciseTypeId": currentExerciseData.exerciseTypeId,
+                    "exerciseLevelId": currentExerciseData.exerciseLevelId,
                     "feedback": "feedback",
                     
                 }),
@@ -102,6 +103,7 @@ export const decidedExercise = async (data) => {
 
 export const storeExercise = async (exercise) => {
     try {
+        const currentExerciseData = JSON.parse(localStorage.getItem("exerciseData"));
         const response = await fetch(
             `${API_URL}/exercise`,
             {
@@ -111,8 +113,8 @@ export const storeExercise = async (exercise) => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
                 body: JSON.stringify({
-                    "levelId": exerciseData.exerciseLevelId,
-                    "typeId": exerciseData.exerciseTypeId,
+                    "levelId": currentExerciseData.exerciseLevelId,
+                    "typeId": currentExerciseData.exerciseTypeId,
                     "content": exercise,
                     "context": 'vacio',
                     "isPhishing": Boolean( exercise.Categoria),

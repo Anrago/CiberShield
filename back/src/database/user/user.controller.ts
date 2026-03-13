@@ -39,7 +39,6 @@ export class UserController {
         userName: { type: 'string' },
         email: { type: 'string' },
         password: { type: 'string' },
-        // Add other user properties here
         image: {
           type: 'string',
           format: 'binary',
@@ -61,8 +60,16 @@ export class UserController {
   @UsePipes(new ValidationPipe({ transform: true }))
   @UseInterceptors(
     FileInterceptor('image', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+          const fileExtension = file.originalname.split('.').pop();
+          const fileName = `${Date.now()}_${req.body.userName}.${fileExtension}`;
+          cb(null, fileName);
+        },
+      }),
       limits: {
-        fileSize: 5 * 1024 * 1024, // 5MB max size
+        fileSize: 5 * 1024 * 1024,
       },
     }),
   )

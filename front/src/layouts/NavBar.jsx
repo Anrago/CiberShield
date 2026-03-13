@@ -5,7 +5,7 @@ import logo from "../../public/ciberShieldLogo.png";
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Add scroll effect to navbar
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -229,7 +229,7 @@ export default function NavBar() {
                   <p>{JSON.parse(localStorage.getItem("profile")).name}</p>
                   <img
                     className="w-10 h-10  rounded-full shadow-md my-auto border-4 border-[#3F88C5] object-cover"
-                    src={JSON.parse(localStorage.getItem("profile")).imgPerfil}
+                    src={"http://localhost:3000/" + JSON.parse(localStorage.getItem("profile")).imgPerfil}
                   ></img>
                 </div>
               </NavLink>

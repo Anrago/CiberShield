@@ -12,6 +12,8 @@ COPY package*.json ./
 # Instala dependencias dentro del contenedor
 RUN npm install
 
+RUN npm install prisma@6 @prisma/client@6
+
 # Copia el resto del proyecto
 COPY . .
 

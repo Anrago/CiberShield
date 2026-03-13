@@ -15,6 +15,7 @@ import { join } from 'path';
 import { memoryStorage } from 'multer';
 import { MulterModule } from '@nestjs/platform-express';
 import { SupabaseService } from './supabase/subapase_client.service';
+import { ConfigModule } from '@nestjs/config';
 // import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
@@ -35,6 +36,9 @@ import { SupabaseService } from './supabase/subapase_client.service';
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads',
     }),
+    ConfigModule.forRoot({
+      isGlobal: true
+    })
   ],
   controllers: [AppController],
   providers: [AppService, SupabaseService],

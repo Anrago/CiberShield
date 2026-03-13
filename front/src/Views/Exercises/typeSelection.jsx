@@ -31,11 +31,13 @@ export default function TypeSelection() {
               textColor={"#ffffff"}
               color={"#1e2939"}
               onClick={() => {
-                setExerciseData({
+                const newData = {
                   ...exerciseData,
                   exerciseTypeId: 1,
                   exerciseType: "sms",
-                });
+                };
+                setExerciseData(newData);
+                localStorage.setItem("exerciseData", JSON.stringify(newData));
                 navigate("/dificulty");
               }}
             />
@@ -49,11 +51,13 @@ export default function TypeSelection() {
               textColor={"#ffffff"}
               color={"#1e2939"}
               onClick={() => {
-                setExerciseData({
+                const newData = {
                   ...exerciseData,
                   exerciseTypeId: 2,
                   exerciseType: "email",
-                });
+                };
+                setExerciseData(newData);
+                localStorage.setItem("exerciseData", JSON.stringify(newData));
                 navigate("/dificulty");
               }}
             />

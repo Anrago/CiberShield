@@ -8,6 +8,7 @@ import image from "../../assets/Icons/image.svg";
 import camera from "../../assets/Icons/camera.svg";
 import add from "../../assets/Icons/add.svg";
 import smile from "../../assets/Icons/smile.svg";
+import mic from "../../assets/Icons/mic.svg";
 
 export default function SMSExample() {
   const exercise = phishingExample.smsExample;

@@ -21,7 +21,7 @@ export default function Profile() {
         <div className="bg-white shadow-lg rounded-2xl my-5 p-8 w-[80%]">
           <div className="flex flex-col items-center text-center">
             <img
-              src={userProfile.imgPerfil}
+              src={"http://localhost:3000/" + userProfile.imgPerfil}
               alt="Avatar"
               className="w-24 h-24 rounded-full shadow-md mb-4 border-4 border-[#3F88C5] object-cover"
             />

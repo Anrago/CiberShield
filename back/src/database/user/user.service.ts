@@ -42,79 +42,28 @@ export class UserService {
       );
     }
 
-    // Verifica que la contraseña no sea nula o vacía
     if (!createUserDto.password) {
       throw new Error('Password is required');
     }
 
     if (image) {
       try {
-        // Validate image buffer
-        if (!image.buffer || image.buffer.length === 0) {
-          this.logger.error('Image buffer is empty');
-          throw new BadRequestException('Invalid image: buffer is empty');
-        }
-
-        this.logger.log(
-          `Processing image: ${image.originalname}, size: ${image.size} bytes, mimetype: ${image.mimetype}`,
-        );
-
-        const supabase = this.supabaseService.getClient();
-
-        const fileExtension = image.originalname.split('.').pop();
-        const fileName = `${Date.now()}_${createUserDto.userName}.${fileExtension}`;
-        const filePath = `images/${fileName}`;
-
-        // Log buffer size before upload
-        this.logger.log(
-          `Uploading image with buffer size: ${image.buffer.length} bytes`,
-        );
-
-        // Upload file with proper content type and caching disabled
-        const { data: uploadData, error: uploadError } = await supabase.storage
-          .from('img-cibershield')
-          .upload(filePath, image.buffer, {
-            contentType: image.mimetype,
-            upsert: true,
-            cacheControl: 'no-cache',
-          });
-
-        if (uploadError) {
-          this.logger.error(
-            `Error uploading image: ${JSON.stringify(uploadError)}`,
-          );
-          throw new Error(`Error uploading image: ${uploadError.message}`);
-        }
-
-        this.logger.log(`Image uploaded successfully: ${filePath}`);
-
-        // Get the public URL with a timestamp parameter to prevent caching
-        const { data } = supabase.storage
-          .from('img-cibershield')
-          .getPublicUrl(`${filePath}?t=${Date.now()}`);
-
-        if (!data || !data.publicUrl) {
-          this.logger.error('Failed to get public URL for uploaded image');
-          throw new Error('Failed to get public URL for uploaded image');
-        }
-
-        createUserDto.imgPerfil = data.publicUrl;
-        this.logger.log(`Image public URL set: ${createUserDto.imgPerfil}`);
+        // Multer con diskStorage guarda el archivo y provee la ruta en image.path
+        createUserDto.imgPerfil = image.path.replace(process.cwd(), '').replace(/\\/g, '/');
+        this.logger.log(`Imagen guardada localmente en: ${image.path}`);
       } catch (error) {
-        this.logger.error(`Image upload process failed: ${error.message}`);
-        throw new BadRequestException(
-          `Failed to process image: ${error.message}`,
-        );
+        console.log("🔥 ERROR REAL COMPLETO:", error);
+        console.log("🔥 STACK:", error?.stack);
+        this.logger.error(`Error al guardar la imagen localmente: ${error.message}`);
+        throw new BadRequestException(`Error al guardar la imagen: ${error.message}`);
       }
     } else {
-      // Set default profile image if none provided
-      createUserDto.imgPerfil =
-        'https://wnkklcpvutfuacwrufuv.supabase.co/storage/v1/object/public/img-cibershield/images/default-profile.png';
+      createUserDto.imgPerfil = '/uploads/default-profile.png';
     }
 
     // Genera el hash de la contraseña
     const passwordHash = await bcrypt.hash(createUserDto.password, 10);
-    console.log(passwordHash);
+   
 
     const nuevoUsuario = {
       ...createUserDto,

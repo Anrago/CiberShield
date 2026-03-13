@@ -21,6 +21,8 @@ services:
       - SUPABASE_KEY_ROLE=${SUPABASE_KEY_ROLE}
       - MY_OPENAI_API=${MY_OPENAI_API}
       - CORS_ORIGIN=http://localhost:5173
+    volumes:
+      - ./back/uploads:/app/uploads
 
   dbCiberShield:
     env_file:

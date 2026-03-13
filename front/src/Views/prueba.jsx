@@ -15,23 +15,6 @@ export default function Prub() {
     }
     setRespuesta(data);
   };
-  // const ExerciseCard = {
-  //   Numero: "123456789",
-  //   Remitente: "Ejemplo Remitente",
-  //   Message: {
-  //     message1: "Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1", 
-  //     message2: "¿Cómo estás?",
-  //     message3: "¿Necesitas ayuda?",
-  //     message4: "Hola, soy un mensaje de ejemplo 2 Hola, soy un mensaje de ejemplo 2 Hola, soy un mensaje de ejemplo 2",
-  //     message5: "Hola, soy un mensaje de ejemplo 3 Hola, soy un mensaje de ejemplo 3 Hola, soy un mensaje de ejemplo 3",
-  //     message6: "Hola, soy un mensaje de ejemplo 4 Hola, soy un mensaje de ejemplo 4 Hola, soy un mensaje de ejemplo 4",
-  //     message7: "Hola, soy un mensaje de ejemplo 5 Hola, soy un mensaje de ejemplo 5 Hola, soy un mensaje de ejemplo 5",
-  //     message8: "Hola, soy un mensaje de ejemplo 6 Hola, soy un mensaje de ejemplo 6 Hola, soy un mensaje de ejemplo 6",
-  //     message9: "Hola, soy un mensaje de ejemplo 7 Hola, soy un mensaje de ejemplo 7 Hola, soy un mensaje de ejemplo 7",
-  //     message10: "Hola, soy un mensaje de ejemplo 8 Hola, soy un mensaje de ejemplo 8 Hola, soy un mensaje de ejemplo 8",
-  //     message11: "Hola, soy un mensaje de ejemplo 9 Hola, soy un mensaje de ejemplo 9 Hola, soy un mensaje de ejemplo 9",
-  //   },
-  // };
 
   const emailExample = {
     Asunto: "Ejemplo de Asunto",
@@ -45,21 +28,6 @@ export default function Prub() {
     <>
       <TipsDisplay />
     </>
-    // <div>
-    //   <DificultySelector setExercise={fetchExercise} />
-    //   {respuesta ? (
-    //     options === null ? (
-    //       <ExerciseCard message={respuesta} setOptions={setOptions} />
-    //     ) : (
-    //       <>
-    //         <DescriptionCard option={options === Boolean(respuesta.Categoria)} description={respuesta.Descripcion} />
-    //         <button  onClick={() => setOptions(null)}>Volver a jugar</button>
-    //       </>
-    //     )
-    //   ) : (
-    //     <p>Cargando datos del backend...</p>
-    //   )}
 
-    // </div>
   );
 }
