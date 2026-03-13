@@ -1,13 +1,15 @@
-import { useState } from 'react'
-import Home from './Views/home'
-import './App.css'
-import PruebaConexion from './Views/prueba'
-function App() {
-  const [count, setCount] = useState(0)
+import Home from "./Views/home";
+import { AnimatePresence } from "framer-motion";
+import "./App.css";
 
+function App() {
   return (
-   <Home/>
-  )
+    <>
+      
+      <Home />
+
+    </>
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,39 @@
+# Etapa 1: Construcción
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Instala dependencias necesarias para compilar módulos nativos como bcrypt
+RUN apk add --no-cache python3 make g++
+
+# Copia archivos para instalar dependencias
+COPY package*.json ./
+
+# Instala dependencias dentro del contenedor
+RUN npm install
+
+RUN npm install prisma@6 @prisma/client@6
+
+# Copia el resto del proyecto
+COPY . .
+
+# Genera Prisma Client y compila el código
+RUN npx prisma generate
+RUN npm run build
+
+# Etapa 2: Producción
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Solo copiamos lo necesario desde el builder
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/prisma ./prisma
+
+# Exponemos el puerto de la aplicación NestJS
+EXPOSE 3000
+
+# Ejecutamos migraciones y luego levantamos la app
+CMD npx prisma migrate deploy && node dist/main.js

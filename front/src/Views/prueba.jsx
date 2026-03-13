@@ -1,13 +1,11 @@
-import { useState } from 'react';
-import { getExerciseConnection } from '../api/exerciseConection';
-import  DificultySelector  from '../components/dificultySelector';
-import ExerciseCard from '../components/exerciseCard';
-import DescriptionCard from '../components/descriptionCard';
-
+import { useState } from "react";
+import DificultySelector from "../components/dificultySelector";
+import ExerciseCard from "../components/exerciseCard";
+import DescriptionCard from "../components/descriptionCard";
+import { login, register } from "../api/authConection";
+import ExerciseSMSCard from "../components/exerciseSMSCard";
+import TipsDisplay from "../components/tips";
 export default function Prub() {
-  const [respuesta, setRespuesta] = useState(null);
-  const [options, setOptions] = useState(null);
-  
 
   const fetchExercise = async (dificulty) => {
     const data = await getExerciseConnection(dificulty);
@@ -16,26 +14,20 @@ export default function Prub() {
       return;
     }
     setRespuesta(data);
+  };
+
+  const emailExample = {
+    Asunto: "Ejemplo de Asunto",
+    Remitente: "Ejemplo Remitente",
+    Cuerpo: "Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1 Hola, soy un mensaje de ejemplo 1",
+    Categoria: "Phishing",
+    Descripcion: "Descripción del ejercicio",
+    perfil: "https://mwyxcfbqgyoarrgxrevn.supabase.co/storage/v1/object/public/img-cibershield/users/GenericUSer.png"
   }
-
-
   return (
-    <div>
-      <DificultySelector setExercise={fetchExercise} />
-      {respuesta ? (
-        options === null ? (
-          <ExerciseCard message={respuesta} setOptions={setOptions} />
-        ) : (
-          <>
-            <DescriptionCard option={options === Boolean(respuesta.Categoria)} description={respuesta.Descripcion} />
-            <button  onClick={() => setOptions(null)}>Volver a jugar</button>
-          </>
-        )
-      ) : (
-        <p>Cargando datos del backend...</p>
-      )}
-    </div>
+    <>
+      <TipsDisplay />
+    </>
+
   );
 }
-
-

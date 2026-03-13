@@ -1,0 +1,69 @@
+import { useNavigate } from "react-router";
+import PageWrapper from "../../components/pageWrapper";
+import useExerciseData from "../../hooks/exerciseData_hook";
+import ButtonExercis from "../../components/buttonExercis";
+import ReturnLayout from "../../layouts/return";
+
+export default function TypeSelection() {
+  const { setExerciseData, exerciseData } = useExerciseData();
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <PageWrapper>
+        <ReturnLayout />
+        <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-gray-50 ">
+          <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-8">
+            Selecciona una categoría
+          </h2>
+          <p className="text-lg text-gray-600 mb-6 max-w-150 text-center">
+            Se le recomienda pasarse por el apartado de
+            <a href="/info/phishing" className="text-blue-700 hover:text-blue-500 font-bold"> phishing </a> donde se ofrecen consejos para
+            identificar y evitar este tipo de fraudes.
+          </p>
+          <div className="flex flex-row gap-5 items-center justify-center mb-4">
+            <ButtonExercis
+              title={"Mensaje de texto"}
+              description={
+                "Presentara mensajes de texto que podran ser reales o falsos, tu tarea sera identificarlos"
+              }
+              icon={"💬"}
+              textColor={"#ffffff"}
+              color={"#1e2939"}
+              onClick={() => {
+                const newData = {
+                  ...exerciseData,
+                  exerciseTypeId: 1,
+                  exerciseType: "sms",
+                };
+                setExerciseData(newData);
+                localStorage.setItem("exerciseData", JSON.stringify(newData));
+                navigate("/dificulty");
+              }}
+            />
+
+            <ButtonExercis
+              title={"Correo electrónico"}
+              description={
+                "Presentara correos electronicos los cuales tendras que identificar sin son falsos o verdaderos "
+              }
+              icon={"📧"}
+              textColor={"#ffffff"}
+              color={"#1e2939"}
+              onClick={() => {
+                const newData = {
+                  ...exerciseData,
+                  exerciseTypeId: 2,
+                  exerciseType: "email",
+                };
+                setExerciseData(newData);
+                localStorage.setItem("exerciseData", JSON.stringify(newData));
+                navigate("/dificulty");
+              }}
+            />
+          </div>
+        </div>
+      </PageWrapper>
+    </>
+  );
+}

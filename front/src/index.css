@@ -1,2 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "tailwindcss";
 
+@plugin "daisyui" {
+    themes: light --default;
+    
+}
+
+
+
+:root{
+    --colorBase: #F5F7FA;
+    --colorBar: #1E293B;
+    --coloCards: #FFFFFF;
+    --colorSimple: #3B82F6;
+    --colorMedium: #FACC15;
+    --colorComplex: #ef4444;
+    --colorHomeCard: #101A2C;
+    --colorH1: #CAF2FA;
+
+    --main-font: 'Inter', sans-serif;
+    /* FONTS */
+    
+}
+@theme{
+--font-Base: "Montserrat", Montserrat;
+}
+
+@font-face{
+    font-family: "Montserrat";
+    src: url(./assets/fonts/montserrat/Montserrat-Bold.ttf) format("truetype");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+@font-face{
+    font-family: "Montserrat";
+    src: url(./assets/fonts/montserrat/Montserrat-Medium.ttf) format("truetype");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face{
+    font-family: "Montserrat";
+    src: url(./assets/fonts/montserrat/Montserrat-ExtraLight.ttf) format("truetype");
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+}
+
+body{
+    font-family: var(--main-font);
+    background-color: var(--colorBase);
+    color: var(--colorBar);
+    font-size: 1.2rem;
+    line-height: 1.5;
+
+}
+    
