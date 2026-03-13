@@ -61,7 +61,7 @@ export class UserService {
       createUserDto.imgPerfil = '/uploads/default-profile.png';
     }
 
-    // Genera el hash de la contraseña
+
     const passwordHash = await bcrypt.hash(createUserDto.password, 10);
    
 
@@ -70,7 +70,7 @@ export class UserService {
       password: passwordHash,
     };
 
-    // Crea el usuario
+
     return await this.prisma.user.create({
       data: nuevoUsuario,
     });
